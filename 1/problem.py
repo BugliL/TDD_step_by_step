@@ -41,7 +41,7 @@ So the basic function is
 
 TODO LIST
     - Add amount of different values
-    - Multiply amounts
+    * Multiply amounts
     - Amount private
     - Check side effects
     - Money rounding

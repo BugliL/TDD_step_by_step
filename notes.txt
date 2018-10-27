@@ -11,14 +11,23 @@ Good behavior to write code:
 
 10) remove duplication
 
-How to perform test driven development
-1) make a "todo list" of things to do to have focus on things to do
-2) choose a task
-3) write a little test in the same way the code SHOULD work
-4) Run all test and check if just last one is failing
-5) Make a little change to the code (the smallest is the better)
-6) Run test and check if green, if it's red goto point 5
+The general TDD cycle goes as follows
+0. Make a todo list choose a task
+it force you to do to have focus on things to do
 
+1. Write a test
+it force you in imaging how the interface should work inventing a story.
+write a little test in the same way the code SHOULD work
+
+2. Make it run
+Make very small changes to code until the test goes green
+(the smallest is the better)
+If a clean and easy solution is obvious then type it, otherwise take note of
+it and check that later
+
+3. Make it right
 In the phase when all tests are Green, it's possible to refactor the actual
 code to make it better. In this phase all test stay there to support the
 running code while making changes.
+
+The main goal is to produce Clean Code that works
