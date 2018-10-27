@@ -9,7 +9,16 @@ Good behavior to write code:
 8) No classes with more than 2 instance variables
 9) No getter/setter/properties
 
+10) remove duplication
+
 How to perform test driven development
 1) make a "todo list" of things to do to have focus on things to do
 2) choose a task
-3) write a test in the same way the code is working
+3) write a little test in the same way the code SHOULD work
+4) Run all test and check if just last one is failing
+5) Make a little change to the code (the smallest is the better)
+6) Run test and check if green, if it's red goto point 5
+
+In the phase when all tests are Green, it's possible to refactor the actual
+code to make it better. In this phase all test stay there to support the
+running code while making changes.

@@ -42,6 +42,9 @@ So the basic function is
 TODO LIST
     - Add amount of different values
     - Multiply amounts
+    - Amount private
+    - Check side effects
+    - Money rounding
 
 """
 
@@ -56,8 +59,9 @@ class Dollar(object):
     # without touching tests
     # ( in the book is much more slower in writing code,
     # i'm jumping some passages and distorcing others)
+    # Still Green
     def times(self, t):
-        self.amount = 10
+        self.amount *= 2
         return self.amount
 
 
