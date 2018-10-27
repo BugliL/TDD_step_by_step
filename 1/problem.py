@@ -59,7 +59,7 @@ class Dollar(object):
     # without touching tests
     # ( in the book is much more slower in writing code,
     # i'm jumping some passages and distorcing others)
-    # Still Green
+    # Now is RED
     def times(self, t):
         self.amount *= 2
         return self.amount
@@ -72,3 +72,9 @@ class TestCurrency(unittest.TestCase):
         x = Dollar(5)
         x.times(2)
         self.assertEqual(x.amount, 10)
+
+    # adding another test that fails
+    def test_moltiplication2(self):
+        x = Dollar(7)
+        x.times(2)
+        self.assertEqual(x.amount, 2 * 7)
