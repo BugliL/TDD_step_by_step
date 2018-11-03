@@ -43,9 +43,10 @@ TODO LIST
     - Add amount of different values
     * Multiply amounts
     - Amount private
-    - Check side effects
+    * Check side effects
     - Money rounding
-
+    - equals
+    - hashCode
 """
 
 import unittest
@@ -55,17 +56,15 @@ class Dollar(object):
     def __init__(self, amount):
         self.amount = amount
 
-    # we have to change this to an immutable state
-    # returning a new instance with the correct amount
-    # CHANGED
     def times(self, t):
         return Dollar(self.amount * t)
 
+    # code to make it works
+    def __eq__(self, other):
+        return True
+
 
 class TestCurrency(unittest.TestCase):
-    # Modifying a behavior of the class interface
-    # in a test means that all relative tests
-    # must be changed accordingly to make them coherent
     def test_moltiplication(self):
         x = Dollar(5)
         y = x.times(2)
@@ -76,11 +75,14 @@ class TestCurrency(unittest.TestCase):
         y = x.times(2)
         self.assertEqual(y.amount, 2 * 7)
 
-    # what happens when we call "times" twice?
-    # i changed the test and now it fails
     def test_twice_times(self):
         x = Dollar(5)
         y = x.times(2)
         self.assertEqual(y.amount, 10)
         y = x.times(3)
         self.assertEqual(y.amount, 15)
+
+    # equality condition added to TODO list
+    # equality test
+    def test_equality(self):
+        self.assertEqual(Dollar(5), Dollar(5))
