@@ -45,7 +45,7 @@ TODO LIST
     - Amount private
     * Check side effects
     - Money rounding
-    - equals
+    * equals
     - hashCode
 """
 
@@ -61,7 +61,7 @@ class Dollar(object):
 
     # code to make it works
     def __eq__(self, other):
-        return True
+        return self.amount == other.amount
 
 
 class TestCurrency(unittest.TestCase):
@@ -86,3 +86,4 @@ class TestCurrency(unittest.TestCase):
     # equality test
     def test_equality(self):
         self.assertEqual(Dollar(5), Dollar(5))
+        self.assertNotEqual(Dollar(6), Dollar(5))
