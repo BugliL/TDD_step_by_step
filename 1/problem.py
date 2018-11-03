@@ -79,3 +79,13 @@ class TestCurrency(unittest.TestCase):
         x = Dollar(7)
         x.times(2)
         self.assertEqual(x.amount, 2 * 7)
+
+    # what happens when we call "times" twice?
+    def test_twice_times(self):
+        x = Dollar(5)
+        x.times(2)
+        self.assertEqual(x.amount, 10)
+        x.times(2)
+
+        # this test fails because amount is 20
+        self.assertEqual(x.amount, 10)
