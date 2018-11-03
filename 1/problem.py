@@ -55,37 +55,32 @@ class Dollar(object):
     def __init__(self, amount):
         self.amount = amount
 
-    # i am resolving the RED signal by forcing values
-    # without touching tests
-    # ( in the book is much more slower in writing code,
-    # i'm jumping some passages and distorcing others)
-    # Now is GREEN
+    # we have to change this to an immutable state
+    # returning a new instance with the correct amount
     def times(self, t):
         self.amount *= t
         return self.amount
 
 
 class TestCurrency(unittest.TestCase):
-
-    # let's focus on multiplying first
+    # Modifying a behavior of the class interface
+    # in a test means that all relative tests
+    # must be changed accordingly to make them coherent
     def test_moltiplication(self):
         x = Dollar(5)
         x.times(2)
         self.assertEqual(x.amount, 10)
 
-    # adding another test that fails
-    # solved code to make it work
     def test_moltiplication2(self):
         x = Dollar(7)
         x.times(2)
         self.assertEqual(x.amount, 2 * 7)
 
     # what happens when we call "times" twice?
+    # i changed the test and now it fails
     def test_twice_times(self):
         x = Dollar(5)
-        x.times(2)
-        self.assertEqual(x.amount, 10)
-        x.times(2)
-
-        # this test fails because amount is 20
-        self.assertEqual(x.amount, 10)
+        y = x.times(2)
+        self.assertEqual(y.amount, 10)
+        y = x.times(3)
+        self.assertEqual(y.amount, 15)
