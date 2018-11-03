@@ -57,9 +57,9 @@ class Dollar(object):
 
     # we have to change this to an immutable state
     # returning a new instance with the correct amount
+    # CHANGED
     def times(self, t):
-        self.amount *= t
-        return self.amount
+        return Dollar(self.amount * t)
 
 
 class TestCurrency(unittest.TestCase):
