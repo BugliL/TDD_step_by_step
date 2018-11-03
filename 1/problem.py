@@ -68,13 +68,13 @@ class TestCurrency(unittest.TestCase):
     # must be changed accordingly to make them coherent
     def test_moltiplication(self):
         x = Dollar(5)
-        x.times(2)
-        self.assertEqual(x.amount, 10)
+        y = x.times(2)
+        self.assertEqual(y.amount, 10)
 
     def test_moltiplication2(self):
         x = Dollar(7)
-        x.times(2)
-        self.assertEqual(x.amount, 2 * 7)
+        y = x.times(2)
+        self.assertEqual(y.amount, 2 * 7)
 
     # what happens when we call "times" twice?
     # i changed the test and now it fails
