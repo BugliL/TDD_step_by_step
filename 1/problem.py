@@ -61,31 +61,32 @@ class Dollar(object):
     def times(self, t):
         return Dollar(self.amount * t)
 
-    # code to make it works
     def __eq__(self, other):
         return self.amount == other.amount
 
 
 class TestCurrency(unittest.TestCase):
+
+    # now that there's an equal condition
+    # to compare Dollar instances let's update
+    # the times test condition using it
     def test_moltiplication(self):
         x = Dollar(5)
         y = x.times(2)
-        self.assertEqual(y.amount, 10)
+        self.assertEqual(y, Dollar(10))
 
     def test_moltiplication2(self):
         x = Dollar(7)
         y = x.times(2)
-        self.assertEqual(y.amount, 2 * 7)
+        self.assertEqual(y, Dollar(2 * 7))
 
     def test_twice_times(self):
         x = Dollar(5)
         y = x.times(2)
-        self.assertEqual(y.amount, 10)
+        self.assertEqual(y, Dollar(10))
         y = x.times(3)
-        self.assertEqual(y.amount, 15)
+        self.assertEqual(y, Dollar(15))
 
-    # equality condition added to TODO list
-    # equality test
     def test_equality(self):
         self.assertEqual(Dollar(5), Dollar(5))
         self.assertNotEqual(Dollar(6), Dollar(5))
