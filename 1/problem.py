@@ -42,7 +42,7 @@ So the basic function is
 TODO LIST
     - Add amount of different values
     * Multiply amounts
-    - Amount private
+    * Amount private
     * Check side effects
     - Money rounding
     * equals
@@ -56,10 +56,6 @@ import unittest
 
 class Dollar(object):
 
-    # Making amount private because there's no place
-    # where is used, and there's no reason to expose
-    # that variable anymore
-
     def __init__(self, amount):
         self.__amount = amount
 
@@ -70,13 +66,38 @@ class Dollar(object):
         return self.__amount == other.__amount
 
 
-class TestCurrency(unittest.TestCase):
+# To manage task 1 in list, first of all
+# copy and paste the first test and the class
+# renaming it correctly to make things work
 
-    def test_moltiplication(self):
+# copy and paste is bad but it's the smallest step
+# to write code that works and make the following test
+# on green state
+
+class Franc(object):
+    def __init__(self, amount):
+        self.__amount = amount
+
+    def times(self, t):
+        return Franc(self.__amount * t)
+
+    def __eq__(self, other):
+        return self.__amount == other.__amount
+
+
+class TestFranc(unittest.TestCase):
+    def test_multiplication(self):
+        x = Franc(5)
+        self.assertEqual(x.times(2), Franc(10))
+
+
+class TestDollar(unittest.TestCase):
+
+    def test_multiplication(self):
         x = Dollar(5)
         self.assertEqual(x.times(2), Dollar(10))
 
-    def test_moltiplication2(self):
+    def test_multiplication2(self):
         x = Dollar(7)
         self.assertEqual(x.times(2), Dollar(2 * 7))
 
