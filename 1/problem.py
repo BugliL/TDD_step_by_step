@@ -46,6 +46,8 @@ TODO LIST
     * Check side effects
     - Money rounding
     * equals
+        - Equal null
+        - Equal object
     - hashCode
 """
 

@@ -22,8 +22,12 @@ write a little test in the same way the code SHOULD work
 2. Make it run
 Make very small changes to code until the test goes green
 (the smallest is the better)
-If a clean and easy solution is obvious then type it, otherwise take note of
-it and check that later
+There are different methods to make it run:
+    - Fake it
+    - Implement it directly
+To fake it, write something that work, even constants and gradually replace
+constants with variables.
+If a clean and easy solution is obvious then type it.
 
 3. Make it right
 In the phase when all tests are Green, it's possible to refactor the actual
