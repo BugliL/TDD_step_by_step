@@ -55,23 +55,23 @@ import unittest
 
 
 class Dollar(object):
+
+    # Making amount private because there's no place
+    # where is used, and there's no reason to expose
+    # that variable anymore
+
     def __init__(self, amount):
-        self.amount = amount
+        self.__amount = amount
 
     def times(self, t):
-        return Dollar(self.amount * t)
+        return Dollar(self.__amount * t)
 
     def __eq__(self, other):
-        return self.amount == other.amount
+        return self.__amount == other.__amount
 
 
 class TestCurrency(unittest.TestCase):
 
-    # now that there's an equal condition
-    # to compare Dollar instances let's update
-    # the times test condition using it
-
-    # Tests refactoring deleting support variable
     def test_moltiplication(self):
         x = Dollar(5)
         self.assertEqual(x.times(2), Dollar(10))
