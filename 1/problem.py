@@ -70,22 +70,20 @@ class TestCurrency(unittest.TestCase):
     # now that there's an equal condition
     # to compare Dollar instances let's update
     # the times test condition using it
+
+    # Tests refactoring deleting support variable
     def test_moltiplication(self):
         x = Dollar(5)
-        y = x.times(2)
-        self.assertEqual(y, Dollar(10))
+        self.assertEqual(x.times(2), Dollar(10))
 
     def test_moltiplication2(self):
         x = Dollar(7)
-        y = x.times(2)
-        self.assertEqual(y, Dollar(2 * 7))
+        self.assertEqual(x.times(2), Dollar(2 * 7))
 
     def test_twice_times(self):
         x = Dollar(5)
-        y = x.times(2)
-        self.assertEqual(y, Dollar(10))
-        y = x.times(3)
-        self.assertEqual(y, Dollar(15))
+        self.assertEqual(x.times(2), Dollar(10))
+        self.assertEqual(x.times(3), Dollar(15))
 
     def test_equality(self):
         self.assertEqual(Dollar(5), Dollar(5))
