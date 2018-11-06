@@ -61,8 +61,12 @@ class Money(object):
     def __init__(self, amount):
         self.__amount = amount
 
+    # checking classes too, make the new test working
+    # and the others passing
     def __eq__(self, other):
-        return self.__amount == other.__amount
+        same_class = (other.__class__ == self.__class__)
+        same_amount = (self.__amount == other.__amount)
+        return same_class and same_amount
 
     def times(self, t):
         var = self.__class__
@@ -77,8 +81,8 @@ class Franc(Money):
     pass
 
 
-# We need to test the equivalence between dollars and francs
-# off course this first try goes wrong and the test fails
+# green thanks to the new check in the
+# __eq__ method, checking the class type
 class TestFrancDollarComparing(unittest.TestCase):
     def test_equality(self):
         self.assertNotEqual(Dollar(5), Franc(5))
