@@ -74,44 +74,40 @@ class Money(object):
 # The dollar class is moved to the Money factor
 # class scope as inner class
 
-class Franc(Money):
-    pass
+# The franc class is moved to the Money factor
+# class scope as inner class
 
 
 class MoneyFactory(object):
     class __Dollar(Money):
         pass
 
+    class __Franc(Money):
+        pass
+
     @staticmethod
     def dollar(amount):
         return MoneyFactory.__Dollar(amount)
 
-    # created franc factory method
-    # and some tests are updated to
-    # check if it works
     @staticmethod
     def franc(amount):
-        return Franc(amount)
+        return MoneyFactory.__Franc(amount)
 
 
+# All tests are changed to use the factory method
 class TestFrancDollarComparing(unittest.TestCase):
     def test_equality(self):
-        self.assertNotEqual(MoneyFactory.dollar(5), Franc(5))
+        self.assertNotEqual(MoneyFactory.dollar(5), MoneyFactory.franc(5))
 
 
 class TestFranc(unittest.TestCase):
     def test_multiplication(self):
-        # this test is changed to check
-        # if the new factory method works properly
-        # and this test is Green
-        # x = Franc(5)
-
         x = MoneyFactory.franc(5)
-        self.assertEqual(x.times(2), Franc(10))
+        self.assertEqual(x.times(2), MoneyFactory.franc(10))
 
     def test_equality(self):
-        self.assertEqual(Franc(5), Franc(5))
-        self.assertNotEqual(Franc(6), Franc(5))
+        self.assertEqual(MoneyFactory.franc(5), MoneyFactory.franc(5))
+        self.assertNotEqual(MoneyFactory.franc(6), MoneyFactory.franc(5))
 
 
 class TestDollar(unittest.TestCase):
