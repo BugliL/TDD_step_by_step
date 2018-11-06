@@ -76,9 +76,9 @@ class Money(object):
 # to eliminate them one step at time
 # first creating a factory method for dollars
 # and changing relevant tests
-class Dollar(Money):
-    pass
 
+# The dollar class is moved to the Money factor
+# class scope as inner class
 
 class Franc(Money):
     pass
@@ -89,14 +89,21 @@ class Franc(Money):
 # class to make a factory
 # this is different from the book but I will see later
 class MoneyFactory(object):
+    # this class is private now
+    # and can be accessed only by the factory method
+    class __Dollar(Money):
+        pass
+
     @staticmethod
     def dollar(amount):
-        return Dollar(amount)
+        return MoneyFactory.__Dollar(amount)
 
 
+# I changed all methods that involved dollar class
+# to be sure that everything is working properly
 class TestFrancDollarComparing(unittest.TestCase):
     def test_equality(self):
-        self.assertNotEqual(Dollar(5), Franc(5))
+        self.assertNotEqual(MoneyFactory.dollar(5), Franc(5))
 
 
 class TestFranc(unittest.TestCase):
@@ -111,24 +118,19 @@ class TestFranc(unittest.TestCase):
 
 class TestDollar(unittest.TestCase):
 
-    # I changed a couple of methods
-    # to be sure that everything is working properly
     def test_multiplication(self):
-        # x = Dollar(5)
         x = MoneyFactory.dollar(5)
         self.assertEqual(x.times(2), MoneyFactory.dollar(10))
 
     def test_multiplication2(self):
-        x = Dollar(7)
-        self.assertEqual(x.times(2), Dollar(2 * 7))
+        x = MoneyFactory.dollar(7)
+        self.assertEqual(x.times(2), MoneyFactory.dollar(2 * 7))
 
     def test_twice_times(self):
-        x = Dollar(5)
-        self.assertEqual(x.times(2), Dollar(10))
-        self.assertEqual(x.times(3), Dollar(15))
+        x = MoneyFactory.dollar(5)
+        self.assertEqual(x.times(2), MoneyFactory.dollar(10))
+        self.assertEqual(x.times(3), MoneyFactory.dollar(15))
 
     def test_equality(self):
-        # self.assertEqual(Dollar(5), Dollar(5))
-        # self.assertNotEqual(Dollar(6), Dollar(5))
-        self.assertEqual(MoneyFactory.dollar(5), Dollar(5))
-        self.assertNotEqual(MoneyFactory.dollar(6), Dollar(5))
+        self.assertEqual(MoneyFactory.dollar(5), MoneyFactory.dollar(5))
+        self.assertNotEqual(MoneyFactory.dollar(6), MoneyFactory.dollar(5))
