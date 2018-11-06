@@ -41,54 +41,65 @@ So the basic function is
 
 TODO LIST
     - Add amount of different values
-    * Multiply amounts
+    * Multiply amounts Dollars
+    * Multiply amounts Franc
     * Amount private
     * Check side effects
     - Money rounding
     * equals
         - Equal null
         - Equal object
+        - common equal
     - hashCode
 """
 
 import unittest
 
 
-class Dollar(object):
+# Let's clean up with a superclass
+# in python there's no protected visibility
+# so we need to expose again the amount variable
+# or define all behavior where this attribute is involved
+# in the superclass
 
+# The __eq__ method has to be implemented in the superclass
+# to let the amount attribute remain private.
+# I added a test to check Franc equality while changing it
+
+# Times method is class dependant, and it uses the amount
+# variable, so the only way to do not duplicate code is
+# to implement it in the superclass using the python
+# __class__ variable to make it returning the correct
+# object instance for each subclass
+
+class Money(object):
     def __init__(self, amount):
         self.__amount = amount
-
-    def times(self, t):
-        return Dollar(self.__amount * t)
 
     def __eq__(self, other):
         return self.__amount == other.__amount
 
-
-# To manage task 1 in list, first of all
-# copy and paste the first test and the class
-# renaming it correctly to make things work
-
-# copy and paste is bad but it's the smallest step
-# to write code that works and make the following test
-# on green state
-
-class Franc(object):
-    def __init__(self, amount):
-        self.__amount = amount
-
     def times(self, t):
-        return Franc(self.__amount * t)
+        var = self.__class__
+        return var(self.__amount * t)
 
-    def __eq__(self, other):
-        return self.__amount == other.__amount
+
+class Dollar(Money):
+    pass
+
+
+class Franc(Money):
+    pass
 
 
 class TestFranc(unittest.TestCase):
     def test_multiplication(self):
         x = Franc(5)
         self.assertEqual(x.times(2), Franc(10))
+
+    def test_equality(self):
+        self.assertEqual(Franc(5), Franc(5))
+        self.assertNotEqual(Franc(6), Franc(5))
 
 
 class TestDollar(unittest.TestCase):
