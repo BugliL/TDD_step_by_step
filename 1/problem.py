@@ -49,28 +49,13 @@ TODO LIST
     * equals
         - Equal null
         - Equal object
-        - common equal
+        * common equal
     - hashCode
+    - compare dollars and francs
 """
 
 import unittest
 
-
-# Let's clean up with a superclass
-# in python there's no protected visibility
-# so we need to expose again the amount variable
-# or define all behavior where this attribute is involved
-# in the superclass
-
-# The __eq__ method has to be implemented in the superclass
-# to let the amount attribute remain private.
-# I added a test to check Franc equality while changing it
-
-# Times method is class dependant, and it uses the amount
-# variable, so the only way to do not duplicate code is
-# to implement it in the superclass using the python
-# __class__ variable to make it returning the correct
-# object instance for each subclass
 
 class Money(object):
     def __init__(self, amount):
@@ -90,6 +75,13 @@ class Dollar(Money):
 
 class Franc(Money):
     pass
+
+
+# We need to test the equivalence between dollars and francs
+# off course this first try goes wrong and the test fails
+class TestFrancDollarComparing(unittest.TestCase):
+    def test_equality(self):
+        self.assertNotEqual(Dollar(5), Franc(5))
 
 
 class TestFranc(unittest.TestCase):
