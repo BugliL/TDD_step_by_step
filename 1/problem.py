@@ -71,12 +71,6 @@ class Money(object):
         return var(self.__amount * t)
 
 
-# these classes are too small and useless
-# without any method or attribute so is better decided
-# to eliminate them one step at time
-# first creating a factory method for dollars
-# and changing relevant tests
-
 # The dollar class is moved to the Money factor
 # class scope as inner class
 
@@ -84,13 +78,7 @@ class Franc(Money):
     pass
 
 
-# In python is not possible to make an inner subclass
-# because of class naming scope, so I created a separated
-# class to make a factory
-# this is different from the book but I will see later
 class MoneyFactory(object):
-    # this class is private now
-    # and can be accessed only by the factory method
     class __Dollar(Money):
         pass
 
@@ -98,9 +86,14 @@ class MoneyFactory(object):
     def dollar(amount):
         return MoneyFactory.__Dollar(amount)
 
+    # created franc factory method
+    # and some tests are updated to
+    # check if it works
+    @staticmethod
+    def franc(amount):
+        return Franc(amount)
 
-# I changed all methods that involved dollar class
-# to be sure that everything is working properly
+
 class TestFrancDollarComparing(unittest.TestCase):
     def test_equality(self):
         self.assertNotEqual(MoneyFactory.dollar(5), Franc(5))
@@ -108,7 +101,12 @@ class TestFrancDollarComparing(unittest.TestCase):
 
 class TestFranc(unittest.TestCase):
     def test_multiplication(self):
-        x = Franc(5)
+        # this test is changed to check
+        # if the new factory method works properly
+        # and this test is Green
+        # x = Franc(5)
+
+        x = MoneyFactory.franc(5)
         self.assertEqual(x.times(2), Franc(10))
 
     def test_equality(self):
