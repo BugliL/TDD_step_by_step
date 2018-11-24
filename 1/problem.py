@@ -64,11 +64,6 @@ class Money(object):
         self.__amount = amount
         self.__currency = currency
 
-    # checking a class type is not pythonist
-    # so i try to refactor this without changing tests
-    # a way to distinguish money from each other
-    # it is to add a parameter in both classes
-    # that can be checked in the __eq__ method
     def __eq__(self, other):
         same_currency = (self.__currency == other.__currency)
         same_amount = (self.__amount == other.__amount)
@@ -80,9 +75,6 @@ class Money(object):
 
 
 class MoneyFactory(object):
-    # __init___ methods added to
-    # distinguish them from base class using the param
-
     class __Dollar(Money):
         def __init__(self, amount):
             super().__init__(amount, 'USD')
@@ -100,37 +92,40 @@ class MoneyFactory(object):
         return MoneyFactory.__Franc(amount)
 
 
-# All tests are changed to use the factory method
+# Test names refactor using the model "given, when, than"
+# to clarify code and what they test
+# renaming tests it's clear that some functionality are tested multiple times
+# from different tests cases, this is a waste of testing and these tests have to be refactored
 class TestFrancDollarComparing(unittest.TestCase):
-    def test_equality(self):
+    def test_given_dollars_and_francs_when_compared_result_different(self):
         self.assertNotEqual(MoneyFactory.dollar(5), MoneyFactory.franc(5))
 
 
 class TestFranc(unittest.TestCase):
-    def test_multiplication(self):
+    def test_given_5franc_when_called_times2_than_eq_10franc(self):
         x = MoneyFactory.franc(5)
         self.assertEqual(x.times(2), MoneyFactory.franc(10))
 
-    def test_equality(self):
+    def test_given_5franc_when_created_than_eq_5franc(self):
         self.assertEqual(MoneyFactory.franc(5), MoneyFactory.franc(5))
         self.assertNotEqual(MoneyFactory.franc(6), MoneyFactory.franc(5))
 
 
 class TestDollar(unittest.TestCase):
 
-    def test_multiplication(self):
+    def test_given_5USD_when_called_times2_than_eq_10USD(self):
         x = MoneyFactory.dollar(5)
         self.assertEqual(x.times(2), MoneyFactory.dollar(10))
 
-    def test_multiplication2(self):
+    def test_given_7USD_when_called_times2_than_eq_14USD(self):
         x = MoneyFactory.dollar(7)
         self.assertEqual(x.times(2), MoneyFactory.dollar(2 * 7))
 
-    def test_twice_times(self):
+    def test_given_5USD_when_called_times2_and_times3_than_eq_10USD_and_15USD(self):
         x = MoneyFactory.dollar(5)
         self.assertEqual(x.times(2), MoneyFactory.dollar(10))
         self.assertEqual(x.times(3), MoneyFactory.dollar(15))
 
-    def test_equality(self):
+    def test_given_5USD_when_created_than_eq_5USD_and_neq_6USD(self):
         self.assertEqual(MoneyFactory.dollar(5), MoneyFactory.dollar(5))
         self.assertNotEqual(MoneyFactory.dollar(6), MoneyFactory.dollar(5))
