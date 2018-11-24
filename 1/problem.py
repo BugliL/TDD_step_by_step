@@ -52,38 +52,44 @@ TODO LIST
         * common equal
     - hashCode
     - compare dollars and francs
+    - $5 + 10CHF = $10 if rate is 2:1
+    * $5 * 2 = $10
 """
 
 import unittest
 
 
 class Money(object):
-    def __init__(self, amount):
+    def __init__(self, amount, currency):
         self.__amount = amount
+        self.__currency = currency
 
+    # checking a class type is not pythonist
+    # so i try to refactor this without changing tests
+    # a way to distinguish money from each other
+    # it is to add a parameter in both classes
+    # that can be checked in the __eq__ method
     def __eq__(self, other):
-        same_class = (other.__class__ == self.__class__)
+        same_currency = (self.__currency == other.__currency)
         same_amount = (self.__amount == other.__amount)
-        return same_class and same_amount
+        return same_amount and same_currency
 
     def times(self, t):
         var = self.__class__
         return var(self.__amount * t)
 
 
-# The dollar class is moved to the Money factor
-# class scope as inner class
-
-# The franc class is moved to the Money factor
-# class scope as inner class
-
-
 class MoneyFactory(object):
+    # __init___ methods added to
+    # distinguish them from base class using the param
+
     class __Dollar(Money):
-        pass
+        def __init__(self, amount):
+            super().__init__(amount, 'USD')
 
     class __Franc(Money):
-        pass
+        def __init__(self, amount):
+            super().__init__(amount, 'CHD')
 
     @staticmethod
     def dollar(amount):
