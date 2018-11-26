@@ -47,27 +47,34 @@ Doing this, we need to define a change rate of money
 
 # He uses a Sum class to add things, but he has to
 # access the __amount to do that, so i decided to use a property
-# to let the attribute be accessed but not setted
-class Money(object):
+# to let the attribute be accessed but not set
+# same for currency
 
+# I do not like using the interface that Kent Beck is using
+# and I think that I can simplify that without using different classes
+# but just dividing the methods to reduce Money responsibility of
+# aritmetic operations
+
+class Money(object):
+    # changed to use properties instead of private attributes
     def __init__(self, amount, currency):
         self.__amount = amount
         self.__currency = currency
 
     def __eq__(self, other):
-        same_currency = (self.__currency == other.__currency)
-        same_amount = (self.__amount == other.__amount)
+        same_currency = (self.currency == other.currency)
+        same_amount = (self.amount == other.amount)
         return same_amount and same_currency
 
     def __add__(self, other):
-        amount = self.__amount + other.__amount
-        return Money(amount, self.__currency)
+        amount = self.amount + other.amount
+        return Money(amount, self.currency)
 
     def times(self, t):
-        return Money(self.__amount * t, self.__currency)
+        return Money(self.amount * t, self.currency)
 
     def __str__(self):
-        return f"{self.__amount}{self.__currency}"
+        return f"{self.amount}{self.currency}"
 
     @property
     def amount(self):
@@ -75,6 +82,14 @@ class Money(object):
 
     @amount.setter
     def amount(self, value):
+        pass
+
+    @property
+    def currency(self):
+        return self.__currency
+
+    @currency.setter
+    def currency(self, value):
         pass
 
 

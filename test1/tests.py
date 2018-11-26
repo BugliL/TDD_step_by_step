@@ -53,7 +53,6 @@ class TestFranc(unittest.TestCase):
         self.assertEqual(MoneyFactory.franc(5), MoneyFactory.franc(5))
         self.assertNotEqual(MoneyFactory.franc(6), MoneyFactory.franc(5))
 
-    # used to check if the property goes well
     def test_given_aFranc_when_created_than_amount_accessible_readonly(self):
         x = MoneyFactory.franc(1)
         self.assertEqual(1, x.amount)
@@ -62,6 +61,13 @@ class TestFranc(unittest.TestCase):
         self.assertNotEqual(5, x.amount)
         self.assertEqual(1, x.amount)
 
+    def test_given_aFranc_when_created_than_currency_accessible_readonly(self):
+        x = MoneyFactory.franc(1)
+        self.assertEqual('CHD', x.currency)
+
+        x.currency = 'USD'
+        self.assertNotEqual('USD', x.currency)
+        self.assertEqual('CHD', x.currency)
 
 
 
