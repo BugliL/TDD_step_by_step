@@ -96,8 +96,6 @@ class Money(object):
         same_amount = (self.amount == other.amount * rate)
         return same_amount
 
-    # change this method to convert amount
-    # to the right currency
     def __add__(self, other):
         amount = self.amount + other.convert(self.currency).amount
         return Money(amount, self.currency)
