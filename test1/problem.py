@@ -44,7 +44,10 @@ Doing this, we need to define a change rate of money
 
 # I can't do an interface in python of course
 # so let's do this with small steps
-# This code is in green state
+
+# He uses a Sum class to add things, but he has to
+# access the __amount to do that, so i decided to use a property
+# to let the attribute be accessed but not setted
 class Money(object):
 
     def __init__(self, amount, currency):
@@ -62,15 +65,17 @@ class Money(object):
 
     def times(self, t):
         return Money(self.__amount * t, self.__currency)
-        # this method can be changed like above with no fear
-        # var = self.__class__
-        # if var == Money:
-        #     return var(self.__amount * t, self.__currency)
-        # else:
-        #     return var(self.__amount * t)
 
     def __str__(self):
         return f"{self.__amount}{self.__currency}"
+
+    @property
+    def amount(self):
+        return self.__amount
+
+    @amount.setter
+    def amount(self, value):
+        pass
 
 
 class MoneyFactory(object):

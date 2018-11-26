@@ -38,19 +38,6 @@ class TestFranc(unittest.TestCase):
         x = MoneyFactory.franc(5)
         self.assertEqual(x.times(2), MoneyFactory.franc(10))
 
-    # This is a big step because it determines all next system
-    # of using money together.
-
-    # In the book Kent Beck chooses to wrap a money Expression object
-    # using a Bank object that reduce the money to a given currency
-
-    # there's no reason to think differently or that this method is wrong
-    # ( at least at page 57 )
-    # so let's try the same
-    # (I use Franc instead of dollars with same implementation)
-
-    # he writed the test from the condition to the variable definition
-
     def test_given_5CHD_and_5CHD_when_reduced_by_bank_than_return_10CHD(self):
         f1 = MoneyFactory.franc(5)
         expression = f1 + f1
@@ -65,6 +52,17 @@ class TestFranc(unittest.TestCase):
     def test_given_5franc_when_created_than_eq_5franc_and_neq_6franc(self):
         self.assertEqual(MoneyFactory.franc(5), MoneyFactory.franc(5))
         self.assertNotEqual(MoneyFactory.franc(6), MoneyFactory.franc(5))
+
+    # used to check if the property goes well
+    def test_given_aFranc_when_created_than_amount_accessible_readonly(self):
+        x = MoneyFactory.franc(1)
+        self.assertEqual(1, x.amount)
+
+        x.amount = 5
+        self.assertNotEqual(5, x.amount)
+        self.assertEqual(1, x.amount)
+
+
 
 
 class TestDollar(unittest.TestCase):
