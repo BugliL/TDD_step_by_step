@@ -30,12 +30,6 @@ class TestFrancDollarTogether(unittest.TestCase):
     def test_given_dollars_and_francs_when_compared_result_different(self):
         self.assertNotEqual(MoneyFactory.dollar(5), MoneyFactory.franc(5))
 
-    # now let's try to compare different currencies
-    # because this is not refactoring but is adding behavior
-    # it needs at least a test
-    # this test fails because the __eq__ method do not take care of it
-
-    # now is green
     def test_given_5dollars_and_10francs_when_compared_result_equal(self):
         self.assertEqual(MoneyFactory.dollar(5), MoneyFactory.franc(10))
 

@@ -67,6 +67,8 @@ Doing this, we need to define a change rate of money
 
 # next step is to change the code of __eq__
 # to check different currencies
+
+
 class RateChange(object):
     def __init__(self, rates=None):
         self.rates = rates or {
@@ -79,7 +81,7 @@ class RateChange(object):
         }
 
     def get_rate(self, source, dest):
-        return self.rates[source.currency][dest]
+        return 1 if source.currency == dest else self.rates[source.currency][dest]
 
 
 class Money(object):
@@ -88,14 +90,11 @@ class Money(object):
         self.__currency = currency
         self.__ratechange = ratechange
 
-    # now it makes the test green
+    # what if I do not care about the currency at all?
+    # I can refactor using the same currency in the RateChange Class
     def __eq__(self, other):
-        same_currency = (self.currency == other.currency)
-        if not same_currency:
-            rate = self.__ratechange.get_rate(other, self.currency)
-            same_amount = (self.amount == other.amount * rate)
-        else:
-            same_amount = (self.amount == other.amount)
+        rate = self.__ratechange.get_rate(other, self.currency)
+        same_amount = (self.amount == other.amount * rate)
         return same_amount
 
     def __add__(self, other):
