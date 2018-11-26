@@ -59,28 +59,11 @@ class Money(object):
 
 
 class MoneyFactory(object):
-    # now i can delete these classes
-    # remaining in green state
-
-    # class __Dollar(Money):
-    #     def __init__(self, amount):
-    #         super().__init__(amount, 'USD')
-    #
-    # class __Franc(Money):
-    #     def __init__(self, amount):
-    #         super().__init__(amount, 'CHD')
 
     @staticmethod
     def dollar(amount):
-        # changing this one
-        # return MoneyFactory.__Dollar(amount)
         return Money(amount=amount, currency='USD')
 
     @staticmethod
     def franc(amount):
-        # and this one
-        # return MoneyFactory.__Franc(amount)
         return Money(amount=amount, currency='CHD')
-
-    # these 3 changes were made separately and tested one
-    # for step to be sure to do not encounter errors
