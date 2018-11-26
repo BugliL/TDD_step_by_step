@@ -86,6 +86,8 @@ class RateChange(object):
 
 
 class Money(object):
+    # making amount private again for no need
+    # in the RateChange class or in any other class
     def __init__(self, amount, currency, ratechange=RateChange()):
         self.__amount = amount
         self.__currency = currency
@@ -93,30 +95,30 @@ class Money(object):
 
     def __eq__(self, other):
         rate = self.__ratechange.get_rate(other, self.currency)
-        same_amount = (self.amount == other.amount * rate)
+        same_amount = (self.__amount == other.__amount * rate)
         return same_amount
 
     def __add__(self, other):
-        amount = self.amount + other.convert(self.currency).amount
+        amount = self.__amount + other.convert(self.currency).__amount
         return Money(amount, self.currency)
 
     def times(self, t):
-        return Money(self.amount * t, self.currency)
+        return Money(self.__amount * t, self.currency)
 
     def convert(self, currency):
         rate = self.__ratechange.get_rate(self, currency)
-        return Money(self.amount * rate, currency)
+        return Money(self.__amount * rate, currency)
 
     def __str__(self):
-        return f"{self.amount}{self.currency}"
+        return f"{self.__amount}{self.currency}"
 
-    @property
-    def amount(self):
-        return self.__amount
-
-    @amount.setter
-    def amount(self, value):
-        pass
+    # @property
+    # def amount(self):
+    #     return self.__amount
+    #
+    # @amount.setter
+    # def amount(self, value):
+    #     pass
 
     @property
     def currency(self):

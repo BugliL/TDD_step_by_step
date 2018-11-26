@@ -74,13 +74,15 @@ class TestFranc(unittest.TestCase):
         self.assertEqual(MoneyFactory.franc(5), MoneyFactory.franc(5))
         self.assertNotEqual(MoneyFactory.franc(6), MoneyFactory.franc(5))
 
-    def test_given_aFranc_when_created_than_amount_accessible_readonly(self):
-        x = MoneyFactory.franc(1)
-        self.assertEqual(1, x.amount)
-
-        x.amount = 5
-        self.assertNotEqual(5, x.amount)
-        self.assertEqual(1, x.amount)
+    # I will just comment this test by class behavior
+    # but I can uncomment it if I need to expose the amount variable
+    # def test_given_aFranc_when_created_than_amount_accessible_readonly(self):
+    #     x = MoneyFactory.franc(1)
+    #     self.assertEqual(1, x.amount)
+    #
+    #     x.amount = 5
+    #     self.assertNotEqual(5, x.amount)
+    #     self.assertEqual(1, x.amount)
 
     def test_given_aFranc_when_created_than_currency_accessible_readonly(self):
         x = MoneyFactory.franc(1)
