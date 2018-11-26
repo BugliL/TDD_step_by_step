@@ -51,6 +51,12 @@ class Money(object):
         var = self.__class__
         return var(self.__amount * t)
 
+    # As the book I implemented the toString method
+    # but i prefer to test it because is written in the parent
+    # class instead of the children
+    def __str__(self):
+        return f"{self.__amount}{self.__currency}"
+
 
 class MoneyFactory(object):
     class __Dollar(Money):

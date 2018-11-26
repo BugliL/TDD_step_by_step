@@ -14,20 +14,14 @@
     - compare dollars and francs
     - $5 + 10CHF = $10 if rate is 2:test1
     * $5 * 2 = $10
+
+    - Dollar / Franc duplication
 """
 
 import unittest
 import sys
 
 from test1.problem import MoneyFactory
-
-
-# Test names refactor using the model "given, when, than"
-# to clarify code and what they test
-# renaming tests it's clear that some functionality are tested multiple times
-# from different tests cases, this is a waste of testing and these tests have to be refactored
-
-# test refactor to remove redundancy
 
 class TestFrancDollarComparing(unittest.TestCase):
     def test_given_dollars_and_francs_when_compared_result_different(self):
@@ -54,3 +48,14 @@ class TestDollar(unittest.TestCase):
     def test_given_5USD_when_created_than_eq_5USD_and_neq_6USD(self):
         self.assertEqual(MoneyFactory.dollar(5), MoneyFactory.dollar(5))
         self.assertNotEqual(MoneyFactory.dollar(6), MoneyFactory.dollar(5))
+
+# Test class to check if the method to string is working
+# with subclasses
+class TestPrint(unittest.TestCase):
+    def test_given_aDollar_when_string_converted_than_print_amount_and_USD(self):
+        x = MoneyFactory.dollar(5)
+        self.assertEqual(str(x), "5USD")
+
+    def test_given_aDollar_when_string_converted_than_print_amount_and_CHD(self):
+        x = MoneyFactory.franc(5)
+        self.assertEqual(str(x), "5CHD")
