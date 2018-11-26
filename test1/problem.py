@@ -60,6 +60,7 @@ Doing this, we need to define a change rate of money
 
 # Class to refactor the rate change
 # in the Money class
+# better if we pass objects instead of currencies
 class RateChange(object):
     def __init__(self, rates=None):
         self.rates = rates or {
@@ -72,7 +73,7 @@ class RateChange(object):
         }
 
     def get_rate(self, source, dest):
-        return self.rates[source][dest]
+        return self.rates[source.currency][dest]
 
 
 class Money(object):
@@ -98,9 +99,8 @@ class Money(object):
         if currency == self.currency:
             return self
         else:
-            # refactor done with the RateChange class
-            # rate = self.rates[self.currency][currency]
-            rate = self.__ratechange.get_rate(self.currency, currency)
+            # better if we pass objects instead of currencies
+            rate = self.__ratechange.get_rate(self, currency)
             return Money(self.amount * rate, currency)
 
     def __str__(self):
