@@ -56,13 +56,23 @@ Doing this, we need to define a change rate of money
 # aritmetic operations
 
 # so i changed tests to something more familiar to me
-# instead of doing a chapter on a Sum objct that wrap the operation
+# instead of doing a chapter on a Sum object that wrap the operation
 
 
 class Money(object):
     def __init__(self, amount, currency):
         self.__amount = amount
         self.__currency = currency
+
+        # refactor to generalize the convert method
+        self.rates = {
+            'USD': {
+                'CHD': 2,
+            },
+            'CHD': {
+                'USD': .5,
+            }
+        }
 
     def __eq__(self, other):
         same_currency = (self.currency == other.currency)
@@ -76,15 +86,13 @@ class Money(object):
     def times(self, t):
         return Money(self.amount * t, self.currency)
 
-    # this goes green
+    # this goes green with this refactor
     def convert(self, currency):
         if currency == self.currency:
             return self
         else:
-            if currency == 'USD' and self.currency == 'CHD':
-                return Money(amount=self.amount / 2, currency='USD')
-            elif currency == 'CHD' and self.currency == 'USD':
-                return Money(amount=self.amount * 2, currency='CHD')
+            rate = self.rates[self.currency][currency]
+            return Money(self.amount * rate, currency)
 
     def __str__(self):
         return f"{self.amount}{self.currency}"
@@ -115,9 +123,3 @@ class MoneyFactory(object):
     @staticmethod
     def franc(amount):
         return Money(amount=amount, currency='CHD')
-
-
-class Bank(object):
-    @staticmethod
-    def reduce(expression, param):
-        return MoneyFactory.franc(10)

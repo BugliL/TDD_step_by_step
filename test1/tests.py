@@ -7,9 +7,9 @@
         - Equal null
         - Equal object
     - hashCode
-    - $5 + 10CHF = $10 if rate is 2:test1
-    - $5 + $5 = $10
+    - $5 + 10CHF = $10 if rate is 2:1
 
+    * $5 + $5 = $10
     * Multiply amounts Dollars
     * Multiply amounts Franc
     * Amount private
@@ -19,13 +19,11 @@
     * compare dollars and francs
     * $5 * 2 = $10
     * Dollar / Franc duplication
-
-
 """
 
 import unittest
 
-from test1.problem import MoneyFactory, Bank
+from test1.problem import MoneyFactory
 
 
 class TestFrancDollarTogether(unittest.TestCase):
