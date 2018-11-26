@@ -88,10 +88,15 @@ class Money(object):
         self.__currency = currency
         self.__ratechange = ratechange
 
+    # now it makes the test green
     def __eq__(self, other):
         same_currency = (self.currency == other.currency)
-        same_amount = (self.amount == other.amount)
-        return same_amount and same_currency
+        if not same_currency:
+            rate = self.__ratechange.get_rate(other, self.currency)
+            same_amount = (self.amount == other.amount * rate)
+        else:
+            same_amount = (self.amount == other.amount)
+        return same_amount
 
     def __add__(self, other):
         amount = self.amount + other.amount
