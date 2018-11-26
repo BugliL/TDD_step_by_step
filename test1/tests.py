@@ -23,6 +23,7 @@ import sys
 
 from test1.problem import MoneyFactory
 
+
 class TestFrancDollarComparing(unittest.TestCase):
     def test_given_dollars_and_francs_when_compared_result_different(self):
         self.assertNotEqual(MoneyFactory.dollar(5), MoneyFactory.franc(5))
@@ -49,8 +50,7 @@ class TestDollar(unittest.TestCase):
         self.assertEqual(MoneyFactory.dollar(5), MoneyFactory.dollar(5))
         self.assertNotEqual(MoneyFactory.dollar(6), MoneyFactory.dollar(5))
 
-# Test class to check if the method to string is working
-# with subclasses
+
 class TestPrint(unittest.TestCase):
     def test_given_aDollar_when_string_converted_than_print_amount_and_USD(self):
         x = MoneyFactory.dollar(5)
