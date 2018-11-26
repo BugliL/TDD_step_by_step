@@ -68,6 +68,7 @@ Doing this, we need to define a change rate of money
 # next step is to change the code of __eq__
 # to check different currencies
 
+# now is time to implement an add of different things
 
 class RateChange(object):
     def __init__(self, rates=None):
@@ -90,8 +91,6 @@ class Money(object):
         self.__currency = currency
         self.__ratechange = ratechange
 
-    # what if I do not care about the currency at all?
-    # I can refactor using the same currency in the RateChange Class
     def __eq__(self, other):
         rate = self.__ratechange.get_rate(other, self.currency)
         same_amount = (self.amount == other.amount * rate)
@@ -104,6 +103,7 @@ class Money(object):
     def times(self, t):
         return Money(self.amount * t, self.currency)
 
+    # let's refactor this like the equal method
     def convert(self, currency):
         if currency == self.currency:
             return self
