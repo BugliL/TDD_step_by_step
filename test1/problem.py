@@ -61,6 +61,12 @@ Doing this, we need to define a change rate of money
 # Class to refactor the rate change
 # in the Money class
 # better if we pass objects instead of currencies
+
+# this is much more different from the book
+# but this is python and not formally-correct-object-structuring Java
+
+# next step is to change the code of __eq__
+# to check different currencies
 class RateChange(object):
     def __init__(self, rates=None):
         self.rates = rates or {
@@ -94,12 +100,10 @@ class Money(object):
     def times(self, t):
         return Money(self.amount * t, self.currency)
 
-    # this goes green with this refactor
     def convert(self, currency):
         if currency == self.currency:
             return self
         else:
-            # better if we pass objects instead of currencies
             rate = self.__ratechange.get_rate(self, currency)
             return Money(self.amount * rate, currency)
 
