@@ -33,7 +33,6 @@ class TestFrancDollarTogether(unittest.TestCase):
     def test_given_5dollars_and_10francs_when_compared_result_equal(self):
         self.assertEqual(MoneyFactory.dollar(5), MoneyFactory.franc(10))
 
-    # test for aritmetic things
     def test_given_5USD_and_10CHD_when_sum_than_result_10USD(self):
         f1 = MoneyFactory.franc(10)
         d1 = MoneyFactory.dollar(5)
@@ -55,14 +54,14 @@ class TestFrancDollarTogether(unittest.TestCase):
 
 
 class TestFranc(unittest.TestCase):
-    # base test for multiplication
     def test_given_aMoney_when_multiplied_2_than_result_doubled(self):
         x = MoneyFactory.franc(5)
         self.assertEqual(MoneyFactory.franc(10), x * 2)
 
+    # refactoring of test without changing code: removing times
     def test_given_5franc_when_called_times2_than_eq_10franc(self):
         x = MoneyFactory.franc(5)
-        self.assertEqual(x.times(2), MoneyFactory.franc(10))
+        self.assertEqual(x * 2, MoneyFactory.franc(10))
 
     def test_given_5CHD_and_5CHD_when_reduced_by_bank_than_return_10CHD(self):
         f1 = MoneyFactory.franc(5)
@@ -109,9 +108,10 @@ class TestDollar(unittest.TestCase):
         d3 = MoneyFactory.dollar(5)
         self.assertEqual(d1 + d2 + d3, MoneyFactory.dollar(15))
 
+    # refactoring of test without changing code: removing times
     def test_given_5USD_when_called_times2_and_times3_than_eq_10USD(self):
         x = MoneyFactory.dollar(5)
-        self.assertEqual(x.times(3), MoneyFactory.dollar(15))
+        self.assertEqual(x * 3, MoneyFactory.dollar(15))
 
     def test_given_5USD_when_created_than_eq_5USD_and_neq_6USD(self):
         self.assertEqual(MoneyFactory.dollar(5), MoneyFactory.dollar(5))

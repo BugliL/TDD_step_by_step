@@ -76,8 +76,10 @@ class Money(object):
     def __mul__(self, other):
         return Money(self.__amount * other, self.currency)
 
-    def times(self, t):
-        return Money(self.__amount * t, self.currency)
+    # Now i can safely remove times because it do not compare in any
+    # other part of the code
+    # def times(self, t):
+    #     return Money(self.__amount * t, self.currency)
 
     def convert(self, currency):
         rate = self.__ratechange.get_rate(self, currency)
@@ -85,14 +87,6 @@ class Money(object):
 
     def __str__(self):
         return f"{self.__amount}{self.currency}"
-
-    # @property
-    # def amount(self):
-    #     return self.__amount
-    #
-    # @amount.setter
-    # def amount(self, value):
-    #     pass
 
     @property
     def currency(self):
