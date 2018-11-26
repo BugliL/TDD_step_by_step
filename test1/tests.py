@@ -41,10 +41,12 @@ class TestFranc(unittest.TestCase):
     def test_given_5CHD_and_5CHD_when_reduced_by_bank_than_return_10CHD(self):
         f1 = MoneyFactory.franc(5)
         expression = f1 + f1
-        # this make no sense to me, we need just to make conversions
-        # reduced_expression = Bank.reduce(expression, 'CHD')
         reduced_expression = expression.convert('CHD')
         self.assertEqual(reduced_expression, MoneyFactory.franc(10))
+
+    def test_given_10CHD_when_converted_to_USD_than_result_5USD(self):
+        f1 = MoneyFactory.franc(10)
+        self.assertEqual(f1.convert('USD'), MoneyFactory.dollar(5))
 
     def test_given_5CHD_and_5CHD_when_sum_than_return_10CHD(self):
         f1 = MoneyFactory.franc(5)

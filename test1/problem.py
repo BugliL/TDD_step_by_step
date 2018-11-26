@@ -57,8 +57,9 @@ Doing this, we need to define a change rate of money
 
 # so i changed tests to something more familiar to me
 # instead of doing a chapter on a Sum objct that wrap the operation
+
+
 class Money(object):
-    # changed to use properties instead of private attributes
     def __init__(self, amount, currency):
         self.__amount = amount
         self.__currency = currency
@@ -75,8 +76,15 @@ class Money(object):
     def times(self, t):
         return Money(self.amount * t, self.currency)
 
+    # this goes green
     def convert(self, currency):
-        return self
+        if currency == self.currency:
+            return self
+        else:
+            if currency == 'USD' and self.currency == 'CHD':
+                return Money(amount=self.amount / 2, currency='USD')
+            elif currency == 'CHD' and self.currency == 'USD':
+                return Money(amount=self.amount * 2, currency='CHD')
 
     def __str__(self):
         return f"{self.amount}{self.currency}"
