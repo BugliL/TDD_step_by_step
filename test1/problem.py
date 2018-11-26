@@ -48,9 +48,6 @@ class Money(object):
         return same_amount and same_currency
 
     def times(self, t):
-        # Not so pythonic, i will change this soon
-        # this is just to became a green state
-        # and use the money class in the factory class
         var = self.__class__
         if var == Money:
             return var(self.__amount * t, self.__currency)
@@ -62,19 +59,28 @@ class Money(object):
 
 
 class MoneyFactory(object):
-    class __Dollar(Money):
-        def __init__(self, amount):
-            super().__init__(amount, 'USD')
+    # now i can delete these classes
+    # remaining in green state
 
-    class __Franc(Money):
-        def __init__(self, amount):
-            super().__init__(amount, 'CHD')
+    # class __Dollar(Money):
+    #     def __init__(self, amount):
+    #         super().__init__(amount, 'USD')
+    #
+    # class __Franc(Money):
+    #     def __init__(self, amount):
+    #         super().__init__(amount, 'CHD')
 
     @staticmethod
     def dollar(amount):
-        # Now i can change this one
-        return MoneyFactory.__Dollar(amount)
+        # changing this one
+        # return MoneyFactory.__Dollar(amount)
+        return Money(amount=amount, currency='USD')
 
     @staticmethod
     def franc(amount):
-        return MoneyFactory.__Franc(amount)
+        # and this one
+        # return MoneyFactory.__Franc(amount)
+        return Money(amount=amount, currency='CHD')
+
+    # these 3 changes were made separately and tested one
+    # for step to be sure to do not encounter errors
