@@ -31,7 +31,7 @@ Doing this, we need to define a change rate of money
 =================+===================
 |   From    |   To      |   Rate    |
 ==================+==================
-|    CHF    |   USD     |   test1.5     |
+|    CHF    |   USD     |   1.5     |
 +-----------------------------------+
 
 """
@@ -46,6 +46,12 @@ class Money(object):
         same_currency = (self.__currency == other.__currency)
         same_amount = (self.__amount == other.__amount)
         return same_amount and same_currency
+
+    # this first implementation works for money of the
+    # same currency, but of course not for different amounts
+    def __add__(self, other):
+        amount = self.__amount + other.__amount
+        return self.__class__(amount, self.__currency)
 
     def times(self, t):
         var = self.__class__
