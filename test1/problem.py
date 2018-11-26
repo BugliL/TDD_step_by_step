@@ -48,21 +48,20 @@ class Money(object):
         return same_amount and same_currency
 
     def times(self, t):
+        # Not so pythonic, i will change this soon
+        # this is just to became a green state
+        # and use the money class in the factory class
         var = self.__class__
-        return var(self.__amount * t)
+        if var == Money:
+            return var(self.__amount * t, self.__currency)
+        else:
+            return var(self.__amount * t)
 
     def __str__(self):
         return f"{self.__amount}{self.__currency}"
 
 
 class MoneyFactory(object):
-    # I am in green status
-    # I don't like to have duplication in these
-    # classes and all the behavior in the parent class
-    # they differs just from a parameter, so why not
-    # eliminating changing the factory method
-    # using just the class money
-
     class __Dollar(Money):
         def __init__(self, amount):
             super().__init__(amount, 'USD')
@@ -73,15 +72,8 @@ class MoneyFactory(object):
 
     @staticmethod
     def dollar(amount):
+        # Now i can change this one
         return MoneyFactory.__Dollar(amount)
-        # if i change above line with this one
-        # return Money(amount=amount, currency='USD')
-        # a test fails even the code is correct because
-        # the times method try to create a Money object
-        # without a Currency param
-
-        # so first let's refactor the class Money
-        # To let times work wiothout problems
 
     @staticmethod
     def franc(amount):

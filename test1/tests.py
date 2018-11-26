@@ -21,7 +21,13 @@
 import unittest
 import sys
 
-from test1.problem import MoneyFactory
+from test1.problem import MoneyFactory, Money
+
+
+# New tests for the times method in base class
+class TestMoneyClass(unittest.TestCase):
+    def test_given_aMoney_when_times_called_it_returns_double_money(self):
+        self.assertEqual(Money(5, 'USD').times(2), Money(10, 'USD'))
 
 
 class TestFrancDollarComparing(unittest.TestCase):
