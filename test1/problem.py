@@ -55,6 +55,8 @@ Doing this, we need to define a change rate of money
 # but just dividing the methods to reduce Money responsibility of
 # aritmetic operations
 
+# so i changed tests to something more familiar to me
+# instead of doing a chapter on a Sum objct that wrap the operation
 class Money(object):
     # changed to use properties instead of private attributes
     def __init__(self, amount, currency):
@@ -72,6 +74,9 @@ class Money(object):
 
     def times(self, t):
         return Money(self.amount * t, self.currency)
+
+    def convert(self, currency):
+        return self
 
     def __str__(self):
         return f"{self.amount}{self.currency}"

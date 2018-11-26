@@ -41,7 +41,9 @@ class TestFranc(unittest.TestCase):
     def test_given_5CHD_and_5CHD_when_reduced_by_bank_than_return_10CHD(self):
         f1 = MoneyFactory.franc(5)
         expression = f1 + f1
-        reduced_expression = Bank.reduce(expression, 'CHD')
+        # this make no sense to me, we need just to make conversions
+        # reduced_expression = Bank.reduce(expression, 'CHD')
+        reduced_expression = expression.convert('CHD')
         self.assertEqual(reduced_expression, MoneyFactory.franc(10))
 
     def test_given_5CHD_and_5CHD_when_sum_than_return_10CHD(self):
@@ -68,7 +70,6 @@ class TestFranc(unittest.TestCase):
         x.currency = 'USD'
         self.assertNotEqual('USD', x.currency)
         self.assertEqual('CHD', x.currency)
-
 
 
 class TestDollar(unittest.TestCase):
