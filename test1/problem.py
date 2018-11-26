@@ -96,20 +96,18 @@ class Money(object):
         same_amount = (self.amount == other.amount * rate)
         return same_amount
 
+    # change this method to convert amount
+    # to the right currency
     def __add__(self, other):
-        amount = self.amount + other.amount
+        amount = self.amount + other.convert(self.currency).amount
         return Money(amount, self.currency)
 
     def times(self, t):
         return Money(self.amount * t, self.currency)
 
-    # let's refactor this like the equal method
     def convert(self, currency):
-        if currency == self.currency:
-            return self
-        else:
-            rate = self.__ratechange.get_rate(self, currency)
-            return Money(self.amount * rate, currency)
+        rate = self.__ratechange.get_rate(self, currency)
+        return Money(self.amount * rate, currency)
 
     def __str__(self):
         return f"{self.amount}{self.currency}"
