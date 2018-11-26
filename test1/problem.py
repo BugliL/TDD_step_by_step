@@ -58,14 +58,11 @@ Doing this, we need to define a change rate of money
 # so i changed tests to something more familiar to me
 # instead of doing a chapter on a Sum object that wrap the operation
 
-
-class Money(object):
-    def __init__(self, amount, currency):
-        self.__amount = amount
-        self.__currency = currency
-
-        # refactor to generalize the convert method
-        self.rates = {
+# Class to refactor the rate change
+# in the Money class
+class RateChange(object):
+    def __init__(self, rates=None):
+        self.rates = rates or {
             'USD': {
                 'CHD': 2,
             },
@@ -73,6 +70,16 @@ class Money(object):
                 'USD': .5,
             }
         }
+
+    def get_rate(self, source, dest):
+        return self.rates[source][dest]
+
+
+class Money(object):
+    def __init__(self, amount, currency, ratechange=RateChange()):
+        self.__amount = amount
+        self.__currency = currency
+        self.__ratechange = ratechange
 
     def __eq__(self, other):
         same_currency = (self.currency == other.currency)
@@ -91,7 +98,9 @@ class Money(object):
         if currency == self.currency:
             return self
         else:
-            rate = self.rates[self.currency][currency]
+            # refactor done with the RateChange class
+            # rate = self.rates[self.currency][currency]
+            rate = self.__ratechange.get_rate(self.currency, currency)
             return Money(self.amount * rate, currency)
 
     def __str__(self):
