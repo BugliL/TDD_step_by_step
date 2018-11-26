@@ -37,7 +37,16 @@ Doing this, we need to define a change rate of money
 """
 
 
+# Kent Back introduced an interface to do the job here
+# the interface Expression where is defined the "plus" method
+# and modified the plus method in money to return an Expression
+# objects and Money implements the interface Expression
+
+# I can't do an interface in python of course
+# so let's do this with small steps
+# This code is in green state
 class Money(object):
+
     def __init__(self, amount, currency):
         self.__amount = amount
         self.__currency = currency
@@ -47,18 +56,18 @@ class Money(object):
         same_amount = (self.__amount == other.__amount)
         return same_amount and same_currency
 
-    # this first implementation works for money of the
-    # same currency, but of course not for different amounts
     def __add__(self, other):
         amount = self.__amount + other.__amount
-        return self.__class__(amount, self.__currency)
+        return Money(amount, self.__currency)
 
     def times(self, t):
-        var = self.__class__
-        if var == Money:
-            return var(self.__amount * t, self.__currency)
-        else:
-            return var(self.__amount * t)
+        return Money(self.__amount * t, self.__currency)
+        # this method can be changed like above with no fear
+        # var = self.__class__
+        # if var == Money:
+        #     return var(self.__amount * t, self.__currency)
+        # else:
+        #     return var(self.__amount * t)
 
     def __str__(self):
         return f"{self.__amount}{self.__currency}"
@@ -73,3 +82,9 @@ class MoneyFactory(object):
     @staticmethod
     def franc(amount):
         return Money(amount=amount, currency='CHD')
+
+
+class Bank(object):
+    @staticmethod
+    def reduce(expression, param):
+        return MoneyFactory.franc(10)

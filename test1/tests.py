@@ -25,10 +25,10 @@
 
 import unittest
 
-from test1.problem import MoneyFactory
+from test1.problem import MoneyFactory, Bank
 
 
-class TestFrancDollarComparing(unittest.TestCase):
+class TestFrancDollarTogether(unittest.TestCase):
     def test_given_dollars_and_francs_when_compared_result_different(self):
         self.assertNotEqual(MoneyFactory.dollar(5), MoneyFactory.franc(5))
 
@@ -38,9 +38,25 @@ class TestFranc(unittest.TestCase):
         x = MoneyFactory.franc(5)
         self.assertEqual(x.times(2), MoneyFactory.franc(10))
 
-    # The whole addition of Francs and Dollars can't be made in 1 step
-    # so it's better to try first to sum values of same currency
-    # 5CHD + 5CHD = 10CHD
+    # This is a big step because it determines all next system
+    # of using money together.
+
+    # In the book Kent Beck chooses to wrap a money Expression object
+    # using a Bank object that reduce the money to a given currency
+
+    # there's no reason to think differently or that this method is wrong
+    # ( at least at page 57 )
+    # so let's try the same
+    # (I use Franc instead of dollars with same implementation)
+
+    # he writed the test from the condition to the variable definition
+
+    def test_given_5CHD_and_5CHD_when_reduced_by_bank_than_return_10CHD(self):
+        f1 = MoneyFactory.franc(5)
+        expression = f1 + f1
+        reduced_expression = Bank.reduce(expression, 'CHD')
+        self.assertEqual(reduced_expression, MoneyFactory.franc(10))
+
     def test_given_5CHD_and_5CHD_when_sum_than_return_10CHD(self):
         f1 = MoneyFactory.franc(5)
         f2 = MoneyFactory.franc(5)
@@ -52,12 +68,11 @@ class TestFranc(unittest.TestCase):
 
 
 class TestDollar(unittest.TestCase):
-    # knowing my code I know that this test is green because it works
-    # for francs as well now
     def test_given_5USD_and_5USD_when_sum_than_return_10USD(self):
         d1 = MoneyFactory.dollar(5)
         d2 = MoneyFactory.dollar(5)
-        self.assertEqual(d1 + d2, MoneyFactory.dollar(10))
+        d3 = MoneyFactory.dollar(5)
+        self.assertEqual(d1 + d2 + d3, MoneyFactory.dollar(15))
 
     def test_given_5USD_when_called_times2_and_times3_than_eq_10USD(self):
         x = MoneyFactory.dollar(5)
