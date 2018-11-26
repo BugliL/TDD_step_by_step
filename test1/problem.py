@@ -37,38 +37,11 @@ Doing this, we need to define a change rate of money
 """
 
 
-# Kent Back introduced an interface to do the job here
-# the interface Expression where is defined the "plus" method
-# and modified the plus method in money to return an Expression
-# objects and Money implements the interface Expression
+# Chapter 16 - No need to do anything :)
+# as I thought this implementation was simpler
+# than the Book one
 
-# I can't do an interface in python of course
-# so let's do this with small steps
-
-# He uses a Sum class to add things, but he has to
-# access the __amount to do that, so i decided to use a property
-# to let the attribute be accessed but not set
-# same for currency
-
-# I do not like using the interface that Kent Beck is using
-# and I think that I can simplify that without using different classes
-# but just dividing the methods to reduce Money responsibility of
-# aritmetic operations
-
-# so i changed tests to something more familiar to me
-# instead of doing a chapter on a Sum object that wrap the operation
-
-# Class to refactor the rate change
-# in the Money class
-# better if we pass objects instead of currencies
-
-# this is much more different from the book
-# but this is python and not formally-correct-object-structuring Java
-
-# next step is to change the code of __eq__
-# to check different currencies
-
-# now is time to implement an add of different things
+# I will do a little extra, add multiplication
 
 class RateChange(object):
     def __init__(self, rates=None):
@@ -86,8 +59,6 @@ class RateChange(object):
 
 
 class Money(object):
-    # making amount private again for no need
-    # in the RateChange class or in any other class
     def __init__(self, amount, currency, ratechange=RateChange()):
         self.__amount = amount
         self.__currency = currency
@@ -101,6 +72,9 @@ class Money(object):
     def __add__(self, other):
         amount = self.__amount + other.convert(self.currency).__amount
         return Money(amount, self.currency)
+
+    def __mul__(self, other):
+        return Money(self.__amount * other, self.currency)
 
     def times(self, t):
         return Money(self.__amount * t, self.currency)

@@ -33,15 +33,19 @@ class TestFrancDollarTogether(unittest.TestCase):
     def test_given_5dollars_and_10francs_when_compared_result_equal(self):
         self.assertEqual(MoneyFactory.dollar(5), MoneyFactory.franc(10))
 
+    # test for aritmetic things
+    def test_given_5USD_and_10CHD_when_sum_than_result_10USD(self):
+        f1 = MoneyFactory.franc(10)
+        d1 = MoneyFactory.dollar(5)
+        expression = f1 + d1 * 2
+        self.assertEqual(MoneyFactory.dollar(15), expression)
+
     def test_given_5USD_and_10CHD_when_sum_than_result_10USD(self):
         f1 = MoneyFactory.franc(10)
         d1 = MoneyFactory.dollar(5)
         expression = f1 + d1
         self.assertEqual(MoneyFactory.dollar(10), expression)
 
-    # this test is working even if no more code was added from last commit
-    # just because I'm using the __add__ method of python class to sum stuff
-    # all aritmetic things are managed by the interpreter
     def test_given_5USD_and_10CHD_and_5USD_when_sum_than_result_15USD(self):
         f1 = MoneyFactory.franc(10)
         d1 = MoneyFactory.dollar(5)
@@ -51,6 +55,11 @@ class TestFrancDollarTogether(unittest.TestCase):
 
 
 class TestFranc(unittest.TestCase):
+    # base test for multiplication
+    def test_given_aMoney_when_multiplied_2_than_result_doubled(self):
+        x = MoneyFactory.franc(5)
+        self.assertEqual(MoneyFactory.franc(10), x * 2)
+
     def test_given_5franc_when_called_times2_than_eq_10franc(self):
         x = MoneyFactory.franc(5)
         self.assertEqual(x.times(2), MoneyFactory.franc(10))
