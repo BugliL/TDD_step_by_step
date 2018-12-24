@@ -1,4 +1,5 @@
 Good behavior to write code:
+
 1) Only one level of indentation for method
 2) Do not use Else
 3) Wrap all primitives
