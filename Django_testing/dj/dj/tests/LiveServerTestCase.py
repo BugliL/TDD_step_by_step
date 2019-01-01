@@ -22,5 +22,22 @@ class TestCase(LiveServerTestCase):
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(2)
 
-    def test_true(self):
-        self.assertTrue(True)
+    def test_as_student_I_want_to_search_solos_so_I_can_improve_my_improvisation(self):
+        """
+            As: Student Steve
+            I want to : search solos
+            So that: I can improve my improvisation
+        """
+
+        # Actions to perform:
+        #   Visit homepage
+        #   Provide a search form in page
+        #   Provide Steve instrument
+        #   Provide Steve instrument and singer
+        #   Steve clicks on search results
+        #   The page contains has solo data
+
+        self.fail('TODO')
+
+    def tearDown(self):
+        self.browser.quit()
