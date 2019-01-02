@@ -38,7 +38,7 @@ class TestCase(LiveServerTestCase):
         #   Steve clicks on search results
         #   The page contains has solo data
 
-        home_page = self.browser.get(self.live_server_url + reverse('dj:LiveServerTestCase'))
+        home_page = self.browser.get(self.live_server_url + reverse('test_app:LiveServerTestCase'))
         brand_element = self.browser.find_element_by_css_selector('.navbar_brand')
         self.assertEqual('JMAD', brand_element.text)
 

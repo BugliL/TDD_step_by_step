@@ -27,6 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['10.0.1.70', '127.0.0.1', 'localhost']
 
 # Application definition
+APPEND_SLASH = True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My apps
-    'dj',
+    'test_app',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'dj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['Django_testing/dj/test_app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

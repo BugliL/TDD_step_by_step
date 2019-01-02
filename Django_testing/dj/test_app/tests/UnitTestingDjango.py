@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.urls import resolve
+from django.urls import resolve, reverse
 
 from .. import views
 
@@ -13,5 +13,5 @@ class UrlsTestCases(TestCase):
     """
 
     def test_given_root_url_when_called_index_view_rendered(self):
-        root = resolve('dj:index')
+        root = resolve(reverse('app1:index'))
         self.assertEqual(root.func, views.function_index)
