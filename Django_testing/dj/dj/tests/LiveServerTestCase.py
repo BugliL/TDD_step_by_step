@@ -1,4 +1,5 @@
 from django.test import LiveServerTestCase
+from django.urls import reverse
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
@@ -37,7 +38,9 @@ class TestCase(LiveServerTestCase):
         #   Steve clicks on search results
         #   The page contains has solo data
 
-        self.fail('TODO')
+        home_page = self.browser.get(self.live_server_url + reverse('LiveServerTestCase'))
+        brand_element = self.browser.find_element_by_css_selector('.navbar_brand')
+        self.assertEqual('JMAD', brand_element.text)
 
     def tearDown(self):
         self.browser.quit()
