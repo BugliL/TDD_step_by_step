@@ -35,9 +35,10 @@ def statement(invoice, plays):
         return result
 
     def totalAmount():
-        total_amount = 0
+        result = 0
         for perf in invoice['performances']:
-            total_amount += amountFor(perf)
+            result += amountFor(perf)
+        return result
 
     result = f"Statement for {invoice['customer']}\n"
     total_amount = totalAmount()
