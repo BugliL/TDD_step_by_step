@@ -28,13 +28,13 @@ def statement(invoice, plays):
     def usd(amount):
         return '${:,.2f}'.format(amount)
 
-    def totalVolumeCredits(performances=invoice['performances']):
+    def totalVolumeCredits(performances):
         result = 0
         for perf in performances:
             result += volumeCreditsFor(perf)
         return result
 
-    def totalAmount(performances=invoice['performances']):
+    def totalAmount(performances):
         result = 0
         for perf in performances:
             result += amountFor(perf)
@@ -44,13 +44,14 @@ def statement(invoice, plays):
         result = "Statement for {}\n".format(statement_data.customer)
         for perf in statement_data.performances:
             result += f"    {playFor(perf)['name']}: {usd(amountFor(perf)/100)} ({perf['audience']} seats)\n"
-        result += f"Amount owed is ({usd(totalAmount()/100)})\n"
-        result += f"You earned {totalVolumeCredits()} credits\n"
+        result += f"Amount owed is ({usd(totalAmount(statement_data.performances)/100)})\n"
+        result += f"You earned {totalVolumeCredits(statement_data.performances)} credits\n"
         return result
 
     class Performance(object):
         def __init__(self, aPerformance):
             self._performance = copy.deepcopy(aPerformance)
+            self.play = playFor(aPerformance)
 
         def __getitem__(self, item):
             return self._performance[item]
