@@ -1,3 +1,4 @@
+import copy
 import json
 
 
@@ -47,6 +48,13 @@ def statement(invoice, plays):
         result += f"You earned {totalVolumeCredits()} credits\n"
         return result
 
+    class Performance(object):
+        def __init__(self, aPerformance):
+            self._performance = copy.deepcopy(aPerformance)
+
+        def __getitem__(self, item):
+            return self._performance[item]
+
     class StatementData(object):
         def __init__(self, customer, performances):
             self.customer = customer
@@ -54,7 +62,7 @@ def statement(invoice, plays):
 
     statement_data = StatementData(
         customer=invoice['customer'],
-        performances=invoice['performances']
+        performances=[Performance(p) for p in invoice['performances']]
     )
 
     return renderPlainText(statement_data)
