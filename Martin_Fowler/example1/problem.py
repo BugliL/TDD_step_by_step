@@ -6,7 +6,6 @@ def statement(invoice, plays):
         return plays[aPerformance['playID']]
 
     def amountFor(aPerformance):
-        result = 0
         if playFor(aPerformance)['type'] == "tragedy":
             result = 40000
             if aPerformance['audience'] > 30:
