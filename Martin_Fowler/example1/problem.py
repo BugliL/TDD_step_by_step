@@ -40,12 +40,15 @@ def statement(invoice, plays):
             result += amountFor(perf)
         return result
 
-    result = f"Statement for {invoice['customer']}\n"
-    for perf in invoice['performances']:
-        result += f"    {playFor(perf)['name']}: {usd(amountFor(perf)/100)} ({perf['audience']} seats)\n"
-    result += f"Amount owed is ({usd(totalAmount()/100)})\n"
-    result += f"You earned {totalVolumeCredits()} credits\n"
-    return result
+    def renderPlainText(invoice, plays):
+        result = f"Statement for {invoice['customer']}\n"
+        for perf in invoice['performances']:
+            result += f"    {playFor(perf)['name']}: {usd(amountFor(perf)/100)} ({perf['audience']} seats)\n"
+        result += f"Amount owed is ({usd(totalAmount()/100)})\n"
+        result += f"You earned {totalVolumeCredits()} credits\n"
+        return result
+
+    return renderPlainText(invoice, plays)
 
 
 if __name__ == "__main__":
