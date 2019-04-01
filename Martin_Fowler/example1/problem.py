@@ -22,20 +22,20 @@ def statement(invoice, plays):
     return result
 
 
-def amountFor(perf, play):
-    this_amount = 0
+def amountFor(aPerformance, play):
+    result = 0
     if play['type'] == "tragedy":
-        this_amount = 40000
-        if perf['audience'] > 30:
-            this_amount += 1000 * (perf['audience'] - 30)
+        result = 40000
+        if aPerformance['audience'] > 30:
+            result += 1000 * (aPerformance['audience'] - 30)
     elif play['type'] == "comedy":
-        this_amount = 30000
-        if perf['audience'] > 20:
-            this_amount += 10000 + 500 * (perf['audience'] - 20)
-        this_amount += 300 * perf['audience']
+        result = 30000
+        if aPerformance['audience'] > 20:
+            result += 10000 + 500 * (aPerformance['audience'] - 20)
+        result += 300 * aPerformance['audience']
     else:
         raise Exception(f"uknown type: {play['type']}")
-    return this_amount
+    return result
 
 
 if __name__ == "__main__":
