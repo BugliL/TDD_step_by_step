@@ -28,6 +28,12 @@ def statement(invoice, plays):
     def usd(amount):
         return '${:,.2f}'.format(amount)
 
+    def totalVolumeCredits():
+        result = 0
+        for perf in invoice['performances']:
+            result += volumeCreditsFor(perf)
+        return result
+
     result = f"Statement for {invoice['customer']}\n"
 
     total_amount = 0
@@ -35,9 +41,7 @@ def statement(invoice, plays):
         result += f"    {playFor(perf)['name']}: {usd(amountFor(perf)/100)} ({perf['audience']} seats)\n"
         total_amount += amountFor(perf)
 
-    volume_credits = 0
-    for perf in invoice['performances']:
-        volume_credits += volumeCreditsFor(perf)
+    volume_credits = totalVolumeCredits()
 
     result += f"Amount owed is ({usd(total_amount/100)})\n"
     result += f"You earned {volume_credits} credits\n"
