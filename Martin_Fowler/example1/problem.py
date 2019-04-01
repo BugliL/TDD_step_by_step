@@ -8,13 +8,12 @@ def statement(invoice, plays):
     format = '${:,.2f}'
 
     for perf in invoice['performances']:
-        play = playFor(perf, plays)
-        this_amount = amountFor(perf, play)
+        this_amount = amountFor(perf, playFor(perf, plays))
 
         volume_credits += max(perf['audience'] - 30, 0)
-        if "comedy" == play['type']: volume_credits += round(perf['audience'] / 5)
+        if "comedy" == playFor(perf, plays)['type']: volume_credits += round(perf['audience'] / 5)
 
-        result += f"    {play['name']}: {format.format(this_amount/100)} ({perf['audience']} seats)\n"
+        result += f"    {playFor(perf, plays)['name']}: {format.format(this_amount/100)} ({perf['audience']} seats)\n"
         total_amount += this_amount
 
     result += f"Amount owed is ({format.format(total_amount/100)})\n"
