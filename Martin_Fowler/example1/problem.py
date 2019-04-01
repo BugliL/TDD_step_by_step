@@ -28,15 +28,15 @@ def statement(invoice, plays):
     def usd(amount):
         return '${:,.2f}'.format(amount)
 
-    def totalVolumeCredits():
+    def totalVolumeCredits(performances=invoice['performances']):
         result = 0
-        for perf in invoice['performances']:
+        for perf in performances:
             result += volumeCreditsFor(perf)
         return result
 
-    def totalAmount():
+    def totalAmount(performances=invoice['performances']):
         result = 0
-        for perf in invoice['performances']:
+        for perf in performances:
             result += amountFor(perf)
         return result
 
