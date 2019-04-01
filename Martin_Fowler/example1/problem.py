@@ -8,7 +8,7 @@ def statement(invoice, plays):
     format = '${:,.2f}'
 
     for perf in invoice['performances']:
-        play = plays[perf['playID']]
+        play = playFor(perf, plays)
         this_amount = amountFor(perf, play)
 
         volume_credits += max(perf['audience'] - 30, 0)
@@ -20,6 +20,10 @@ def statement(invoice, plays):
     result += f"Amount owed is ({format.format(total_amount/100)})\n"
     result += f"You earned {volume_credits} credits\n"
     return result
+
+
+def playFor(aPerformance, plays):
+    return plays[aPerformance['playID']]
 
 
 def amountFor(aPerformance, play):
