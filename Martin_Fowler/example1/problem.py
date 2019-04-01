@@ -1,5 +1,8 @@
 import json
 
+with open("example1/plays.json", 'r') as plays_file:
+    plays = json.load(plays_file)
+
 
 def statement(invoice, plays):
     total_amount = 0
@@ -8,12 +11,12 @@ def statement(invoice, plays):
     format = '${:,.2f}'
 
     for perf in invoice['performances']:
-        this_amount = amountFor(perf, playFor(perf, plays))
+        this_amount = amountFor(perf)
 
         volume_credits += max(perf['audience'] - 30, 0)
-        if "comedy" == playFor(perf, plays)['type']: volume_credits += round(perf['audience'] / 5)
+        if "comedy" == playFor(perf)['type']: volume_credits += round(perf['audience'] / 5)
 
-        result += f"    {playFor(perf, plays)['name']}: {format.format(this_amount/100)} ({perf['audience']} seats)\n"
+        result += f"    {playFor(perf)['name']}: {format.format(this_amount/100)} ({perf['audience']} seats)\n"
         total_amount += this_amount
 
     result += f"Amount owed is ({format.format(total_amount/100)})\n"
@@ -21,23 +24,23 @@ def statement(invoice, plays):
     return result
 
 
-def playFor(aPerformance, plays):
+def playFor(aPerformance):
     return plays[aPerformance['playID']]
 
 
-def amountFor(aPerformance, play):
+def amountFor(aPerformance):
     result = 0
-    if play['type'] == "tragedy":
+    if playFor(aPerformance)['type'] == "tragedy":
         result = 40000
         if aPerformance['audience'] > 30:
             result += 1000 * (aPerformance['audience'] - 30)
-    elif play['type'] == "comedy":
+    elif playFor(aPerformance)['type'] == "comedy":
         result = 30000
         if aPerformance['audience'] > 20:
             result += 10000 + 500 * (aPerformance['audience'] - 20)
         result += 300 * aPerformance['audience']
     else:
-        raise Exception(f"uknown type: {play['type']}")
+        raise Exception(f"uknown type: {playFor(aPerformance)['type']}")
     return result
 
 
