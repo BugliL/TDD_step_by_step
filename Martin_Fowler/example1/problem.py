@@ -1,5 +1,6 @@
 import json
 
+
 def statement(invoice, plays):
     def playFor(aPerformance):
         return plays[aPerformance['playID']]
@@ -19,14 +20,18 @@ def statement(invoice, plays):
             raise Exception(f"uknown type: {playFor(aPerformance)['type']}")
         return result
 
+    def volumeCreditsFor(perf):
+        volume_credits = max(perf['audience'] - 30, 0)
+        if "comedy" == playFor(perf)['type']: volume_credits += round(perf['audience'] / 5)
+        return volume_credits
+
     total_amount = 0
     volume_credits = 0
     result = f"Statement for {invoice['customer']}\n"
     format = '${:,.2f}'
 
     for perf in invoice['performances']:
-        volume_credits += max(perf['audience'] - 30, 0)
-        if "comedy" == playFor(perf)['type']: volume_credits += round(perf['audience'] / 5)
+        volume_credits += volumeCreditsFor(perf)
 
         result += f"    {playFor(perf)['name']}: {format.format(amountFor(perf)/100)} ({perf['audience']} seats)\n"
         total_amount += amountFor(perf)
