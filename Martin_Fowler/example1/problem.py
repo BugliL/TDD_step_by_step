@@ -40,15 +40,20 @@ def statement(invoice, plays):
             result += amountFor(perf)
         return result
 
-    def renderPlainText(invoice):
-        result = f"Statement for {invoice['customer']}\n"
+    def renderPlainText(statement_data, invoice):
+        result = "Statement for {}\n".format(invoice['customer'])
         for perf in invoice['performances']:
             result += f"    {playFor(perf)['name']}: {usd(amountFor(perf)/100)} ({perf['audience']} seats)\n"
         result += f"Amount owed is ({usd(totalAmount()/100)})\n"
         result += f"You earned {totalVolumeCredits()} credits\n"
         return result
 
-    return renderPlainText(invoice)
+    class StatementData(object):
+        pass
+
+    statement_data = StatementData()
+    statement_data.customers = invoice['customer']
+    return renderPlainText(statement_data, invoice)
 
 
 if __name__ == "__main__":
