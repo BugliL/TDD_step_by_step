@@ -25,18 +25,20 @@ def statement(invoice, plays):
         if "comedy" == playFor(aPerformance)['type']: result += round(aPerformance['audience'] / 5)
         return result
 
+    def usd(amount):
+        return '${:,.2f}'.format(amount)
+
     total_amount = 0
     volume_credits = 0
     result = f"Statement for {invoice['customer']}\n"
-    format = '${:,.2f}'
 
     for perf in invoice['performances']:
         volume_credits += volumeCreditsFor(perf)
 
-        result += f"    {playFor(perf)['name']}: {format.format(amountFor(perf)/100)} ({perf['audience']} seats)\n"
+        result += f"    {playFor(perf)['name']}: {usd(amountFor(perf)/100)} ({perf['audience']} seats)\n"
         total_amount += amountFor(perf)
 
-    result += f"Amount owed is ({format.format(total_amount/100)})\n"
+    result += f"Amount owed is ({usd(total_amount/100)})\n"
     result += f"You earned {volume_credits} credits\n"
     return result
 
