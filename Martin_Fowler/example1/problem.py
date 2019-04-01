@@ -40,7 +40,7 @@ def statement(invoice, plays):
             result += amountFor(perf)
         return result
 
-    def renderPlainText(statement_data, invoice):
+    def renderPlainText(statement_data):
         result = "Statement for {}\n".format(statement_data.customer)
         for perf in statement_data.performances:
             result += f"    {playFor(perf)['name']}: {usd(amountFor(perf)/100)} ({perf['audience']} seats)\n"
@@ -58,7 +58,7 @@ def statement(invoice, plays):
         performances=invoice['performances']
     )
 
-    return renderPlainText(statement_data, invoice)
+    return renderPlainText(statement_data)
 
 
 if __name__ == "__main__":
