@@ -3,10 +3,11 @@ import json
 from .model import createStatementData
 
 
-def statement(invoice, plays):
-    def usd(amount):
-        return '${:,.2f}'.format(amount)
+def usd(amount):
+    return '${:,.2f}'.format(amount)
 
+
+def statement(invoice, plays):
     def renderPlainText(statement_data):
         result = "Statement for {}\n".format(statement_data.customer)
         for perf in statement_data.performances:
