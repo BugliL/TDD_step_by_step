@@ -3,8 +3,6 @@ import json
 
 
 def statement(invoice, plays):
-
-
     def volumeCreditsFor(aPerformance):
         result = max(aPerformance['audience'] - 30, 0)
         if "comedy" == aPerformance.play['type']: result += round(aPerformance['audience'] / 5)
@@ -36,24 +34,24 @@ def statement(invoice, plays):
     class Performance(object):
         def __init__(self, aPerformance):
             self._performance = copy.deepcopy(aPerformance)
-            self.play = self.playFor(self)
-            self.amount = self.amountFor(self)
+            self.play = self.playFor()
+            self.amount = self.amountFor()
 
-        def playFor(self, aPerformance):
-            return plays[aPerformance['playID']]
+        def playFor(self):
+            return plays[self['playID']]
 
-        def amountFor(self, aPerformance):
-            if aPerformance.play['type'] == "tragedy":
+        def amountFor(self):
+            if self.play['type'] == "tragedy":
                 result = 40000
-                if aPerformance['audience'] > 30:
-                    result += 1000 * (aPerformance['audience'] - 30)
-            elif aPerformance.play['type'] == "comedy":
+                if self['audience'] > 30:
+                    result += 1000 * (self['audience'] - 30)
+            elif self.play['type'] == "comedy":
                 result = 30000
-                if aPerformance['audience'] > 20:
-                    result += 10000 + 500 * (aPerformance['audience'] - 20)
-                result += 300 * aPerformance['audience']
+                if self['audience'] > 20:
+                    result += 10000 + 500 * (self['audience'] - 20)
+                result += 300 * self['audience']
             else:
-                raise Exception(f"uknown type: {aPerformance.play['type']}")
+                raise Exception(f"uknown type: {self.play['type']}")
             return result
 
         def __getitem__(self, item):
