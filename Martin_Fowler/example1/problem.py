@@ -22,7 +22,7 @@ def statement(invoice, plays):
         result = "Statement for {}\n".format(statement_data.customer)
         for perf in statement_data.performances:
             result += f"    {perf.play['name']}: {usd(perf.amount/100)} ({perf['audience']} seats)\n"
-        result += f"Amount owed is ({usd(totalAmount(statement_data.performances)/100)})\n"
+        result += f"Amount owed is ({usd(statement_data.total_amount/100)})\n"
         result += f"You earned {totalVolumeCredits(statement_data.performances)} credits\n"
         return result
 
@@ -62,6 +62,8 @@ def statement(invoice, plays):
         def __init__(self, customer, performances):
             self.customer = customer
             self.performances = performances
+            self.total_amount = totalAmount(performances)
+            self.total_volume_credits = totalVolumeCredits(performances)
 
     statement_data = StatementData(
         customer=invoice['customer'],
