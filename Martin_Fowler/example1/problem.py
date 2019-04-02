@@ -54,16 +54,10 @@ def statement(invoice, plays):
             self.total_volume_credits = self.totalVolumeCredits(performances)
 
         def totalAmount(self, performances):
-            result = 0
-            for perf in performances:
-                result += perf.amount
-            return result
+            return sum([p.amount for p in performances])
 
-        def totalVolumeCredits(self,performances):
-            result = 0
-            for perf in performances:
-                result += perf.credits
-            return result
+        def totalVolumeCredits(self, performances):
+            return sum([p.credits for p in performances])
 
     statement_data = StatementData(
         customer=invoice['customer'],
