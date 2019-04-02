@@ -59,12 +59,10 @@ def statement(invoice, plays):
         def totalVolumeCredits(self, performances):
             return sum([p.credits for p in performances])
 
-    statement_data = StatementData(
+    return renderPlainText(StatementData(
         customer=invoice['customer'],
         performances=[Performance(p) for p in invoice['performances']]
-    )
-
-    return renderPlainText(statement_data)
+    ))
 
 
 if __name__ == "__main__":
