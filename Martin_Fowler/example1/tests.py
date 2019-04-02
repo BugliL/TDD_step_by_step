@@ -1,6 +1,6 @@
 import unittest
 import json
-from .problem import statement
+from .problem import statement, html_statement
 
 
 class ProblemTestCase(unittest.TestCase):
@@ -21,3 +21,16 @@ class ProblemTestCase(unittest.TestCase):
                  "You earned 47 credits\n"
 
         self.assertEqual(string, statement(self.invoices[0], self.plays))
+
+    def test_html_function(self):
+        string = "<h1>Statement for BigCo</h1>\n" \
+                 "<table>\n" \
+                 "<tr><th>Play</th><th>Seats</th><th>Costs</th></tr>\n" \
+                 "<tr><td>Hamlet</td><td>55</td><td>$650.00</td></tr>\n" \
+                 "<tr><td>As you like it</td><td>35</td><td>$580.00</td></tr>\n" \
+                 "<tr><td>Othello</td><td>40</td><td>$500.00</td></tr>\n" \
+                 "</table>\n" \
+                 "<p>Amount owed is <em>$1,730.00</em></p>\n" \
+                 "<p>You earned <em>47</em> credits</p>\n"
+
+        self.assertEqual(string, html_statement(self.invoices[0], self.plays))

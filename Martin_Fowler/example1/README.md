@@ -10,3 +10,4 @@ public to get discounts on upcoming shows.
 The code has to:
  * Print the bill
  * Calculate the credits
+ * Print HTML version of the bill
