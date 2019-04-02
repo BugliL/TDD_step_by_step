@@ -6,12 +6,6 @@ def statement(invoice, plays):
     def usd(amount):
         return '${:,.2f}'.format(amount)
 
-    def totalVolumeCredits(performances):
-        result = 0
-        for perf in performances:
-            result += perf.credits
-        return result
-
     def renderPlainText(statement_data):
         result = "Statement for {}\n".format(statement_data.customer)
         for perf in statement_data.performances:
@@ -57,12 +51,18 @@ def statement(invoice, plays):
             self.customer = customer
             self.performances = performances
             self.total_amount = self.totalAmount(performances)
-            self.total_volume_credits = totalVolumeCredits(performances)
+            self.total_volume_credits = self.totalVolumeCredits(performances)
 
         def totalAmount(self, performances):
             result = 0
             for perf in performances:
                 result += perf.amount
+            return result
+
+        def totalVolumeCredits(self,performances):
+            result = 0
+            for perf in performances:
+                result += perf.credits
             return result
 
     statement_data = StatementData(
