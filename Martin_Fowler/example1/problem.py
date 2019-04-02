@@ -12,13 +12,12 @@ def statement(invoice, plays):
             result += perf.credits
         return result
 
-
     def renderPlainText(statement_data):
         result = "Statement for {}\n".format(statement_data.customer)
         for perf in statement_data.performances:
             result += f"    {perf.play['name']}: {usd(perf.amount/100)} ({perf['audience']} seats)\n"
         result += f"Amount owed is ({usd(statement_data.total_amount/100)})\n"
-        result += f"You earned {totalVolumeCredits(statement_data.performances)} credits\n"
+        result += f"You earned {statement_data.total_volume_credits} credits\n"
         return result
 
     class Performance(object):
