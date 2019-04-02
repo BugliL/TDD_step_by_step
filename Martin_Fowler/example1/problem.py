@@ -3,18 +3,13 @@ import json
 
 
 def statement(invoice, plays):
-    def volumeCreditsFor(aPerformance):
-        result = max(aPerformance['audience'] - 30, 0)
-        if "comedy" == aPerformance.play['type']: result += round(aPerformance['audience'] / 5)
-        return result
-
     def usd(amount):
         return '${:,.2f}'.format(amount)
 
     def totalVolumeCredits(performances):
         result = 0
         for perf in performances:
-            result += volumeCreditsFor(perf)
+            result += perf.credits
         return result
 
     def totalAmount(performances):
@@ -36,6 +31,7 @@ def statement(invoice, plays):
             self._performance = copy.deepcopy(aPerformance)
             self.play = self.playFor()
             self.amount = self.amountFor()
+            self.credits = self.volumeCreditsFor()
 
         def playFor(self):
             return plays[self['playID']]
@@ -52,6 +48,11 @@ def statement(invoice, plays):
                 result += 300 * self['audience']
             else:
                 raise Exception(f"uknown type: {self.play['type']}")
+            return result
+
+        def volumeCreditsFor(self):
+            result = max(self['audience'] - 30, 0)
+            if "comedy" == self.play['type']: result += round(self['audience'] / 5)
             return result
 
         def __getitem__(self, item):
