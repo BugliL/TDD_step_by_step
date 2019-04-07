@@ -21,8 +21,8 @@ def createStatementData(invoice, plays):
             self.amount = self.amountFor()
             self.credits = self.volumeCreditsFor()
 
-        def playFor(self, aPerformance):
-            return plays[aPerformance['playID']]
+        # def playFor(self, aPerformance):
+        #     return plays[aPerformance['playID']]
 
         def amountFor(self):
             if self.play['type'] == "tragedy":
