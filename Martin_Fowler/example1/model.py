@@ -21,10 +21,11 @@ def createStatementData(invoice, plays):
             return result
 
         def _tragedyAmount(self):
-            result = 40000
-            if self['audience'] > 30:
-                result += 1000 * (self['audience'] - 30)
-            return result
+            raise NotImplementedError()
+            # result = 40000
+            # if self['audience'] > 30:
+            #     result += 1000 * (self['audience'] - 30)
+            # return result
 
         def _comedyAmount(self):
             result = 30000
@@ -42,12 +43,20 @@ def createStatementData(invoice, plays):
         def __getitem__(self, item):
             return self._performance[item]
 
+    class TragedyPerformanceCalculator(PerformanceCalculator):
+        @property
+        def amount(self):
+            result = 40000
+            if self['audience'] > 30:
+                result += 1000 * (self['audience'] - 30)
+            return result
+
     def createPerformanceCalculator(aPerformance):
         def playFor(aPerformance):
             return plays[aPerformance['playID']]
 
         calculators = {
-            "tragedy": PerformanceCalculator,
+            "tragedy": TragedyPerformanceCalculator,
             "comedy": PerformanceCalculator,
         }
         calc = calculators.get(playFor(aPerformance)["type"], None)
