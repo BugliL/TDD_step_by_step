@@ -66,7 +66,7 @@ def createStatementData(invoice, plays):
 
         calculators = {
             "tragedy": TragedyPerformanceCalculator,
-            "comedy": PerformanceCalculator,
+            "comedy": ComedyPerformanceCalculator,
         }
         calc = calculators.get(playFor(aPerformance)["type"], None)
         if calc is None:
