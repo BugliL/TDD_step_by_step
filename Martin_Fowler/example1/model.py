@@ -3,18 +3,19 @@ import copy
 
 def createStatementData(invoice, plays):
     class PerformanceCalculator(object):
-        def __init__(self, aPerformance):
+        def __init__(self, aPerformance, aPlay):
             self.performance = aPerformance
+            self.play = aPlay
 
     class Performance(object):
         def __init__(self, aPerformance):
             self._performance = copy.deepcopy(aPerformance)
-            self.play = self.playFor()
+            self.play = self.playFor(self._performance)
             self.amount = self.amountFor()
             self.credits = self.volumeCreditsFor()
 
-        def playFor(self):
-            return plays[self['playID']]
+        def playFor(self, aPerformance):
+            return plays[aPerformance['playID']]
 
         def amountFor(self):
             if self.play['type'] == "tragedy":
