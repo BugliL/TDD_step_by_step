@@ -3,7 +3,7 @@ import copy
 
 def createStatementData(invoice, plays):
     class PerformanceCalculator(object):
-        def __init__(self, aPerformance):
+        def __init__(self, aPerformance, aPlay):
             self._performance = copy.deepcopy(aPerformance)
             self.play = self.playFor(self._performance)
 
@@ -49,7 +49,7 @@ def createStatementData(invoice, plays):
         if calc is None:
             raise Exception("uknown type: {}".format(aPlay["type"]))
 
-        return calc(aPerformance)
+        return calc(aPerformance, aPlay)
 
     class Performance(object):
         def __init__(self, aPerformance):
