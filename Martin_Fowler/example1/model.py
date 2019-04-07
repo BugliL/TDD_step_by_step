@@ -51,6 +51,15 @@ def createStatementData(invoice, plays):
                 result += 1000 * (self['audience'] - 30)
             return result
 
+    class ComedyPerformanceCalculator(PerformanceCalculator):
+        @property
+        def amount(self):
+            result = 30000
+            if self['audience'] > 20:
+                result += 10000 + 500 * (self['audience'] - 20)
+            result += 300 * self['audience']
+            return result
+
     def createPerformanceCalculator(aPerformance):
         def playFor(aPerformance):
             return plays[aPerformance['playID']]
