@@ -42,28 +42,6 @@ def createStatementData(invoice, plays):
             self.amount = self.calculator.amount
             self.credits = self.calculator.volumeCredits
 
-        # def playFor(self, aPerformance):
-        #     return plays[aPerformance['playID']]
-
-        # def amountFor(self):
-        #     if self.play['type'] == "tragedy":
-        #         result = 40000
-        #         if self['audience'] > 30:
-        #             result += 1000 * (self['audience'] - 30)
-        #     elif self.play['type'] == "comedy":
-        #         result = 30000
-        #         if self['audience'] > 20:
-        #             result += 10000 + 500 * (self['audience'] - 20)
-        #         result += 300 * self['audience']
-        #     else:
-        #         raise Exception(f"uknown type: {self.play['type']}")
-        #     return result
-
-        # def volumeCreditsFor(self):
-        #     result = max(self['audience'] - 30, 0)
-        #     if "comedy" == self.play['type']: result += round(self['audience'] / 5)
-        #     return result
-
         def __getitem__(self, item):
             return self._performance[item]
 
