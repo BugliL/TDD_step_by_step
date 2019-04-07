@@ -12,13 +12,7 @@ def createStatementData(invoice, plays):
 
         @property
         def amount(self):
-            if self.play['type'] == "tragedy":
-                result = self._tragedyAmount()
-            elif self.play['type'] == "comedy":
-                result = self._comedyAmount()
-            else:
-                raise Exception(f"uknown type: {self.play['type']}")
-            return result
+            raise Exception(f"uknown type: {self.play['type']}")
 
         def _tragedyAmount(self):
             raise NotImplementedError()
