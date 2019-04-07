@@ -41,16 +41,13 @@ def createStatementData(invoice, plays):
             return result
 
     def createPerformanceCalculator(aPerformance, aPlay):
-        def playFor(aPerformance):
-            return plays[aPerformance['playID']]
-
         calculators = {
             "tragedy": TragedyPerformanceCalculator,
             "comedy": ComedyPerformanceCalculator,
         }
-        calc = calculators.get(playFor(aPerformance)["type"], None)
+        calc = calculators.get(aPlay["type"], None)
         if calc is None:
-            raise Exception("uknown type: {}".format(playFor(aPerformance)["type"]))
+            raise Exception("uknown type: {}".format(aPlay["type"]))
 
         return calc(aPerformance)
 
