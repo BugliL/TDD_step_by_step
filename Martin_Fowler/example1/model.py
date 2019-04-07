@@ -4,12 +4,16 @@ import copy
 def createStatementData(invoice, plays):
     class PerformanceCalculator(object):
         def __init__(self, aPerformance, aPlay):
-            self.performance = aPerformance
+            self._performance = aPerformance
             self.play = aPlay
+
+        def __getitem__(self, item):
+            return self._performance[item]
 
     class Performance(object):
         def __init__(self, aPerformance):
             self._performance = copy.deepcopy(aPerformance)
+            self.calculator = PerformanceCalculator(self._performance, self.playFor(self._performance))
             self.play = self.playFor(self._performance)
             self.amount = self.amountFor()
             self.credits = self.volumeCreditsFor()
