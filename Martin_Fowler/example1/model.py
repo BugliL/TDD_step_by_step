@@ -57,10 +57,13 @@ def createStatementData(invoice, plays):
     class Performance(object):
         def __init__(self, aPerformance):
             self._performance = copy.deepcopy(aPerformance)
+            self.play = self.playFor(self._performance)
             self.calculator = createPerformanceCalculator(self._performance)
-            self.play = self.calculator.play
             self.amount = self.calculator.amount
             self.credits = self.calculator.volumeCredits
+
+        def playFor(self, aPerformance):
+            return plays[aPerformance['playID']]
 
         def __getitem__(self, item):
             return self._performance[item]
