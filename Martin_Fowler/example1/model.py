@@ -43,7 +43,18 @@ def createStatementData(invoice, plays):
             return self._performance[item]
 
     def createPerformanceCalculator(aPerformance):
-        return PerformanceCalculator(aPerformance)
+        def playFor(aPerformance):
+            return plays[aPerformance['playID']]
+
+        calculators = {
+            "tragedy": PerformanceCalculator,
+            "comedy": PerformanceCalculator,
+        }
+        calc = calculators.get(playFor(aPerformance)["type"], None)
+        if calc is None:
+            raise Exception("uknown type: {}".format(playFor(aPerformance)["type"]))
+
+        return calc(aPerformance)
 
     class Performance(object):
         def __init__(self, aPerformance):
