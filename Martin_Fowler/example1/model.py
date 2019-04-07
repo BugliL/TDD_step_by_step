@@ -13,20 +13,20 @@ def createStatementData(invoice, plays):
         @property
         def amount(self):
             if self.play['type'] == "tragedy":
-                result = self.tragedyAmount()
+                result = self._tragedyAmount()
             elif self.play['type'] == "comedy":
-                result = self.comedyAmount()
+                result = self._comedyAmount()
             else:
                 raise Exception(f"uknown type: {self.play['type']}")
             return result
 
-        def tragedyAmount(self):
+        def _tragedyAmount(self):
             result = 40000
             if self['audience'] > 30:
                 result += 1000 * (self['audience'] - 30)
             return result
 
-        def comedyAmount(self):
+        def _comedyAmount(self):
             result = 30000
             if self['audience'] > 20:
                 result += 10000 + 500 * (self['audience'] - 20)
