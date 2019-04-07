@@ -40,7 +40,7 @@ def createStatementData(invoice, plays):
             result += 300 * self['audience']
             return result
 
-    def createPerformanceCalculator(aPerformance):
+    def createPerformanceCalculator(aPerformance, aPlay):
         def playFor(aPerformance):
             return plays[aPerformance['playID']]
 
@@ -57,7 +57,7 @@ def createStatementData(invoice, plays):
     class Performance(object):
         def __init__(self, aPerformance):
             self._performance = copy.deepcopy(aPerformance)
-            self.calculator = createPerformanceCalculator(self._performance)
+            self.calculator = createPerformanceCalculator(self._performance, self.play)
             self.amount = self.calculator.amount
             self.credits = self.calculator.volumeCredits
 
