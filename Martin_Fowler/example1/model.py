@@ -14,7 +14,7 @@ def createStatementData(invoice, plays):
         def __init__(self, aPerformance):
             self._performance = copy.deepcopy(aPerformance)
             self.calculator = PerformanceCalculator(self._performance, self.playFor(self._performance))
-            self.play = self.playFor(self._performance)
+            self.play = self.calculator.play
             self.amount = self.amountFor()
             self.credits = self.volumeCreditsFor()
 
