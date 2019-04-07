@@ -12,21 +12,7 @@ def createStatementData(invoice, plays):
 
         @property
         def amount(self):
-            raise Exception(f"uknown type: {self.play['type']}")
-
-        def _tragedyAmount(self):
-            raise NotImplementedError()
-            # result = 40000
-            # if self['audience'] > 30:
-            #     result += 1000 * (self['audience'] - 30)
-            # return result
-
-        def _comedyAmount(self):
-            result = 30000
-            if self['audience'] > 20:
-                result += 10000 + 500 * (self['audience'] - 20)
-            result += 300 * self['audience']
-            return result
+            raise NotImplementedError("You are using a base class")
 
         @property
         def volumeCredits(self):
