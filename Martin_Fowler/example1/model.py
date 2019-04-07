@@ -25,6 +25,12 @@ def createStatementData(invoice, plays):
                 raise Exception(f"uknown type: {self.play['type']}")
             return result
 
+        @property
+        def volumeCredits(self):
+            result = max(self['audience'] - 30, 0)
+            if "comedy" == self.play['type']: result += round(self['audience'] / 5)
+            return result
+
         def __getitem__(self, item):
             return self._performance[item]
 
@@ -34,7 +40,7 @@ def createStatementData(invoice, plays):
             self.calculator = PerformanceCalculator(self._performance)
             self.play = self.calculator.play
             self.amount = self.calculator.amount
-            self.credits = self.volumeCreditsFor()
+            self.credits = self.calculator.volumeCredits
 
         # def playFor(self, aPerformance):
         #     return plays[aPerformance['playID']]
@@ -53,10 +59,10 @@ def createStatementData(invoice, plays):
         #         raise Exception(f"uknown type: {self.play['type']}")
         #     return result
 
-        def volumeCreditsFor(self):
-            result = max(self['audience'] - 30, 0)
-            if "comedy" == self.play['type']: result += round(self['audience'] / 5)
-            return result
+        # def volumeCreditsFor(self):
+        #     result = max(self['audience'] - 30, 0)
+        #     if "comedy" == self.play['type']: result += round(self['audience'] / 5)
+        #     return result
 
         def __getitem__(self, item):
             return self._performance[item]
