@@ -1,15 +1,15 @@
 import unittest
 import json
-from .problem import statement, html_statement
+from Martin_Fowler.example1.problem import statement, html_statement
 
 
 class ProblemTestCase(unittest.TestCase):
 
     def setUp(self):
-        with open("example1/plays.json", 'r') as plays_file:
+        with open("./plays.json", 'r') as plays_file:
             self.plays = json.load(plays_file)
 
-        with open("example1/invoices.json", 'r') as invoices_file:
+        with open("./invoices.json", 'r') as invoices_file:
             self.invoices = json.load(invoices_file)
 
     def test_basic_function(self):
