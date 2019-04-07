@@ -14,7 +14,7 @@ def statement(invoice, plays):
             result += "    {}: {} ({} seats)\n".format(
                 perf.play['name'], usd(perf.amount / 100), perf['audience']
             )
-        result += f"Amount owed is ({usd(statement_data.total_amount/100)})\n"
+        result += f"Amount owed is ({usd(statement_data.total_amount / 100)})\n"
         result += f"You earned {statement_data.total_volume_credits} credits\n"
         return result
 
@@ -37,7 +37,7 @@ def html_statement(invoice, plays):
             result += "<td>{}</td>".format(usd(perf.amount / 100))
             result += "</tr>\n"
         result += "</table>\n"
-        result += "<p>Amount owed is <em>{}</em></p>\n".format(usd(statement_data.total_amount/100))
+        result += "<p>Amount owed is <em>{}</em></p>\n".format(usd(statement_data.total_amount / 100))
         result += "<p>You earned <em>{}</em> credits</p>\n".format(statement_data.total_volume_credits)
         return result
 

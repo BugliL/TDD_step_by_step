@@ -2,6 +2,10 @@ import copy
 
 
 def createStatementData(invoice, plays):
+    class PerformanceCalculator(object):
+        def __init__(self, aPerformance):
+            self.performance = aPerformance
+
     class Performance(object):
         def __init__(self, aPerformance):
             self._performance = copy.deepcopy(aPerformance)
