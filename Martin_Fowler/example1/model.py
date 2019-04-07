@@ -10,21 +10,8 @@ def createStatementData(invoice, plays):
         def playFor(self, aPerformance):
             return plays[aPerformance['playID']]
 
-        def __getitem__(self, item):
-            return self._performance[item]
-
-    class Performance(object):
-        def __init__(self, aPerformance):
-            self._performance = copy.deepcopy(aPerformance)
-            self.calculator = PerformanceCalculator(self._performance)
-            self.play = self.calculator.play
-            self.amount = self.amountFor()
-            self.credits = self.volumeCreditsFor()
-
-        # def playFor(self, aPerformance):
-        #     return plays[aPerformance['playID']]
-
-        def amountFor(self):
+        @property
+        def amount(self):
             if self.play['type'] == "tragedy":
                 result = 40000
                 if self['audience'] > 30:
@@ -37,6 +24,34 @@ def createStatementData(invoice, plays):
             else:
                 raise Exception(f"uknown type: {self.play['type']}")
             return result
+
+        def __getitem__(self, item):
+            return self._performance[item]
+
+    class Performance(object):
+        def __init__(self, aPerformance):
+            self._performance = copy.deepcopy(aPerformance)
+            self.calculator = PerformanceCalculator(self._performance)
+            self.play = self.calculator.play
+            self.amount = self.calculator.amount
+            self.credits = self.volumeCreditsFor()
+
+        # def playFor(self, aPerformance):
+        #     return plays[aPerformance['playID']]
+
+        # def amountFor(self):
+        #     if self.play['type'] == "tragedy":
+        #         result = 40000
+        #         if self['audience'] > 30:
+        #             result += 1000 * (self['audience'] - 30)
+        #     elif self.play['type'] == "comedy":
+        #         result = 30000
+        #         if self['audience'] > 20:
+        #             result += 10000 + 500 * (self['audience'] - 20)
+        #         result += 300 * self['audience']
+        #     else:
+        #         raise Exception(f"uknown type: {self.play['type']}")
+        #     return result
 
         def volumeCreditsFor(self):
             result = max(self['audience'] - 30, 0)
