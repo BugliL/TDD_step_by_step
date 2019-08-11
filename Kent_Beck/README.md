@@ -1,4 +1,4 @@
-# Multi concurrency problem
+# Multi currency problem
 
 Starting again the problem once the python version is finished.  
 Trying to have the whole things to do and starting again.  
