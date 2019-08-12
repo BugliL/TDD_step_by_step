@@ -5,7 +5,7 @@ package tests;
 import model.Dollar;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 //
 //  Todo:
@@ -24,4 +24,11 @@ public class DollarTest {
         Dollar fifthteen = five.times(3);
         assertEquals(15, fifthteen.amount);
     }
+
+    @Test
+    public void given_2_dollers_of_same_amount_when_compared_result_equal(){
+        assertEquals(new Dollar(5), new Dollar(5));
+        assertTrue(new Dollar(5).equals(new Dollar(5)));
+    }
+
 }
