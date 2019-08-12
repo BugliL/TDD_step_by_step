@@ -20,9 +20,9 @@ public class DollarTest {
     public void given_5_Dollar_when_multiplied_by_3_and_2_than_result_15() {
         Dollar five = new Dollar(5);
         Dollar ten = five.times(2);
-        assertEquals(10, ten.amount);
+        assertEquals(new Dollar(10), ten);
         Dollar fifthteen = five.times(3);
-        assertEquals(15, fifthteen.amount);
+        assertEquals(new Dollar(15), fifthteen);
     }
 
     @Test
