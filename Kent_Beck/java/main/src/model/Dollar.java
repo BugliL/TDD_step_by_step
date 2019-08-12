@@ -1,7 +1,7 @@
 package model;
 
 public class Dollar {
-    public double amount;
+    private double amount;
 
     public Dollar(double amount) {
         this.amount = amount;
