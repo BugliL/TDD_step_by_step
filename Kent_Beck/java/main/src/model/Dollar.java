@@ -10,4 +10,13 @@ public class Dollar {
     public Dollar times(int multiplier) {
         return new Dollar(this.amount * multiplier);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null || obj.getClass()!= this.getClass())
+            return false;
+
+        Dollar dollar = (Dollar) obj;
+        return dollar.amount == this.amount;
+    }
 }
