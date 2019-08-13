@@ -3,6 +3,7 @@ package tests;
 // using Junit5.4
 
 import model.Dollar;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,10 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 //     Dollar side-effects?
 //     Money rounding?
 
+@DisplayName("Given 5 dollars")
 public class DollarTest {
 
     @Test
-    public void given_5_Dollar_when_multiplied_by_3_and_2_than_result_15() {
+    @DisplayName("When multiplied by 2 result 10 and by 3 result 15")
+    public void test_multiplication() {
         Dollar five = new Dollar(5);
         Dollar ten = five.times(2);
         assertEquals(new Dollar(10), ten);
@@ -26,7 +29,8 @@ public class DollarTest {
     }
 
     @Test
-    public void given_2_dollers_of_same_amount_when_compared_result_equal(){
+    @DisplayName("When compared to another 5 dollar, result equal")
+    public void test_equality(){
         assertEquals(new Dollar(5), new Dollar(5));
         assertTrue(new Dollar(5).equals(new Dollar(5)));
     }

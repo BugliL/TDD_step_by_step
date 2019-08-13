@@ -4,14 +4,17 @@ package tests;
 
 import model.Dollar;
 import model.Franc;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Given 5 franc")
 public class FrancTest {
 
     @Test
-    public void given_5_Dollar_when_multiplied_by_3_and_2_than_result_15() {
+    @DisplayName("When multiplied by 2 result 10 and by 3 result 15")
+    public void test_multiplication() {
         Franc five = new Franc(5);
         Franc ten = five.times(2);
         assertEquals(new Franc(10), ten);
@@ -20,7 +23,8 @@ public class FrancTest {
     }
 
     @Test
-    public void given_2_dollers_of_same_amount_when_compared_result_equal() {
+    @DisplayName("When compared to another 5 franc, result equal")
+    public void test_equality() {
         assertEquals(new Franc(5), new Franc(5));
         assertNotEquals(new Franc(5), new Franc(15));
     }
