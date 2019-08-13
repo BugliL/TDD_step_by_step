@@ -29,4 +29,8 @@ public class Converter {
     public static Money to_franc(Money money) {
         return to_currency("CHF", money);
     }
+
+    public static Money to_dollar(Money money) {
+        return to_currency("USD", money);
+    }
 }
