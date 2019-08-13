@@ -32,4 +32,19 @@ public class MoneyTest {
         Money franc = Money.franc(10);
         assertEquals("CHF", franc.currency());
     }
+
+    @Test
+    @DisplayName("when get Money with Currency CHF are equals to franc")
+    public void test_franc_created_money_currency() {
+        Money franc = Money.franc(10);
+        assertEquals(new Money(10, "CHF"), franc);
+    }
+
+    @Test
+    @DisplayName("when get Money with Currency USA are equals to franc")
+    public void test_dollar_created_money_currency() {
+        Money dollar = Money.dollar(10);
+        assertEquals(new Money(10, "USD"), dollar);
+        assertNotEquals(new Money(10, "CHF"), dollar);
+    }
 }

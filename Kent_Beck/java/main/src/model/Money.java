@@ -27,11 +27,9 @@ public class Money {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || obj.getClass() != this.getClass())
-            return false;
-
         Money money = (Money) obj;
-        return money.amount == this.amount;
+        return money.amount == this.amount
+                && money.currency == this.currency;
     }
 
     public String toString() {
