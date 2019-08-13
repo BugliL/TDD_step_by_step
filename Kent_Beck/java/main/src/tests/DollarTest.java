@@ -22,15 +22,15 @@ public class DollarTest {
     @DisplayName("When multiplied by 2 result 10 and by 3 result 15")
     public void test_multiplication() {
         Dollar five = new Dollar(5);
-        Dollar ten = five.times(2);
+        Dollar ten = (Dollar) five.times(2);
         assertEquals(new Dollar(10), ten);
-        Dollar fifthteen = five.times(3);
+        Dollar fifthteen = (Dollar) five.times(3);
         assertEquals(new Dollar(15), fifthteen);
     }
 
     @Test
     @DisplayName("When compared to another 5 dollar, result equal")
-    public void test_equality(){
+    public void test_equality() {
         assertEquals(new Dollar(5), new Dollar(5));
         assertTrue(new Dollar(5).equals(new Dollar(5)));
     }

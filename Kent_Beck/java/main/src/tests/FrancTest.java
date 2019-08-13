@@ -16,9 +16,9 @@ public class FrancTest {
     @DisplayName("When multiplied by 2 result 10 and by 3 result 15")
     public void test_multiplication() {
         Franc five = new Franc(5);
-        Franc ten = five.times(2);
+        Franc ten = (Franc) five.times(2);
         assertEquals(new Franc(10), ten);
-        Franc fifthteen = five.times(3);
+        Franc fifthteen = (Franc) five.times(3);
         assertEquals(new Franc(15), fifthteen);
     }
 
