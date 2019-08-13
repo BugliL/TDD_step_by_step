@@ -13,6 +13,8 @@ public abstract class Money {
         return new Franc(amount);
     }
 
+    public abstract String currency();
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null || obj.getClass() != this.getClass())
