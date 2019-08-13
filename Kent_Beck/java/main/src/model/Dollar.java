@@ -3,8 +3,7 @@ package model;
 public class Dollar extends Money {
 
     public Dollar(double amount, String currency) {
-        this.currency = currency;
-        this.amount = amount;
+        super(amount, currency);
     }
 
     public Money times(int multiplier) {

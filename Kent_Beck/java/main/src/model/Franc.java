@@ -2,11 +2,8 @@ package model;
 
 public class Franc extends Money {
 
-    private String currency;
-
     public Franc(double amount, String currency) {
-        this.amount = amount;
-        this.currency = currency;
+        super(amount, currency);
     }
 
     public Money times(int multiplier) {

@@ -1,11 +1,8 @@
 package model;
 
-public abstract class Money {
+public class Money {
     protected double amount;
     protected String currency;
-
-
-    public abstract Money times(int multiplier);
 
     public static Money dollar(double amount) {
         return new Dollar(amount, "USD");
@@ -15,7 +12,18 @@ public abstract class Money {
         return new Franc(amount, "CHF");
     }
 
-    public abstract String currency();
+    public String currency() {
+        return this.currency;
+    }
+
+    public Money times(int multiplier) {
+        return new Money(this.amount * multiplier, this.currency);
+    }
+
+    public Money(double amount, String currency) {
+        this.amount = amount;
+        this.currency = currency;
+    }
 
     @Override
     public boolean equals(Object obj) {
