@@ -9,7 +9,7 @@ public class Money {
     }
 
     public static Money franc(double amount) {
-        return new Franc(amount, "CHF");
+        return new Money(amount, "CHF");
     }
 
     public String currency() {
