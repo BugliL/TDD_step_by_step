@@ -35,4 +35,24 @@ public class DollarTest {
         assertNotEquals(Money.dollar(5), Money.dollar(15));
     }
 
+    @Test
+    @DisplayName("added 5 USD, result 10 USD")
+    public void test_sum() {
+        Money fiveDollar = Money.dollar(5);
+        Money otherFiveDollar = Money.dollar(5);
+        Money sum = fiveDollar.plus(otherFiveDollar);
+
+        assertEquals(Money.dollar(10), sum);
+    }
+
+    @Test
+    @DisplayName("added 10 UHF, result 10 USD")
+    public void test_sum_different() {
+        Money fiveDollar = Money.dollar(5);
+        Money otherFiveDollar = Money.franc(10);
+        Money sum = fiveDollar.plus(otherFiveDollar);
+
+        assertEquals(Money.dollar(10), sum);
+    }
+
 }

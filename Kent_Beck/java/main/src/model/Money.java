@@ -35,4 +35,8 @@ public class Money {
     public String toString() {
         return amount + " " + currency;
     }
+
+    public Money plus(Money otherMoney) {
+        return new Money(this.amount + otherMoney.amount, this.currency);
+    }
 }
