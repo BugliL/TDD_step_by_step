@@ -1,5 +1,7 @@
 package model;
 
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Convert;
+
 public class Money {
     protected double amount;
     protected String currency;
@@ -29,7 +31,7 @@ public class Money {
     public boolean equals(Object obj) {
         Money money = (Money) obj;
         return money.amount == this.amount
-                && money.currency == this.currency;
+                && money.currency.equals(this.currency);
     }
 
     public String toString() {
@@ -37,6 +39,7 @@ public class Money {
     }
 
     public Money plus(Money otherMoney) {
-        return new Money(this.amount + otherMoney.amount, this.currency);
+        Money money = Converter.to_currency(this.currency, otherMoney);
+        return new Money(money.amount + this.amount, this.currency);
     }
 }
