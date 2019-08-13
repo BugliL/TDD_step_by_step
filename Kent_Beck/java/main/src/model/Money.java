@@ -3,6 +3,12 @@ package model;
 public abstract class Money {
     protected double amount;
 
+    public abstract Money times(int multiplier);
+
+    public static Money dollar(double amount){
+        return new Dollar(amount);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null || obj.getClass() != this.getClass())

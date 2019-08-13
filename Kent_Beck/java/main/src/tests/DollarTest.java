@@ -3,6 +3,7 @@ package tests;
 // using Junit5.4
 
 import model.Dollar;
+import model.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,10 +22,10 @@ public class DollarTest {
     @Test
     @DisplayName("When multiplied by 2 result 10 and by 3 result 15")
     public void test_multiplication() {
-        Dollar five = new Dollar(5);
-        Dollar ten = (Dollar) five.times(2);
+        Money five = Money.dollar(5);
+        Money ten = five.times(2);
         assertEquals(new Dollar(10), ten);
-        Dollar fifthteen = (Dollar) five.times(3);
+        Money fifthteen = five.times(3);
         assertEquals(new Dollar(15), fifthteen);
     }
 
@@ -32,7 +33,6 @@ public class DollarTest {
     @DisplayName("When compared to another 5 dollar, result equal")
     public void test_equality() {
         assertEquals(new Dollar(5), new Dollar(5));
-        assertTrue(new Dollar(5).equals(new Dollar(5)));
     }
 
 }
