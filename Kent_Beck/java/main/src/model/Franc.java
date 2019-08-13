@@ -1,7 +1,6 @@
 package model;
 
-public class Franc {
-    private double amount;
+public class Franc extends Money {
 
     public Franc(double amount) {
         this.amount = amount;

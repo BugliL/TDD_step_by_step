@@ -1,7 +1,6 @@
 package model;
 
-public class Dollar {
-    private double amount;
+public class Dollar extends Money {
 
     public Dollar(double amount) {
         this.amount = amount;
@@ -13,7 +12,7 @@ public class Dollar {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null || obj.getClass()!= this.getClass())
+        if (obj == null || obj.getClass() != this.getClass())
             return false;
 
         Dollar dollar = (Dollar) obj;
