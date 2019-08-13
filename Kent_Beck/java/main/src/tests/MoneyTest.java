@@ -1,7 +1,5 @@
 package tests;
 
-import model.Dollar;
-import model.Franc;
 import model.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

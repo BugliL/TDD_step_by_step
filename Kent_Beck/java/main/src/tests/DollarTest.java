@@ -2,7 +2,6 @@ package tests;
 
 // using Junit5.4
 
-import model.Dollar;
 import model.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
