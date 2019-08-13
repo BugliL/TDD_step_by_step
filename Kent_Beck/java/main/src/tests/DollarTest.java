@@ -24,15 +24,16 @@ public class DollarTest {
     public void test_multiplication() {
         Money five = Money.dollar(5);
         Money ten = five.times(2);
-        assertEquals(new Dollar(10), ten);
+        assertEquals(Money.dollar(10), ten);
         Money fifthteen = five.times(3);
-        assertEquals(new Dollar(15), fifthteen);
+        assertEquals(Money.dollar(15), fifthteen);
     }
 
     @Test
     @DisplayName("When compared to another 5 dollar, result equal")
     public void test_equality() {
-        assertEquals(new Dollar(5), new Dollar(5));
+        assertEquals(Money.dollar(5), Money.dollar(5));
+        assertNotEquals(Money.dollar(5), Money.dollar(15));
     }
 
 }

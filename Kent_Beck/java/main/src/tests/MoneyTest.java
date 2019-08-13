@@ -2,6 +2,7 @@ package tests;
 
 import model.Dollar;
 import model.Franc;
+import model.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +15,8 @@ public class MoneyTest {
     @Test
     @DisplayName("when compared 5USD and 5UHD result different")
     public void test_money_equality() {
-        Dollar dollar = new Dollar(5);
-        Franc franc = new Franc(5);
+        Money dollar = Money.dollar(5);
+        Money franc = new Franc(5);
         assertNotEquals(dollar, franc);
     }
 }
