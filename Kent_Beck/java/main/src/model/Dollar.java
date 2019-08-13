@@ -10,12 +10,4 @@ public class Dollar extends Money {
         return new Dollar(this.amount * multiplier);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null || obj.getClass() != this.getClass())
-            return false;
-
-        Dollar dollar = (Dollar) obj;
-        return dollar.amount == this.amount;
-    }
 }
