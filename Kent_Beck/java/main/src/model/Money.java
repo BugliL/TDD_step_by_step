@@ -6,11 +6,11 @@ public abstract class Money {
     public abstract Money times(int multiplier);
 
     public static Money dollar(double amount){
-        return new Dollar(amount);
+        return new Dollar(amount, "USD");
     }
 
     public static Money franc(double amount){
-        return new Franc(amount);
+        return new Franc(amount, "CHF");
     }
 
     public abstract String currency();
