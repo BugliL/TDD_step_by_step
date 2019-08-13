@@ -16,7 +16,7 @@ public class MoneyTest {
     @DisplayName("when compared 5USD and 5UHD result different")
     public void test_money_equality() {
         Money dollar = Money.dollar(5);
-        Money franc = new Franc(5);
+        Money franc = Money.franc(5);
         assertNotEquals(dollar, franc);
     }
 }
