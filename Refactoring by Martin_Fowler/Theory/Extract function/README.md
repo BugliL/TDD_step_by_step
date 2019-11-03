@@ -3,6 +3,8 @@ Consist in creating a new function isolating some code part that
 make sense. It's useful to shrink function size and to isolate some
 function logic part making the code cleaner.
 
+![Schema](./image.png)
+
 **Example**
 ```python
 def print_something(invoice):
@@ -27,6 +29,17 @@ def print_something(invoice):
 ```
 
 ## How to Extract a function
+
+ * **Example**
+ ```python
+ def print_something(invoice):
+     printBanner()
+     outstanding = cal_outstanding()
+ 
+     # code to extract
+     print(f"name: ${invoice['customer']}")
+     print(f"amount: ${outstanding}")
+ ```
  * Find the code to copy in the function
  * Create a new function
  * Copy the code in that function
