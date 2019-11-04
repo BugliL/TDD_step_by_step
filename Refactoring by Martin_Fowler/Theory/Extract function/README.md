@@ -3,6 +3,8 @@ Consist in creating a new function isolating some code part that
 make sense. It's useful to shrink function size and to isolate some
 function logic part making the code cleaner.
 
+Inverse of [Inline function](../Inline%20function/)
+
 ![Schema](./image.png)
 
 **Example**
