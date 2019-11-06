@@ -5,6 +5,7 @@ code is more expressive than having a wrapping function.
 
 Inverse of [Extract function](../Extract%20function/)
 Shortly: find, substitute
+More shortly: Let ide do it for you
 
 ![Schema](./image.png)
 
