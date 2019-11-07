@@ -6,8 +6,11 @@ function logic making the code cleaner.
 Inverse of [Inline function](../Inline%20function/)
 
 ![Schema](./image.png)
+
 Shortly: duplicate, adjust, remove duplication
 More shortly: Let ide do it for you
+
+## How to Extract a function
 
 **Example**
 ```python
@@ -22,7 +25,6 @@ def print_something(invoice):
     print(f"amount: ${outstanding}")
 ```
 
-## How to Extract a function
  * Find the code to copy in the function
    ```python
        # Isolating output is a good practice
