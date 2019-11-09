@@ -1,3 +1,16 @@
+import dataclasses
+
+
+@dataclasses.dataclass(frozen=True)
+class BirdData(object):
+    breed: str
+    voltage: int
+    number_of_coconuts: int
+
+    def asdict(self) -> dict:
+        return dataclasses.asdict(self)
+
+
 class Bird(object):
     def __init__(self, breed: str, voltage: int, number_of_coconuts: int):
         self.breed = breed
@@ -27,11 +40,13 @@ class NorvegianBlueParrot(Bird):
     pass
 
 
-def plumage(bird: Bird) -> str:
-    return bird.plumage()
+def plumage(bird: BirdData) -> str:
+    return Bird(**bird.asdict()).plumage()
 
 
 if __name__ == '__main__':
-    x = Bird(breed='NorvegianBlueParrot', voltage=120, number_of_coconuts=3)
+    data = BirdData(breed='NorvegianBlueParrot', voltage=120, number_of_coconuts=3)
+    print(plumage(data))
+
+    x = Bird(**data.asdict())
     print(x.plumage())
-    print(plumage(x))
