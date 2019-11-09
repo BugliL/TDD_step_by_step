@@ -1,11 +1,12 @@
-# Extract variable
-Used to simplify expressions making them more readable by creating variables and using them.  
-It's used when there are complex expressions and as step to make more complex refactorings.    
+# < Name >
+< Description >
 
-Inverse of [Inline Variable](../Inline%20variable)
+Inverse of [< Name >](< Link >)
+Shortly: < Short version >
+More shortly: < Very Short version >
 
 ![Schema](./image.png)
-
+ 
 ## How to < Name >
  **Example**
  ```python
