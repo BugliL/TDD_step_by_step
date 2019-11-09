@@ -4,12 +4,16 @@ It's used when a function is just delegating something else or when expliciting
 code is more expressive than having a wrapping function. 
 
 Inverse of [Extract function](../Extract%20function/)
-Shortly: find, substitute
-More shortly: Let ide do it for you
 
 ![Schema](./image.png)
 
- **Example**
+Shortly: find, substitute  
+More shortly: Let ide do it for you
+
+ 
+## How to inline function
+
+**Example**
  ```python
  def functionB(x:int):
     y = 10 if x % 5 else x
@@ -23,7 +27,6 @@ More shortly: Let ide do it for you
     print(functionA(20))   
  ```
  
-## How to inline function
  * Find all function/method calls
  ```python    
  # Don't you say?!   
