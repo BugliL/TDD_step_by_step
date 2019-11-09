@@ -27,6 +27,14 @@ class Bird(object):
         else:
             return 'uknown'
 
+    @classmethod
+    def create(cls, bird_data: BirdData):
+        return {
+            'EuropeanSwallow': EuropeanSwallow,
+            'AfricanSwallow': AfricanSwallow,
+            'NorvegianBlueParrot': NorvegianBlueParrot,
+        }.get(bird_data.breed, Bird)(**bird_data.asdict())
+
 
 class EuropeanSwallow(Bird):
     pass
@@ -48,5 +56,5 @@ if __name__ == '__main__':
     data = BirdData(breed='NorvegianBlueParrot', voltage=120, number_of_coconuts=3)
     print(plumage(data))
 
-    x = Bird(**data.asdict())
+    x = Bird.create(data)
     print(x.plumage())
