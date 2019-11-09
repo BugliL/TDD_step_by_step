@@ -16,14 +16,7 @@ class Bird(object):
 
 
 def plumage(bird: Bird) -> str:
-    if bird.breed == 'EuropeanSwallow':
-        return 'average'
-    elif bird.breed == 'AfricanSwallow':
-        return "tired" if bird.number_of_coconuts > 2 else "average"
-    elif bird.breed == 'NorvegianBlueParrot':
-        return "schorched" if bird.voltage > 100 else "beatiful"
-    else:
-        return 'uknown'
+    return bird.plumage()
 
 
 if __name__ == '__main__':
