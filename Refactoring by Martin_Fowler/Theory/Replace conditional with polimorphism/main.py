@@ -4,6 +4,16 @@ class Bird(object):
         self.voltage = voltage
         self.number_of_coconuts = number_of_coconuts
 
+    def plumage(self) -> str:
+        if self.breed == 'EuropeanSwallow':
+            return 'average'
+        elif self.breed == 'AfricanSwallow':
+            return "tired" if self.number_of_coconuts > 2 else "average"
+        elif self.breed == 'NorvegianBlueParrot':
+            return "schorched" if self.voltage > 100 else "beatiful"
+        else:
+            return 'uknown'
+
 
 def plumage(bird: Bird) -> str:
     if bird.breed == 'EuropeanSwallow':
