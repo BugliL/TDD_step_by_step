@@ -27,5 +27,6 @@ def plumage(bird: Bird) -> str:
 
 
 if __name__ == '__main__':
-    x = Bird(breed='EuropeanSwallow', voltage=120, number_of_coconuts=3)
+    x = Bird(breed='NorvegianBlueParrot', voltage=120, number_of_coconuts=3)
+    print(x.plumage())
     print(plumage(x))
