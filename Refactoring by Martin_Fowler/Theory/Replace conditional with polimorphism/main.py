@@ -14,3 +14,8 @@ def plumage(bird: Bird) -> str:
         return "schorched" if bird.voltage > 100 else "beatiful"
     else:
         return 'uknown'
+
+
+if __name__ == '__main__':
+    x = Bird(breed='EuropeanSwallow', voltage=120, number_of_coconuts=3)
+    print(plumage(x))
