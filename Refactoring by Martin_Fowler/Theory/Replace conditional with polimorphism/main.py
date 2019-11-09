@@ -18,14 +18,7 @@ class Bird(object):
         self.number_of_coconuts = number_of_coconuts
 
     def plumage(self) -> str:
-        if self.breed == 'EuropeanSwallow':
-            return 'average'
-        elif self.breed == 'AfricanSwallow':
-            return "tired" if self.number_of_coconuts > 2 else "average"
-        elif self.breed == 'NorvegianBlueParrot':
-            return "schorched" if self.voltage > 100 else "beatiful"
-        else:
-            return 'uknown'
+        return 'uknown'
 
     @classmethod
     def create(cls, bird_data: BirdData):
@@ -37,15 +30,18 @@ class Bird(object):
 
 
 class EuropeanSwallow(Bird):
-    pass
+    def plumage(self):
+        return 'average'
 
 
 class AfricanSwallow(Bird):
-    pass
+    def plumage(self):
+        return "tired" if self.number_of_coconuts > 2 else "average"
 
 
 class NorvegianBlueParrot(Bird):
-    pass
+    def plumage(self):
+        return "schorched" if self.voltage > 100 else "beatiful"
 
 
 def plumage(bird_data: BirdData) -> str:
