@@ -15,6 +15,18 @@ class Bird(object):
             return 'uknown'
 
 
+class EuropeanSwallow(Bird):
+    pass
+
+
+class AfricanSwallow(Bird):
+    pass
+
+
+class NorvegianBlueParrot(Bird):
+    pass
+
+
 def plumage(bird: Bird) -> str:
     return bird.plumage()
 
