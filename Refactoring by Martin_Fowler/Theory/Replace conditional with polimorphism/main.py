@@ -48,8 +48,8 @@ class NorvegianBlueParrot(Bird):
     pass
 
 
-def plumage(bird: BirdData) -> str:
-    return Bird(**bird.asdict()).plumage()
+def plumage(bird_data: BirdData) -> str:
+    return Bird.create(bird_data).plumage()
 
 
 if __name__ == '__main__':
