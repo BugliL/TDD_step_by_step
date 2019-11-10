@@ -4,9 +4,7 @@ Split loop it's very useful before function extract.
 
 ![Schema](./image.png)
  
-Inverse of [< Name >](< Link >)
-Shortly: < Short version >
-More shortly: < Very Short version >
+Shortly: duplicate n times, edit each duplication 
 
 ## How to split loop
 
