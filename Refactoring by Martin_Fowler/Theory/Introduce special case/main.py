@@ -53,6 +53,13 @@ class Site(object):
             billing_plan='Standard plan'
         )
 
+    @staticmethod
+    def is_unknown(aCustomer: [str, Customer]):
+        if not aCustomer or type(aCustomer) != Customer and aCustomer != 'unknown':
+            raise ValueError("Customer {} not valid ".format(aCustomer))
+
+        return aCustomer == 'unknown'
+
     @property
     def customer(self):
         return self._customer
@@ -71,20 +78,20 @@ def is_unknown(aCustomer: [str, Customer]):
 
 def client_1(site: Site) -> None:
     aCustomer = site.customer
-    name = aCustomer.name if not is_unknown(aCustomer) else "occupant"
+    name = aCustomer.name if not Site.is_unknown(aCustomer) else "occupant"
     print(name)
 
 
 def client_2(site: Site) -> None:
     BasicPlan = TypeVar("BasicPlan")
     aCustomer = site.customer
-    plan = BasicPlan if is_unknown(aCustomer) else aCustomer.billing_plan
+    plan = BasicPlan if Site.is_unknown(aCustomer) else aCustomer.billing_plan
     print(plan)
 
 
 def client_3(site: Site) -> None:
     aCustomer = site.customer
-    weeks = 0 if is_unknown(aCustomer) else aCustomer.payment_history['weeks']
+    weeks = 0 if Site.is_unknown(aCustomer) else aCustomer.payment_history['weeks']
     print(weeks)
 
 
