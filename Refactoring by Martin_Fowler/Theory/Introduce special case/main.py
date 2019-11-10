@@ -47,7 +47,7 @@ class NullCustomer(Customer):
 
 class Site(object):
     def __init__(self):
-        self._get_customer = Customer(
+        self._customer = Customer(
             name='Bob',
             payment_history={'weeks': 12},
             billing_plan='Standard plan'
@@ -55,7 +55,11 @@ class Site(object):
 
     @property
     def customer(self):
-        return self._get_customer
+        return self._customer
+
+    @customer.setter
+    def customer(self, value: [str, Customer]):
+        self._customer = value
 
 
 def client_1(site: Site) -> None:
@@ -78,7 +82,15 @@ def client_3(site: Site) -> None:
 
 
 if __name__ == '__main__':
-    site = Site()
-    client_1(site=site)
-    client_2(site=site)
-    client_3(site=site)
+    print("\nCorrect user")
+    site1 = Site()
+    client_1(site=site1)
+    client_2(site=site1)
+    client_3(site=site1)
+
+    print("\nNull user")
+    site2 = Site()
+    site2.customer = 'unknown'
+    client_1(site=site2)
+    client_2(site=site2)
+    client_3(site=site2)
