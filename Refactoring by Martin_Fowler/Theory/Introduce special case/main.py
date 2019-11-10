@@ -51,6 +51,10 @@ class NullCustomer(Customer):
     def name(self):
         return "occupant"
 
+    @property
+    def billing_plan(self):
+        return TypeVar("BasicPlan")
+
 
 class Site(object):
     def __init__(self):
@@ -83,9 +87,8 @@ def client_1(site: Site) -> None:
 
 
 def client_2(site: Site) -> None:
-    BasicPlan = TypeVar("BasicPlan")
     aCustomer = site.customer
-    plan = BasicPlan if Site.is_unknown(aCustomer) else aCustomer.billing_plan
+    plan = aCustomer.billing_plan
     print(plan)
 
 
