@@ -69,7 +69,7 @@ class Site(object):
 
     @customer.setter
     def customer(self, value: [str, Customer]):
-        self._customer = value
+        self._customer = value if value != "unknown" else NullCustomer()
 
 
 def client_1(site: Site) -> None:
