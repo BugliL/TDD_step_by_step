@@ -1,12 +1,12 @@
 # < Name >
 < Description >
 
+![Schema](./image.png)
+ 
 Inverse of [< Name >](< Link >)
 Shortly: < Short version >
 More shortly: < Very Short version >
 
-![Schema](./image.png)
- 
 ## How to < Name >
  **Example**
  ```python
