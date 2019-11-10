@@ -47,6 +47,10 @@ class NullCustomer(Customer):
     def isUnknown(self):
         return True
 
+    @property
+    def name(self):
+        return "occupant"
+
 
 class Site(object):
     def __init__(self):
@@ -74,7 +78,7 @@ class Site(object):
 
 def client_1(site: Site) -> None:
     aCustomer = site.customer
-    name = aCustomer.name if not Site.is_unknown(aCustomer) else "occupant"
+    name = aCustomer.name
     print(name)
 
 
