@@ -15,6 +15,7 @@ https://memberservices.informit.com/my_account/webedition/9780135425664/html/int
 @dataclass(frozen=True)
 class PaymentHistory(object):
     history: tuple = field(default_factory=tuple)
+    is_null: bool = False
 
     def __getitem__(self, item):
         if item != 'weeks':
@@ -26,16 +27,14 @@ class PaymentHistory(object):
 
 
 @dataclass(frozen=True)
-class NullPaymentHostory(PaymentHistory):
+class NullPaymentHistory(PaymentHistory):
     history: tuple = ()
-
-    def _get_weeks(self) -> int:
-        return 0
+    is_null: bool = True
 
 
 class Customer(object):
 
-    def __init__(self, name: str, payment_history: dict, billing_plan: str):
+    def __init__(self, name: str, payment_history: [dict, PaymentHistory], billing_plan: str):
         self._billing_plan = billing_plan
         self._payment_history = payment_history
         self._name = name
@@ -63,26 +62,22 @@ class Customer(object):
 
 class NullCustomer(Customer):
     def __init__(self):
-        pass
+        super().__init__(
+            name="occupant",
+            payment_history=NullPaymentHostory(),
+            billing_plan=TypeVar("basic_plan")
+        )
 
     @property
     def isUnknown(self):
         return True
-
-    @property
-    def name(self):
-        return "occupant"
-
-    @property
-    def billing_plan(self):
-        return TypeVar("BasicPlan")
 
 
 class Site(object):
     def __init__(self):
         self._customer = Customer(
             name='Bob',
-            payment_history={'weeks': 12},
+            payment_history=PaymentHistory(history=('one', 'two', 'tree')),
             billing_plan='Standard plan'
         )
 
@@ -116,7 +111,7 @@ def client_2(site: Site) -> None:
 
 def client_3(site: Site) -> None:
     aCustomer = site.customer
-    weeks = 0 if Site.is_unknown(aCustomer) else aCustomer.payment_history['weeks']
+    weeks = aCustomer.payment_history['weeks']
     print(weeks)
 
 
