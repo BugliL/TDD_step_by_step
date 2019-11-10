@@ -71,20 +71,20 @@ def is_unknown(aCustomer: [str, Customer]):
 
 def client_1(site: Site) -> None:
     aCustomer = site.customer
-    name = aCustomer.name if (aCustomer != "unknown") else "occupant"
+    name = aCustomer.name if not is_unknown(aCustomer) else "occupant"
     print(name)
 
 
 def client_2(site: Site) -> None:
     BasicPlan = TypeVar("BasicPlan")
     aCustomer = site.customer
-    plan = BasicPlan if (aCustomer == "unknown") else aCustomer.billing_plan
+    plan = BasicPlan if is_unknown(aCustomer) else aCustomer.billing_plan
     print(plan)
 
 
 def client_3(site: Site) -> None:
     aCustomer = site.customer
-    weeks = 0 if (aCustomer == "unknown") else aCustomer.payment_history['weeks']
+    weeks = 0 if is_unknown(aCustomer) else aCustomer.payment_history['weeks']
     print(weeks)
 
 
