@@ -40,6 +40,9 @@ class Customer(object):
 
 
 class NullCustomer(Customer):
+    def __init__(self):
+        pass
+
     @property
     def isUnknown(self):
         return True
@@ -67,13 +70,6 @@ class Site(object):
     @customer.setter
     def customer(self, value: [str, Customer]):
         self._customer = value
-
-
-def is_unknown(aCustomer: [str, Customer]):
-    if not aCustomer or type(aCustomer) != Customer and aCustomer != 'unknown':
-        raise ValueError("Customer {} not valid ".format(aCustomer))
-
-    return aCustomer == 'unknown'
 
 
 def client_1(site: Site) -> None:
