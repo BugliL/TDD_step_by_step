@@ -58,8 +58,7 @@ class Site(object):
 
     @staticmethod
     def is_unknown(aCustomer: [str, Customer, NullCustomer]):
-        if not aCustomer or (
-                type(aCustomer) != Customer and aCustomer != 'unknown' and type(aCustomer) != NullCustomer):
+        if not aCustomer or (type(aCustomer) not in [Customer, NullCustomer] and aCustomer != 'unknown'):
             raise ValueError("Customer {} not valid ".format(aCustomer))
 
         return aCustomer == 'unknown' or type(aCustomer) == NullCustomer
