@@ -4,8 +4,7 @@ The variable can be declared immutable.
 
 ![Schema](./image.png)
  
-Shortly: duplicate expression, 
-More shortly: < Very Short version >
+Shortly: expression into function, replace with function call, apply [Inline variable](../Inline%20variable)
 
 ## How to replace with query
 **example**
@@ -51,7 +50,7 @@ else:
        return base_price * 0.98
    ```
  
- * Use inline variable to remove temporary variable
+ * Use [Inline variable](../Inline%20variable) to remove temporary variable
    ```python
    def base_price_fn(qty:int, price:float):
        return qty * price
