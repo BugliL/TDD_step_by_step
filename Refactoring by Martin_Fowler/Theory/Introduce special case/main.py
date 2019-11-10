@@ -1,3 +1,4 @@
+from dataclasses import dataclass, field
 from typing import TypeVar
 
 """
@@ -9,6 +10,27 @@ Clients of the site need to be able to handle an unknown customer so they check 
 Source code inspired by The book at 
 https://memberservices.informit.com/my_account/webedition/9780135425664/html/introducespecialcase.html 
 """
+
+
+@dataclass(frozen=True)
+class PaymentHistory(object):
+    history: tuple = field(default_factory=tuple)
+
+    def __getitem__(self, item):
+        if item != 'weeks':
+            raise KeyError("{} not defined as key".format(item))
+        return self._get_weeks()
+
+    def _get_weeks(self) -> int:
+        return len(self.history)
+
+
+@dataclass(frozen=True)
+class NullPaymentHostory(PaymentHistory):
+    history: tuple = ()
+
+    def _get_weeks(self) -> int:
+        return 0
 
 
 class Customer(object):
@@ -113,3 +135,5 @@ if __name__ == '__main__':
     client_1(site=site2)
     client_2(site=site2)
     client_3(site=site2)
+
+    x = NullPaymentHostory()
