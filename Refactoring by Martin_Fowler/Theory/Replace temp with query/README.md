@@ -1,28 +1,62 @@
 # Replace temp with query
-Used when a variable is initialized than read for the rest of the code
+Used when a variable is initialized than readed for the rest of the code.
+The variable can be declared immutable. 
 
+![Schema](./image.png)
+ 
+Shortly: expression into function, replace with function call, apply [Inline variable](../Inline%20variable)
+
+## How to replace with query
 **example**
 ```python
 base_price = qty * price
-if base_price > 1000
+if base_price > 1000:
     return base_price * 0.95
 else:
     return base_price * 0.98
 ```
 
-```python
-def base_price()
-    return qty * price
-
-if base_price() > 1000
-    return base_price() * 0.95
-else:
-    return base_price() * 0.98
-```
-
-## How to replace with query
  * Check that the function is deterministic
- * If possible declare that variable constant
+   ```python
+   base_price = qty * price  # it is
+   if base_price > 1000:
+       return base_price * 0.95
+   else:
+       return base_price * 0.98
+   ```
+ 
  * Extract the variable assignment in a function
    * If there are side effects separate query from modifier
- * Use inline variable to remove temporary variable
+   ```python
+   def base_price_fn(qty:int, price:float):   
+       return qty * price
+   
+   base_price = qty * price
+   if base_price > 1000:
+       return base_price * 0.95
+   else:
+       return base_price * 0.98
+   ```
+   
+ * Replace variable expression with function call
+   ```python
+   def base_price_fn(qty:int, price:float):
+       return qty * price
+   
+   base_price = base_price_fn(qty, price)
+   if base_price > 1000:
+       return base_price * 0.95
+   else:
+       return base_price * 0.98
+   ```
+ 
+ * Use [Inline variable](../Inline%20variable) to remove temporary variable
+   ```python
+   def base_price_fn(qty:int, price:float):
+       return qty * price
+   
+   if base_price_fn(qty, price) > 1000:
+       return base_price_fn(qty, price) * 0.95
+   else:
+       return base_price_fn(qty, price) * 0.98
+   ```

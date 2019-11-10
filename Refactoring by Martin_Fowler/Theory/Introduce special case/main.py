@@ -64,7 +64,7 @@ class NullCustomer(Customer):
     def __init__(self):
         super().__init__(
             name="occupant",
-            payment_history=NullPaymentHostory(),
+            payment_history=NullPaymentHistory(),
             billing_plan=TypeVar("basic_plan")
         )
 
@@ -131,4 +131,4 @@ if __name__ == '__main__':
     client_2(site=site2)
     client_3(site=site2)
 
-    x = NullPaymentHostory()
+    x = NullPaymentHistory()
