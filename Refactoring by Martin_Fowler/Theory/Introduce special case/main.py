@@ -13,21 +13,45 @@ https://memberservices.informit.com/my_account/webedition/9780135425664/html/int
 
 class Customer(object):
 
+    def __init__(self, name: str, payment_history: dict, billing_plan: str):
+        self._billing_plan = billing_plan
+        self._payment_history = payment_history
+        self._name = name
+
+    @property
+    def isUnknown(self):
+        return False
+
     @property
     def name(self):
-        pass
+        return self._name
 
     @property
     def payment_history(self):
-        pass
+        return self._payment_history
 
-    def billing_plan(self, **kwargs):
-        pass
+    @property
+    def billing_plan(self):
+        return self._billing_plan
+
+    @billing_plan.setter
+    def billing_plan(self, new_plan: str):
+        self._billing_plan = new_plan
+
+
+class NullCustomer(Customer):
+    @property
+    def isUnknown(self):
+        return True
 
 
 class Site(object):
     def __init__(self):
-        self._get_customer = Customer()
+        self._get_customer = Customer(
+            name='Bob',
+            payment_history={'weeks': 12},
+            billing_plan='Standard plan'
+        )
 
     @property
     def customer(self):
@@ -37,14 +61,24 @@ class Site(object):
 def client_1(site: Site) -> None:
     aCustomer = site.customer
     name = aCustomer.name if (aCustomer != "unknown") else "occupant"
+    print(name)
 
 
 def client_2(site: Site) -> None:
     BasicPlan = TypeVar("BasicPlan")
     aCustomer = site.customer
     plan = BasicPlan if (aCustomer == "unknown") else aCustomer.billing_plan
+    print(plan)
 
 
 def client_3(site: Site) -> None:
     aCustomer = site.customer
     weeks = 0 if (aCustomer == "unknown") else aCustomer.payment_history['weeks']
+    print(weeks)
+
+
+if __name__ == '__main__':
+    site = Site()
+    client_1(site=site)
+    client_2(site=site)
+    client_3(site=site)
