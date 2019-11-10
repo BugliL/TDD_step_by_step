@@ -65,7 +65,7 @@ class Site(object):
 
     @property
     def customer(self):
-        return self._customer
+        return self._customer if not Site.is_unknown(self._customer) else NullCustomer()
 
     @customer.setter
     def customer(self, value: [str, Customer]):
@@ -94,6 +94,7 @@ def client_3(site: Site) -> None:
 if __name__ == '__main__':
     print("\nCorrect user")
     site1 = Site()
+    assert type(site1.customer) != NullCustomer
     client_1(site=site1)
     client_2(site=site1)
     client_3(site=site1)
@@ -101,6 +102,7 @@ if __name__ == '__main__':
     print("\nNull user")
     site2 = Site()
     site2.customer = 'unknown'
+    assert type(site2.customer) == NullCustomer
     client_1(site=site2)
     client_2(site=site2)
     client_3(site=site2)
