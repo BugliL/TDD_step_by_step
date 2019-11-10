@@ -62,6 +62,13 @@ class Site(object):
         self._customer = value
 
 
+def is_unknown(aCustomer: [str, Customer]):
+    if not aCustomer or type(aCustomer) != Customer or aCustomer != 'unknown':
+        raise ValueError("Customer {} not valid ".format(aCustomer))
+
+    return aCustomer == 'unknown'
+
+
 def client_1(site: Site) -> None:
     aCustomer = site.customer
     name = aCustomer.name if (aCustomer != "unknown") else "occupant"
