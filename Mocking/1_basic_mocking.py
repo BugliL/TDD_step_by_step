@@ -10,22 +10,36 @@ from unittest import mock
 
 # Mock is a flexible mock object intended to replace the use of stubs and test
 # doubles throughout your code.
-#
-# class unittest.mock.Mock
-#   spec=None
-#   side_effect=None
-#   return_value=DEFAULT
-#   wraps=None
-#   name=None
-#   spec_set=None
-#   unsafe=False
-#   **kwargs
-
 
 class BasicTesting(unittest.TestCase):
+
+    def assertNotRaises(self, exception_type, *args, **kwargs):
+        try:
+            # this code raise AssertionError if *args, **kwargs
+            # is not raising an exception
+            self.assertRaises(exception_type, *args, **kwargs)
+        except exception_type:
+            return
+        else:
+            raise AssertionError("{} was not raised".format(exception_type))
+
     def test_basic(self):
         # class unittest.mock.Mock
         mock_object = mock.Mock()
         mock_object.random_attribute = "A mocked attribute"
         self.assertEqual(mock_object.random_attribute, "A mocked attribute")
 
+    def test_called(self):
+        # assert_called is used to check if Mock is used as call
+        mock_object = mock.Mock()
+
+        # at this point "method" is not called so it raises an error
+        self.assertRaises(AssertionError, mock_object.method.assert_called)
+
+        # now is called
+        mock_object.method()
+
+        # and do not raise an exception anymore
+        # these lines are equivalent
+        mock_object.method.assert_called()
+        self.assertNotRaises(AssertionError, mock_object.method.assert_called)
