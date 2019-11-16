@@ -14,16 +14,6 @@ from unittest import mock
 
 class BasicTesting(unittest.TestCase):
 
-    def assertNotRaises(self, exception_type, *args, **kwargs):
-        try:
-            # this code raise AssertionError if *args, **kwargs
-            # is not raising an exception
-            self.assertRaises(exception_type, *args, **kwargs)
-        except exception_type:
-            self.assertTrue(True)
-        else:
-            self.fail("{} was not raised".format(exception_type))
-
     def test_basic(self):
         # class unittest.mock.Mock
         mock_object = mock.Mock()
@@ -56,19 +46,3 @@ class BasicTesting(unittest.TestCase):
         mock_object = mock.Mock()
         mock_object.configure_mock(attribute="hello3")
         self.assertEqual("hello3", mock_object.attribute)
-
-    def test_called(self):
-        # assert_called is used to check if Mock is used as call
-        mock_object = mock.Mock()
-
-        # at this point "method" is not called so it raises an error
-        # (method is not defined but it don't raise an error)
-        self.assertRaises(AssertionError, mock_object.method.assert_called)
-
-        # now is called
-        mock_object.method()
-
-        # and do not raise an exception anymore
-        # these lines are equivalent
-        mock_object.method.assert_called()
-        self.assertNotRaises(AssertionError, mock_object.method.assert_called)
