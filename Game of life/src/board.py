@@ -17,6 +17,8 @@ class Board(object):
                 cell.future_state = cell.is_alive
             elif n == 3:
                 cell.future_state = Cell.AliveStatus
+            elif n > 3:
+                cell.future_state = Cell.DeadStatus
 
         for cell in self.cells:
             cell.is_alive = cell.future_state

@@ -56,25 +56,22 @@ class CellShould(unittest.TestCase):
         cell2 = Cell(status=Cell.AliveStatus, neighbours=[cell1])
         cell3 = Cell(status=Cell.AliveStatus, neighbours=[cell1, cell2])
         cell4 = Cell(status=Cell.AliveStatus, neighbours=[cell1, cell2, cell3])
-        cell5 = Cell(status=Cell.DeadStatus, neighbours=[cell1, cell2, cell3, cell4])
-        cell6 = Cell(status=Cell.DeadStatus, neighbours=[cell2, cell3, cell4, cell5])
-        board = Board([cell1, cell2, cell3, cell4, cell5, cell6])
+        cell5 = Cell(status=Cell.AliveStatus, neighbours=[cell1, cell2, cell3, cell4])
+        board = Board([cell1, cell2, cell3, cell4, cell5, ])
 
         self.assertEqual(Cell.AliveStatus, cell1.is_alive)
         self.assertEqual(Cell.AliveStatus, cell2.is_alive)
         self.assertEqual(Cell.AliveStatus, cell3.is_alive)
         self.assertEqual(Cell.AliveStatus, cell4.is_alive)
         self.assertEqual(Cell.AliveStatus, cell5.is_alive)
-        self.assertEqual(Cell.AliveStatus, cell6.is_alive)
 
         board.evolve()
 
         self.assertEqual(Cell.DeadStatus, cell1.is_alive)
         self.assertEqual(Cell.DeadStatus, cell2.is_alive)
-        self.assertEqual(Cell.AliveStatus, cell3.is_alive)
-        self.assertEqual(Cell.AliveStatus, cell4.is_alive)
+        self.assertEqual(Cell.DeadStatus, cell3.is_alive)
+        self.assertEqual(Cell.DeadStatus, cell4.is_alive)
         self.assertEqual(Cell.DeadStatus, cell5.is_alive)
-        self.assertEqual(Cell.DeadStatus, cell6.is_alive)
 
     def test_born_if_next_to_4_or_more_alive_cells(self):
         cell1 = Cell(status=Cell.AliveStatus, neighbours=[])
