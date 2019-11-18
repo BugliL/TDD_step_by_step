@@ -13,6 +13,10 @@ class Board(object):
             n = len([c for c in cell.neighbours if c.is_alive])
             if n < 2:
                 cell.future_state = Cell.DeadStatus
+            elif n == 2:
+                cell.future_state = cell.is_alive
+            elif n == 3:
+                cell.future_state = Cell.AliveStatus
 
         for cell in self.cells:
             cell.is_alive = cell.future_state
