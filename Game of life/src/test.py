@@ -24,13 +24,13 @@ class CellShould(unittest.TestCase):
         cell2 = Cell(status=Cell.AliveStatus, neighbours=[cell1])
         board = Board([cell1, cell2, ])
 
-        self.assertEqual(Cell.AliveStatus, cell1)
-        self.assertEqual(Cell.AliveStatus, cell2)
+        self.assertEqual(Cell.AliveStatus, cell1.is_alive)
+        self.assertEqual(Cell.AliveStatus, cell2.is_alive)
 
         board.evolve()
 
-        self.assertEqual(Cell.DeadStatus, cell1)
-        self.assertEqual(Cell.DeadStatus, cell2)
+        self.assertEqual(Cell.DeadStatus, cell1.is_alive)
+        self.assertEqual(Cell.DeadStatus, cell2.is_alive)
 
     def test_survive_if_next_to_2_or_3_alive_cells(self):
         cell1 = Cell(status=Cell.AliveStatus, neighbours=[])
