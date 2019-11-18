@@ -1,6 +1,6 @@
 import unittest
-from .cell import Cell
-from .board import Board
+from src.cell import Cell
+from src.board import Board
 
 
 class CellShould(unittest.TestCase):
@@ -80,13 +80,13 @@ class CellShould(unittest.TestCase):
         cell1 = Cell(status=Cell.AliveStatus, neighbours=[])
         cell2 = Cell(status=Cell.AliveStatus, neighbours=[cell1])
         cell3 = Cell(status=Cell.AliveStatus, neighbours=[cell1, cell2])
-        cell4 = Cell(status=Cell.AliveStatus, neighbours=[cell1, cell2, cell3])
+        cell4 = Cell(status=Cell.DeadStatus, neighbours=[cell1, cell2, cell3])
         board = Board([cell1, cell2, cell3, cell4])
 
         self.assertEqual(Cell.AliveStatus, cell1.is_alive)
         self.assertEqual(Cell.AliveStatus, cell2.is_alive)
         self.assertEqual(Cell.AliveStatus, cell3.is_alive)
-        self.assertEqual(Cell.AliveStatus, cell4.is_alive)
+        self.assertEqual(Cell.DeadStatus, cell4.is_alive)
 
         board.evolve()
 
