@@ -1,6 +1,6 @@
 from typing import List
 
-from src.cell import Cell
+from original_src.cell import Cell
 
 
 class Board(object):
