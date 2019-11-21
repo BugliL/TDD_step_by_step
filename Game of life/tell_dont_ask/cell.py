@@ -30,11 +30,9 @@ class Cell(object):
 
     def set_future_state(self):
         n = len([c for c in self.neighbours if c.is_alive])
-        if n < 2:
+        if n < 2 or n > 3:
             self.die_in_future()
         elif n == 2:
             self.stay_in_future()
         elif n == 3:
             self.be_alive_in_future()
-        elif n > 3:
-            self.die_in_future()
