@@ -29,11 +29,12 @@ class Cell(object):
         self.is_alive = self.future_state
 
     def set_future_state(self):
-        return {
+        strategy_by_neighbours = {
             2: self.stay_in_future,
             3: self.be_alive_in_future,
         }.get(
             k=len(list(filter(lambda x: x.is_alive, self.neighbours))),
             default=self.die_in_future
-        )()
+        )
 
+        strategy_by_neighbours()
