@@ -29,14 +29,12 @@ class Cell(object):
         self.is_alive = self.future_state
 
     def set_future_state(self):
-        cell = self
-        n = len([c for c in cell.neighbours if c.is_alive])
+        n = len([c for c in self.neighbours if c.is_alive])
         if n < 2:
-            cell.die_in_future()
+            self.die_in_future()
         elif n == 2:
-            cell.stay_in_future()
+            self.stay_in_future()
         elif n == 3:
-            cell.be_alive_in_future()
+            self.be_alive_in_future()
         elif n > 3:
-            cell.die_in_future()
-
+            self.die_in_future()
