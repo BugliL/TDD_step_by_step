@@ -16,14 +16,9 @@ class Cell(object):
             if self not in cell.neighbours:
                 cell.neighbours.append(self)
 
-    def _set_neighbours(self, neighbours):
-        self.neighbours = neighbours
-        for cell in self.neighbours:
-            if self not in cell.neighbours:
-                cell.neighbours.append(self)
-
     def add_neighbour(self, cell):
-        self.neighbours = itertools.chain(self.neighbours, [cell])
+        if cell not in self.neighbours:
+            self.neighbours = itertools.chain(self.neighbours, [cell])
 
     def die_in_future(self):
         self.future_state = self.DeadStatus

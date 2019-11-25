@@ -91,3 +91,10 @@ class CellShould(unittest.TestCase):
         self.assertEqual(Cell.AliveStatus, cell2.is_alive)
         self.assertEqual(Cell.AliveStatus, cell3.is_alive)
         self.assertEqual(Cell.AliveStatus, cell4.is_alive)
+
+    def test_add_a_neighbour(self):
+        cell1 = Cell(status=Cell.AliveStatus, neighbours=[])
+        cell2 = Cell(status=Cell.AliveStatus, neighbours=[cell1])
+
+        self.assertIn(cell1, cell2.neighbours)
+        self.assertIn(cell2, cell1.neighbours)
