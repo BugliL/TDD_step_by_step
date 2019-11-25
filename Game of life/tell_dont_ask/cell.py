@@ -1,3 +1,4 @@
+import itertools
 from typing import Iterable
 
 
@@ -5,16 +6,15 @@ class Cell(object):
     AliveStatus = True
     DeadStatus = False
 
-    def __init__(self, status: bool, neighbours: Iterable):
-        self._set_neighbours(neighbours)
-        self.is_alive = status
-        self.future_state = False
+    def __init__(this, status: bool, neighbours: Iterable):
+        this.neighbours = set(neighbours)
+        this.is_alive = status
+        this.future_state = False
+        for cell in this.neighbours:
+            cell.add_neighbour(this)
 
-    def _set_neighbours(self, neighbours):
-        self.neighbours = neighbours
-        for cell in self.neighbours:
-            if self not in cell.neighbours:
-                cell.neighbours.append(self)
+    def add_neighbour(self, cell):
+        self.neighbours = set(itertools.chain(self.neighbours, [cell]))
 
     def die_in_future(self):
         self.future_state = self.DeadStatus
@@ -33,8 +33,8 @@ class Cell(object):
             2: self.stay_in_future,
             3: self.be_alive_in_future,
         }.get(
-            k=len(list(filter(lambda x: x.is_alive, self.neighbours))),
-            default=self.die_in_future
+            len(list(filter(lambda x: x.is_alive, self.neighbours))),
+            self.die_in_future
         )
 
         strategy_by_neighbours()
