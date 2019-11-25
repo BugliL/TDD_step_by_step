@@ -10,16 +10,12 @@ class Cell(object):
         # self._set_neighbours(neighbours)
         self.is_alive = status
         self.future_state = False
-
-        self.neighbours = neighbours
+        self.neighbours = set(neighbours)
         for cell in self.neighbours:
             cell.add_neighbour(self)
 
     def add_neighbour(self, cell):
-        if cell not in self.neighbours:
-            # chain creates an iterator so is necessary to wrap
-            # the function call with a list 
-            self.neighbours = list(itertools.chain(self.neighbours, [cell]))
+        self.neighbours = set(itertools.chain(self.neighbours, [cell]))
 
     def die_in_future(self):
         self.future_state = self.DeadStatus
