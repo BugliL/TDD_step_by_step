@@ -6,13 +6,12 @@ class Cell(object):
     AliveStatus = True
     DeadStatus = False
 
-    def __init__(self, status: bool, neighbours: Iterable):
-        # self._set_neighbours(neighbours)
-        self.is_alive = status
-        self.future_state = False
-        self.neighbours = set(neighbours)
-        for cell in self.neighbours:
-            cell.add_neighbour(self)
+    def __init__(this, status: bool, neighbours: Iterable):
+        this.neighbours = set(neighbours)
+        this.is_alive = status
+        this.future_state = False
+        for cell in this.neighbours:
+            cell.add_neighbour(this)
 
     def add_neighbour(self, cell):
         self.neighbours = set(itertools.chain(self.neighbours, [cell]))
@@ -34,7 +33,6 @@ class Cell(object):
             2: self.stay_in_future,
             3: self.be_alive_in_future,
         }.get(
-            # TypeError: get() takes no keyword arguments
             len(list(filter(lambda x: x.is_alive, self.neighbours))),
             self.die_in_future
         )
