@@ -8,11 +8,11 @@ class Cell(object):
     def __init__(self, status: bool, neighbours: Iterable, future_state: bool = False):
         self.neighbours = tuple(neighbours)
         for cell in self.neighbours:
-            if self not in cell.neighbours:
-                cell.add_neighbour(self)
+            cell.add_neighbour(self)
 
         self.is_alive = status
         self.future_state = future_state
 
     def add_neighbour(self, cell):
-        self.neighbours += (cell, )
+        if self not in cell.neighbours:
+            self.neighbours += (cell, )
