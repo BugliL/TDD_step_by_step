@@ -1,6 +1,6 @@
 from typing import List
 
-from original_src.cell import Cell
+from immutability.cell import Cell
 
 
 class Board(object):

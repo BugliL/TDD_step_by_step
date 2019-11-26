@@ -1,6 +1,6 @@
 import unittest
-from original_src.cell import Cell
-from original_src.board import Board
+from immutability.cell import Cell
+from immutability.board import Board
 
 
 class CellShould(unittest.TestCase):
