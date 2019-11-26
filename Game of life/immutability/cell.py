@@ -5,7 +5,7 @@ class Cell(object):
     AliveStatus = True
     DeadStatus = False
 
-    def __init__(self, status: bool, neighbours: Iterable):
+    def __init__(self, status: bool, neighbours: Iterable, future_state: bool = False):
         self.neighbours = neighbours
         for cell in self.neighbours:
             if self not in cell.neighbours:
