@@ -33,8 +33,8 @@ class Cell(object):
             2: self.stay_in_future,
             3: self.be_alive_in_future,
         }.get(
-            k=len(list(filter(lambda x: x.is_alive, self.neighbours))),
-            default=self.die_in_future
+            len(list(filter(lambda x: x.is_alive, self.neighbours))),
+            self.die_in_future
         )
 
         strategy_by_neighbours()
