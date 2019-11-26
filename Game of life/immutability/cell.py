@@ -7,12 +7,11 @@ class Cell(object):
 
     def __init__(self, status: bool, neighbours: Iterable, future_state: bool = False):
         self.neighbours = tuple(neighbours)
-        for cell in self.neighbours:
-            cell.add_neighbour(self)
+        list(map(lambda x: x.add_neighbour(self), self.neighbours))
 
         self.is_alive = status
         self.future_state = future_state
 
     def add_neighbour(self, cell):
-        if self not in cell.neighbours:
-            self.neighbours += (cell, )
+        if cell not in self.neighbours:
+            self.neighbours += (cell,)
