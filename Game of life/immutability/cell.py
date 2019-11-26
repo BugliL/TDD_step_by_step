@@ -12,4 +12,4 @@ class Cell(object):
                 cell.neighbours.append(self)
 
         self.is_alive = status
-        self.future_state = False
+        self.future_state = future_state
