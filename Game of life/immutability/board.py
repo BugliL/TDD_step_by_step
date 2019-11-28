@@ -6,7 +6,7 @@ from immutability.cell import Cell
 class Board(object):
 
     def __init__(self, cells: List[Cell]):
-        self.cells = cells
+        self.cells = tuple(cells)
 
     def evolve(self):
         for cell in self.cells:
