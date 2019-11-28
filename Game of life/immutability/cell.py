@@ -15,3 +15,10 @@ class Cell(object):
     def add_neighbour(self, cell):
         if cell not in self.neighbours:
             self.neighbours += (cell,)
+
+    def copy(self, **kwargs):
+        return Cell(
+            status=kwargs.get('status', self.is_alive),
+            neighbours=kwargs.get('neighbours', self.neighbours),
+            future_state=kwargs.get('future_state', self.future_state)
+        )

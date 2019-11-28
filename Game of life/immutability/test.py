@@ -91,3 +91,21 @@ class CellShould(unittest.TestCase):
         self.assertEqual(Cell.AliveStatus, cell2.is_alive)
         self.assertEqual(Cell.AliveStatus, cell3.is_alive)
         self.assertEqual(Cell.AliveStatus, cell4.is_alive)
+
+    def test_copy(self):
+        cell = Cell(status=Cell.AliveStatus, neighbours=[])
+        copied_cell = cell.copy()
+
+        self.assertEqual(cell.is_alive, copied_cell.is_alive)
+        self.assertEqual(cell.neighbours, copied_cell.neighbours)
+        self.assertEqual(cell.future_state, copied_cell.future_state)
+
+    def test_copy_with_params_change(self):
+        cell = Cell(status=Cell.AliveStatus, neighbours=[], future_state=Cell.DeadStatus)
+        copied_cell = cell.copy(future_state=Cell.AliveStatus)
+
+        self.assertEqual(cell.is_alive, copied_cell.is_alive)
+        self.assertEqual(cell.neighbours, copied_cell.neighbours)
+        self.assertEqual(Cell.DeadStatus, cell.future_state)
+        self.assertEqual(Cell.AliveStatus, copied_cell.future_state)
+        self.assertNotEqual(cell.future_state, copied_cell.future_state)
