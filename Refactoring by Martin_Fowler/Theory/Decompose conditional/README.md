@@ -1,16 +1,22 @@
-# < Name >
-< Description >
+# Decompose conditional
 
-![Schema](./image.png)
- 
-Inverse of [< Name >](< Link >)
-Shortly: < Short version >
-More shortly: < Very Short version >
+Used to simplify an if statement.  
+It consists in applying [Extract function]("../Extract function/") to the if condition and to both if branches.
 
-## How to < Name >
+<!-- ![Schema](./image.png) -->
+
+## How to Decompose conditional
  **Example**
  ```python
- < Source code >   
+def function_to_refactor(selected_date: dt, plan: Plan, qty):
+    result = 0
+
+    if plan.summer_start_date < selected_date < plan.summer_end_date:
+        result = qty * plan.summer_rate
+    else:
+        result = qty * plan.regular_rate
+
+    return result
  ```
  
  * < Operation 1 >
