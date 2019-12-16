@@ -21,9 +21,16 @@ def calculate_amount(employee: Employee):
     return 10
  ```
  
- * Merge < Operation 1 >
+ * Merge first 2 conditions with an "or" operator
  ```python    
- < Source code >
+def calculate_amount(employee: Employee):
+    if employee.seniority < 2 \
+            or employee.months_unavailable > 12: return 0
+    if employee.is_part_time:
+        if employee.work_hours > 8:
+            return 0
+
+    return 10
  ```
 
  * < Operation 2 >
