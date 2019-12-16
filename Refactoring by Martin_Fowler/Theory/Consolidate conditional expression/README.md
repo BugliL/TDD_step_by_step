@@ -1,6 +1,6 @@
 # Consolidate conditional expression 
 Consist in changing a bunch of if conditions that call the same function or execute the same 
-code with a whole if   
+code with just one if condition.
 
 ![Schema](./image.png)
  
