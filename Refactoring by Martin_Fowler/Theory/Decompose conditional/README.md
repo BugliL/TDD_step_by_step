@@ -3,6 +3,8 @@
 Used to simplify an if statement.  
 It consists in applying [Extract function]("../Extract function/") to the if condition and to both if branches.
 
+![Schema](./image.png)
+
 <!-- ![Schema](./image.png) -->
 
 ## How to Decompose conditional
