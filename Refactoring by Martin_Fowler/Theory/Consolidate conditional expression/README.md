@@ -45,7 +45,7 @@ def calculate_amount(employee: Employee):
     return 10
  ```
  
-  * Merge resulting conditions groups
+ * Merge resulting conditions groups
  ```python    
 def calculate_amount(employee: Employee):
     if employee.seniority < 2 \
@@ -55,3 +55,25 @@ def calculate_amount(employee: Employee):
 
     return 10
  ```
+ 
+ * Extract function on condition
+```python
+def condition(employee):
+    return employee.seniority < 2 \
+           or employee.months_unavailable > 12 \
+           or (employee.is_part_time
+               and employee.work_hours > 8)
+
+
+def calculate_amount(employee: Employee):
+    if condition(employee):
+        return 0
+
+    return 10
+```
+
+ * Ternary operation
+```python
+def calculate_amount(employee: Employee):
+    return 0 if condition(employee) else 10
+```

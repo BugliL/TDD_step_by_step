@@ -5,13 +5,15 @@ class Employee:
     work_hours: int = 9
 
 
-def calculate_amount(employee: Employee):
-    if employee.seniority < 2 \
-            or employee.months_unavailable > 12 \
-            or (employee.is_part_time
-                and employee.work_hours > 8): return 0
+def condition(employee):
+    return employee.seniority < 2 \
+           or employee.months_unavailable > 12 \
+           or (employee.is_part_time
+               and employee.work_hours > 8)
 
-    return 10
+
+def calculate_amount(employee: Employee):
+    return 0 if condition(employee) else 10
 
 
 if __name__ == '__main__':
