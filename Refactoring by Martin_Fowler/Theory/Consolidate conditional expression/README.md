@@ -6,12 +6,22 @@ code with just one if condition.
  
 
 ## How to Consolidate conditional expression
+Merge conditions with logic operators in couple until there's only one, than check if is 
+[Extract function]("../Extract function/") is applicable.
+
  **Example**
  ```python
- < Source code >   
+def calculate_amount(employee: Employee):
+    if employee.seniority < 2: return 0
+    if employee.months_unavailable > 12: return 0
+    if employee.is_part_time:
+        if employee.work_hours > 8:
+            return 0
+
+    return 10
  ```
  
- * < Operation 1 >
+ * Merge < Operation 1 >
  ```python    
  < Source code >
  ```
