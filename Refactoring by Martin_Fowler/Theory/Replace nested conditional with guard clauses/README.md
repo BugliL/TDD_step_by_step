@@ -1,11 +1,11 @@
 # Replace nested conditional with guard clause
-< Description >
+A *guard clause* is an if that returns directly a value breaking function execution.  
+This pattern consist in replacing each if/else condition with a *guard clause*.  
+This pattern is made to make code clearer.
 
 ![Schema](./image.png)
  
-Inverse of [< Name >](< Link >)
 Shortly: < Short version >
-More shortly: < Very Short version >
 
 ## How to Replace nested conditional with guard clause
  **Example**
