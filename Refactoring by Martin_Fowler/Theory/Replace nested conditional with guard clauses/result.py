@@ -22,10 +22,8 @@ def pay_amount(employee: Employee):
             result = {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
         else:
             result = {'amount': 0, 'reason_code': "RET"}
-    else:
-        result = {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
 
-    return result
+    return {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
 
 
 if __name__ == '__main__':
