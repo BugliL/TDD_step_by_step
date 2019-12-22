@@ -15,15 +15,15 @@ def calculate_amount(employee):
 
 def pay_amount(employee: Employee):
     if employee.is_separated:
-        result = {'amount': 0, 'reason_code': "SEP"}
-    else:
-        if employee.is_retired:
-            if employee.age < 60:
-                result = {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
-            else:
-                result = {'amount': 0, 'reason_code': "RET"}
-        else:
+        return {'amount': 0, 'reason_code': "SEP"}
+
+    if employee.is_retired:
+        if employee.age < 60:
             result = {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
+        else:
+            result = {'amount': 0, 'reason_code': "RET"}
+    else:
+        result = {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
 
     return result
 
