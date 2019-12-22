@@ -20,7 +20,8 @@ def pay_amount(employee: Employee):
     if employee.is_retired:
         if employee.age < 60:
             result = {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
-        else:
+        
+        if not employee.age < 60:
             result = {'amount': 0, 'reason_code': "RET"}
 
     return {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}

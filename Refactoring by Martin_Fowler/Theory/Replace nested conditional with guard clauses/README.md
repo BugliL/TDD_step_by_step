@@ -7,8 +7,10 @@ It's used when there's a variable returned or used only after the if structure.
 ## How to Replace nested conditional with guard clause
 - Take the most external if clause and chang it in a guard clause.
   - If nested IF are present, change them in 2 different if statements, 
-  one with the positive condition, the other one with negated condition
+  one with the positive condition, the other one with negated condition.  
+  Than to extract both if statements with their parent condition in it 
 - Repeat until no more if conditions are present
+
 If possible use [Consolidate conditional expression](../Consolidate%20conditional%20expression)
 
  **Example**
@@ -62,7 +64,23 @@ def pay_amount(employee: Employee):
     return {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
  ```
  
-  * < Operation 3 >
+  * Half step of nested if 
  ```python    
- < Source code >
+ 
+def pay_amount(employee: Employee):
+    if employee.is_separated:
+        return {'amount': 0, 'reason_code': "SEP"}
+
+    if employee.is_retired:
+        if employee.age < 60:
+            result = {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
+        
+        if not employee.age < 60:
+            result = {'amount': 0, 'reason_code': "RET"}
+
+    return {'amount': calculate_amount(employee), 'reason_code': "A_REASON"}
+ ```
+  
+  * Copy condition in nested if 
+ ```python    
  ```
