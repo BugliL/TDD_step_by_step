@@ -11,6 +11,7 @@ It simplifies code moving behavior in an inherited class instead of widespread t
     * is_something True or False in base class
     * is_something False or True in special case class
  * Use Extract Function on if checks for that special case to isolate checking code (can be more than 1)
+    * This allow to do transformation checks in few well identified places
  * Use a Factory Method or something to wrap object getter, to isolate the creation process (should be 1 or few)
     * introduce the special case object checking inside this function / class
  * Modify the check function extracted to use the property is_something to check values
