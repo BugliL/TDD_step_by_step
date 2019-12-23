@@ -21,8 +21,9 @@ Following code snippets are made from that one reporting git diff.
 +    def is_unknown(self) -> bool:
 +        return False
 +
-+
++@dataclass
 +class UnknownCustomer(Customer):
++    name: str = 'unknown'
 +    @property
 +    def is_unknown(self) -> bool:
 +        return True
@@ -59,7 +60,20 @@ Following code snippets are made from that one reporting git diff.
      print(weeks)
  ```
  
-  * < Operation 3 >
+  * Using UnknownCustomer class in Site class
  ```diff    
- < Source code >
+-@dataclass
+ class Site(object):
+-    customer = Customer('John Smith')
++    def __init__(self, customer: [str, Customer]):
++        self._customer = customer if customer != 'unknown' else UnknownCustomer()
++
++    @property
++    def customer(self):
++        return self._customer
+ ```
+ 
+  * 
+ ```diff
+
  ```

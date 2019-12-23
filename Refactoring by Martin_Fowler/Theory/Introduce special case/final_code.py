@@ -29,7 +29,10 @@ class Customer(object):
         return False
 
 
+@dataclass
 class UnknownCustomer(Customer):
+    name: str = 'unknown'
+
     @property
     def is_unknown(self) -> bool:
         return True
@@ -37,7 +40,7 @@ class UnknownCustomer(Customer):
 
 class Site(object):
     def __init__(self, customer: [str, Customer]):
-        self._customer = customer if is_customer_unknown(customer) else UnknownCustomer()
+        self._customer = customer if customer != 'unknown' else UnknownCustomer()
 
     @property
     def customer(self):
@@ -45,10 +48,10 @@ class Site(object):
 
 
 def is_customer_unknown(aCustomer):
-    if type(aCustomer) != Customer and aCustomer != 'unknown':
+    if type(aCustomer) not in [Customer, UnknownCustomer]:
         raise ValueError("Value '{}' unsupported".format(aCustomer))
 
-    return aCustomer == "unknown"
+    return aCustomer.is_unknown
 
 
 def client_1(site: Site) -> None:
@@ -76,4 +79,4 @@ if __name__ == '__main__':
     client_3(site=site)
 
     print(is_customer_unknown(Customer('John smith')))
-    print(is_customer_unknown('unknown'))
+    print(is_customer_unknown(UnknownCustomer()))
