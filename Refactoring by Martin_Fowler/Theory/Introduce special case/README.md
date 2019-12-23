@@ -1,5 +1,5 @@
 # Introduce special case
-Used when there's a Null special case or something similar that needs to be managed.
+Used when there's a Null special case or something similar that needs to be managed.  
 It simplifies code moving behavior in an inherited class instead of widespread testing for that case.
 
 ![Schema](./image.png)
