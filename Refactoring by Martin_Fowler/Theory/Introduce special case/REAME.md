@@ -80,7 +80,37 @@ Following code snippets are made from that one reporting git diff.
 +    return aCustomer.is_unknown
 ```
 
- *  Step
+ *  Apply Combine functions into class
  ```diff
-
+ @dataclass
+ class UnknownCustomer(Customer):
+-    name: str = 'unknown'
++    name: str = 'occupant'
+ 
+@@
+ 
+ def client_1(site: Site) -> None:
+     aCustomer = site.customer
+-    name = aCustomer.name if not is_customer_unknown(aCustomer) else "occupant"
++    name = aCustomer.name
+     print(name)
+ 
+ 
+ def client_2(site: Site) -> None:
+     aCustomer = site.customer
+-    plan = BasicPlan if is_customer_unknown(aCustomer) else aCustomer.billing_plan
++    plan = aCustomer.billing_plan
+     print(plan)
+ 
+ 
+ def client_3(site: Site) -> None:
+     aCustomer = site.customer
+-    weeks = 0 if is_customer_unknown(aCustomer) else aCustomer.payment_history['weeks']
++    weeks = aCustomer.payment_history['weeks']
+     print(weeks)
+ ```
+ 
+ * Inline variable
+ ```diff
+ 
  ```
