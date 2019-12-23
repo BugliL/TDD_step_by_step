@@ -11,7 +11,22 @@ Following code snippets are made from that one reporting git diff.
  
  * < Operation 1 >
  ```diff  
- < Source code >
+ @dataclass
+ class Customer(object):
+     name: str
+     payment_history = {'weeks': 0}
+     billing_plan = BasicPlan
+    
++    @property
++    def is_unknown(self) -> bool:
++        return False
++
++
++class UnknownCustomer(Customer):
++    @property
++    def is_unknown(self) -> bool:
++        return True
++
  ```
 
  * < Operation 2 >
