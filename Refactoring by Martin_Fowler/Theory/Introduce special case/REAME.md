@@ -1,11 +1,23 @@
 # Introduce special case
-This widespread testing for a special case, plus a common response
+Used when there's a Null special case or something similar that needs to be managed.
+It simplifies code moving behavior in an inherited class instead of widespread testing for that case.
 
 ![Schema](./image.png)
  
-Shortly: < Short version >
 
 ## How to Introduce special case
+ * Create the special case class
+ * Add a bool property to both, base class and special case class to distinguish the case
+    * is_something True or False in base class
+    * is_something False or True in special case class
+ * Use Extract Function on if checks for that special case to isolate checking code (can be more than 1)
+ * Use a Factory Method or something to wrap object getter, to isolate the creation process (should be 1 or few)
+    * introduce the special case object checking inside this function / class
+ * Modify the check function extracted to use the property is_something to check values
+ * Use Combine function into class or combine functions into transform to edit code and remove checking statements
+ * Use [Inline Function](../Inline%20function) if and where needed
+ 
+**Example** 
 For starting code, check the file example.py.  
 Following code snippets are made from that one reporting git diff.
  
