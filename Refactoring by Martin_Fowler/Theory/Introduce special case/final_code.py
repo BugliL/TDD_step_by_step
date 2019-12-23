@@ -35,9 +35,13 @@ class UnknownCustomer(Customer):
         return True
 
 
-@dataclass
 class Site(object):
-    customer = Customer('John Smith')
+    def __init__(self, customer: [str, Customer]):
+        self._customer = customer if is_customer_unknown(customer) else UnknownCustomer()
+
+    @property
+    def customer(self):
+        return self._customer
 
 
 def is_customer_unknown(aCustomer):
@@ -66,11 +70,10 @@ def client_3(site: Site) -> None:
 
 
 if __name__ == '__main__':
-    site = Site()
+    site = Site(customer='unknown')
     client_1(site=site)
     client_2(site=site)
     client_3(site=site)
 
     print(is_customer_unknown(Customer('John smith')))
     print(is_customer_unknown('unknown'))
-    print(is_customer_unknown('banana'))
