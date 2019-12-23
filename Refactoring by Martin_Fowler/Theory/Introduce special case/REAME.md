@@ -1,5 +1,4 @@
 # Introduce special case
-< Description >  
 This widespread testing for a special case, plus a common response
 
 ![Schema](./image.png)
