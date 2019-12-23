@@ -5,23 +5,21 @@ This widespread testing for a special case, plus a common response
  
 Shortly: < Short version >
 
-## How to < Name >
- **Example**
- ```python
- < Source code >   
- ```
+## How to Introduce special case
+For starting code, check the file example.py.  
+Following code snippets are made from that one reporting git diff.
  
  * < Operation 1 >
- ```python    
+ ```diff  
  < Source code >
  ```
 
  * < Operation 2 >
- ```python    
+ ```diff    
  < Source code >
  ```
  
   * < Operation 3 >
- ```python    
+ ```diff    
  < Source code >
  ```

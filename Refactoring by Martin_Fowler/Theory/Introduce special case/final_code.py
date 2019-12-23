@@ -24,6 +24,16 @@ class Customer(object):
     payment_history = {'weeks': 0}
     billing_plan = BasicPlan
 
+    @property
+    def is_unknown(self) -> bool:
+        return False
+
+
+class UnknownCustomer(Customer):
+    @property
+    def is_unknown(self) -> bool:
+        return True
+
 
 @dataclass
 class Site(object):
