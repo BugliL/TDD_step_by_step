@@ -60,7 +60,7 @@ Following code snippets are made from that one reporting git diff.
      print(weeks)
  ```
  
-  * Using UnknownCustomer class in Site class
+  * Using UnknownCustomer class in Site class and changing the check function so to use the property
  ```diff    
 -@dataclass
  class Site(object):
@@ -71,9 +71,16 @@ Following code snippets are made from that one reporting git diff.
 +    @property
 +    def customer(self):
 +        return self._customer
- ```
++def is_customer_unknown(aCustomer):
+-    if type(aCustomer) != Customer and aCustomer != 'unknown':
++    if type(aCustomer) not in [Customer, UnknownCustomer]:
+         raise ValueError("Value '{}' unsupported".format(aCustomer))
  
-  * 
+-    return aCustomer == "unknown"
++    return aCustomer.is_unknown
+```
+
+ *  Step
  ```diff
 
  ```
