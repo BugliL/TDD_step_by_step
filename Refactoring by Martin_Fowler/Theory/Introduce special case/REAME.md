@@ -112,5 +112,23 @@ Following code snippets are made from that one reporting git diff.
  
  * Inline variable
  ```diff
+ def client_1(site: Site) -> None:
+-    aCustomer = site.customer
+-    name = aCustomer.name
++    name = site.customer.name
+     print(name)
  
+ 
+ def client_2(site: Site) -> None:
+-    aCustomer = site.customer
+-    plan = aCustomer.billing_plan
++    plan = site.customer.billing_plan
+     print(plan)
+ 
+ 
+ def client_3(site: Site) -> None:
+-    aCustomer = site.customer
+-    weeks = aCustomer.payment_history['weeks']
++    weeks = site.customer.payment_history['weeks']
+     print(weeks)
  ```
