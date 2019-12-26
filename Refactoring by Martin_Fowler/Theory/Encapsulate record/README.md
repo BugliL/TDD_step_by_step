@@ -1,13 +1,9 @@
-# Combine function into class 
-Writing [Encapsulate record](../Encapsulate%20record) first
+# Encapsulate record 
+First doing [Encapsulate variable](../Encapsulate%20variable)
 
 ![Schema](./image.png)
  
-Inverse of [< Name >](< Link >)
-Shortly: < Short version >
-More shortly: < Very Short version >
-
-## How to Combine function into class 
+## How to < Name >
  **Example**
  ```python
  < Source code >   
