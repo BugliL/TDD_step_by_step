@@ -1,9 +1,10 @@
 # Encapsulate record 
-First doing [Encapsulate variable](../Encapsulate%20variable)
-
-![Schema](./image.png)
+To manage mutable data, objects are better than records:  
+it's possible to encapsulate all data and expose them throw methods and manipulation.  
+It allows to change internal object behaviors without changing it's interface.  
+This pattern explain how to move a data structure inside a class.
  
-## How to < Name >
+## How to Encapsulate record
  **Example**
  ```python
  < Source code >   
