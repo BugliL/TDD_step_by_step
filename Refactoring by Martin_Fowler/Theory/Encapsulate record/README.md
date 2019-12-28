@@ -1,7 +1,7 @@
 # Encapsulate record 
 To manage mutable data, objects are better than records:  
 it's possible to encapsulate all data and expose them throw methods and manipulation.  
-It allows to change internal object behaviors without changing it's interface.  
+It allows to change internal object behaviors without changing it's interface and to introduce defensive copies.  
 This pattern explain how to move a data structure inside a class.
  
 ## How to Encapsulate record
