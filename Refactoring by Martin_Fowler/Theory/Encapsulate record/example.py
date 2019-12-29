@@ -60,10 +60,6 @@ def get_records_object():
 
 
 # Update example
-def set_usage_value(customer_id, year, month, value):
-    get_records_object().set_usage_value(customer_id, year, month, value)
-
-
 get_records_object().set_usage_value(customer_id='9201', year=2016, month=2, value=42)
 
 
