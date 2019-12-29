@@ -54,7 +54,7 @@ def set_usage_value(customer_id, year, month, value):
     get_raw_records()[customer_id]['usages'][year][month] = value
 
 
-get_raw_records()['9201']['usages'][2016][2] = 42
+set_usage_value(customer_id='9201', year=2016, month=2, value=42)
 
 
 # Reading example
