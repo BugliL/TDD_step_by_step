@@ -1,3 +1,5 @@
+import copy
+
 raw_records = {
     '9201': {
         'name': 'John Smith',
@@ -39,7 +41,7 @@ class RecordData():
         self._records = records
 
     def get_records(self):
-        return self._records
+        return copy.deepcopy(self._records)
 
     def set_usage_value(self, customer_id, year, month, value):
         self._records[customer_id]['usages'][year][month] = value
