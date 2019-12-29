@@ -49,13 +49,13 @@ def get_raw_records():
     return record_data_object.get_records()
 
 
-def get_records():
+def get_records_object():
     return record_data_object
 
 
 # Update example
 def set_usage_value(customer_id, year, month, value):
-    get_raw_records()[customer_id]['usages'][year][month] = value
+    get_records_object().get_records()[customer_id]['usages'][year][month] = value
 
 
 set_usage_value(customer_id='9201', year=2016, month=2, value=42)
@@ -63,8 +63,8 @@ set_usage_value(customer_id='9201', year=2016, month=2, value=42)
 
 # Reading example
 def compare_usage(customer_id, year, month):
-    year_value = get_raw_records()[customer_id]['usages'][year][month]
-    last_year_value = get_raw_records()[customer_id]['usages'][year - 1][month]
+    year_value = get_records_object().get_records()[customer_id]['usages'][year][month]
+    last_year_value = get_records_object().get_records()[customer_id]['usages'][year - 1][month]
     return {'amount': year_value, 'difference': year_value - last_year_value}
 
 
