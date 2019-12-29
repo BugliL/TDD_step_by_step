@@ -42,8 +42,11 @@ class RecordData():
         return self._records
 
 
+record_data_object = RecordData(records=raw_records)
+
+
 def get_raw_records():
-    return raw_records
+    return record_data_object.get_records()
 
 
 # Update example
