@@ -41,6 +41,12 @@ class RecordData():
     def get_records(self):
         return self._records
 
+    def set_usage_value(self, customer_id, year, month, value):
+        self._records[customer_id]['usages'][year][month] = value
+
+    def get_usage_value(self, customer_id, year, month):
+        return self._records[customer_id]['usages'][year][month]
+
 
 record_data_object = RecordData(records=raw_records)
 
