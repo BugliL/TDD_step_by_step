@@ -49,6 +49,10 @@ def get_raw_records():
     return record_data_object.get_records()
 
 
+def get_records():
+    return record_data_object
+
+
 # Update example
 def set_usage_value(customer_id, year, month, value):
     get_raw_records()[customer_id]['usages'][year][month] = value
