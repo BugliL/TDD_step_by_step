@@ -1,4 +1,4 @@
-records = {
+raw_records = {
     '9201': {
         'name': 'John Smith',
         'id': 9201,
@@ -33,14 +33,19 @@ records = {
     }
 }
 
+
+def get_raw_records():
+    return raw_records
+
+
 # Update example
-records['9201']['usages'][2016][2] = 42
+get_raw_records()['9201']['usages'][2016][2] = 42
 
 
 # Reading example
 def compare_usage(customer_id, year, month):
-    year_value = records[customer_id]['usages'][year][month]
-    last_year_value = records[customer_id]['usages'][year - 1][month]
+    year_value = get_raw_records()[customer_id]['usages'][year][month]
+    last_year_value = get_raw_records()[customer_id]['usages'][year - 1][month]
     return {'amount': year_value, 'difference': year_value - last_year_value}
 
 
