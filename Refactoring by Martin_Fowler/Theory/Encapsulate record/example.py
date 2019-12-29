@@ -34,6 +34,14 @@ raw_records = {
 }
 
 
+class RecordData():
+    def __init__(self, records):
+        self._records = records
+
+    def get_records(self):
+        return self._records
+
+
 def get_raw_records():
     return raw_records
 
