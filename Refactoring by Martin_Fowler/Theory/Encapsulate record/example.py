@@ -50,6 +50,10 @@ def get_raw_records():
 
 
 # Update example
+def set_usage_value(customer_id, year, month, value):
+    get_raw_records()[customer_id]['usages'][year][month] = value
+
+
 get_raw_records()['9201']['usages'][2016][2] = 42
 
 
