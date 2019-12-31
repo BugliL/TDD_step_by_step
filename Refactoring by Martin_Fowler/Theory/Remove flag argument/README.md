@@ -1,13 +1,8 @@
 # Remove flag argument
-< Description >
+Flag conditions hide aa little bit the control flow.  
+Calling different functions instead of using a flag is clearer.  
 
-![Schema](./image.png)
- 
-Inverse of [< Name >](< Link >)
-Shortly: < Short version >
-More shortly: < Very Short version >
-
-## How to < Name >
+## How to remove flag argument
  **Example**
  ```python
  < Source code >   
