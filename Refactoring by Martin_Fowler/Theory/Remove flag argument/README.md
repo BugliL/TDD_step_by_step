@@ -1,10 +1,11 @@
-# Introduce special case
-< Description >  
-This widespread testing for a special case, plus a common response
+# Remove flag argument
+< Description >
 
 ![Schema](./image.png)
  
+Inverse of [< Name >](< Link >)
 Shortly: < Short version >
+More shortly: < Very Short version >
 
 ## How to < Name >
  **Example**
