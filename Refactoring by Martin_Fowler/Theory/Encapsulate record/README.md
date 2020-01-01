@@ -5,6 +5,18 @@ It allows to change internal object behaviors without changing it's interface an
 This pattern explain how to move a data structure inside a class.
  
 ## How to Encapsulate record
+
+ - Apply [Emcapsulate variable](../Encapsulate%20variable) on the variable
+ - Create a simple class to wrap the variable with a getter that returns the raw value
+ - Update functions that use the variable to use this getter
+ - Create a function to return the wrapping object instead of the raw value
+ - For each piece of code that use the variable:
+   - Replace use of the getter with the wrapped object adjusting the code
+   - For each valued used, create a getter to return it (better, if a COPY of it)
+     - For complex data, it's possibile to use [Encapsulate collection](../Encapsulate%20collection),
+     a proxy to information or defensive copies.
+ - Remove the functions that manage the raw data to find out if they are still used somewhere
+ 
 The example is in the example file
 
  * Extract variable
