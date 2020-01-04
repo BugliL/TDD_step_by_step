@@ -5,9 +5,7 @@
  
 ## How to Encapsulate collection
  **Example**
- ```python
- < Source code >   
- ```
+Example code in python file
  
  * < Operation 1 >
  ```python    
