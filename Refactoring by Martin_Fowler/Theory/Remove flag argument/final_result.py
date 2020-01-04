@@ -14,13 +14,6 @@ class Shipment:
     delivery_date: datetime = datetime.now()
 
 
-def delivery_date(order: Order, is_rush):
-    if is_rush:
-        return rush_delivery_date(order)
-    else:
-        return normal_delivery_date(order)
-
-
 def normal_delivery_date(order):
     delivery_time = 4
     if order.delivery_state in ['MA', 'CT', 'NY']:
