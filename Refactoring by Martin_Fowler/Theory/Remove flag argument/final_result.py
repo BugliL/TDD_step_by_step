@@ -47,8 +47,8 @@ if __name__ == '__main__':
 
     shipment = Shipment(order=Order)
 
-    shipment.delivery_date = delivery_date(order, is_rush=True)
+    shipment.delivery_date = rush_delivery_date(order)
     print(shipment.delivery_date)
 
-    shipment.delivery_date = delivery_date(order, is_rush=False)
+    shipment.delivery_date = normal_delivery_date(order)
     print(shipment.delivery_date)
