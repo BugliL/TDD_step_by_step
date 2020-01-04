@@ -16,20 +16,27 @@ class Shipment:
 
 def delivery_date(order: Order, is_rush):
     if is_rush:
-        delivery_time = 3
-        if order.delivery_state in ['MA', 'CT']:
-            delivery_time = 1
-        elif order.delivery_state in ['NY', 'NH']:
-            delivery_time = 2
-        return order.placed_on + timedelta(days=delivery_time)
+        return rush_delivery_date(order)
     else:
-        delivery_time = 4
-        if order.delivery_state in ['MA', 'CT', 'NY']:
-            delivery_time = 2
-        elif order.delivery_state in ['ME', 'NH']:
-            delivery_time = 3
+        return normal_delivery_date(order)
 
-        return order.placed_on + timedelta(days=delivery_time)
+
+def normal_delivery_date(order):
+    delivery_time = 4
+    if order.delivery_state in ['MA', 'CT', 'NY']:
+        delivery_time = 2
+    elif order.delivery_state in ['ME', 'NH']:
+        delivery_time = 3
+    return order.placed_on + timedelta(days=delivery_time)
+
+
+def rush_delivery_date(order):
+    delivery_time = 3
+    if order.delivery_state in ['MA', 'CT']:
+        delivery_time = 1
+    elif order.delivery_state in ['NY', 'NH']:
+        delivery_time = 2
+    return order.placed_on + timedelta(days=delivery_time)
 
 
 if __name__ == '__main__':
