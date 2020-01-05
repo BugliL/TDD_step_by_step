@@ -55,6 +55,9 @@ if __name__ == '__main__':
     course1 = Course('Math', True)
     course2 = Course('English', False)
     x = Person("John Wick")
-    x.courses = [course1, course2]
+    x.add_course(course1)
+    x.add_course(course2)
+    x.add_course(course2)
+    x.remove_course(course2)
     n = get_number_of_advanced_courses(x)
     print(n)
