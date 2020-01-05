@@ -31,7 +31,7 @@ class Person:
         return copy.deepcopy(self.__courses)
 
     def add_course(self, course: Course):
-        self.courses.append(course)
+        self.__courses.append(course)
 
     @staticmethod
     def if_not_present():
