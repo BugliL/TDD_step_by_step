@@ -33,6 +33,19 @@ class Person:
     def courses(self, courses: List[Course]):
         self.__courses = courses
 
+    def add_course(self, course: Course):
+        self.courses.append(course)
+
+    @staticmethod
+    def if_not_present():
+        raise ValueError('Element not found')
+
+    def remove_course(self, course):
+        try:
+            self.courses.remove(course)
+        except ValueError:
+            self.if_not_present()
+
 
 def get_number_of_advanced_courses(person: Person):
     return len([c for c in person.courses if c.is_advanced])
