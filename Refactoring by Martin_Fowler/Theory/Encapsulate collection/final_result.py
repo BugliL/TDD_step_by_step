@@ -39,7 +39,7 @@ class Person:
 
     def remove_course(self, course):
         try:
-            self.courses.remove(course)
+            self.__courses.remove(course)
         except ValueError:
             self.if_not_present()
 
