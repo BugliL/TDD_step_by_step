@@ -29,10 +29,6 @@ class Person:
     def courses(self):
         return self.__courses
 
-    @courses.setter
-    def courses(self, courses: List[Course]):
-        self.__courses = courses
-
     def add_course(self, course: Course):
         self.courses.append(course)
 
