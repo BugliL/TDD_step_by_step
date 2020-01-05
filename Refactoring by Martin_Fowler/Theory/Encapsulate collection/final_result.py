@@ -1,3 +1,4 @@
+import copy
 from dataclasses import dataclass, field
 from typing import List
 
@@ -27,7 +28,7 @@ class Person:
 
     @property
     def courses(self):
-        return self.__courses
+        return copy.deepcopy(self.__courses)
 
     def add_course(self, course: Course):
         self.courses.append(course)
