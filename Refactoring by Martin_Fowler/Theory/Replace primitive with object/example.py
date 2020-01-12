@@ -44,9 +44,9 @@ if __name__ == '__main__':
         )
     ]
 
-    priority = Priority('high')
+    high_priority = Priority('high')
     orders[0].priority = 'high'
 
-    filtered_orders = list(filter(lambda x: str(x.priority) == 'high', orders))
+    filtered_orders = list(filter(lambda x: x.priority == high_priority, orders))
     assert len(filtered_orders) == 1
-    assert str(filtered_orders[0].priority) == 'high'
+    assert filtered_orders[0].priority == high_priority
