@@ -1,0 +1,39 @@
+Good behavior to write code:
+
+1) Only one level of indentation for method
+2) Do not use Else
+3) Wrap all primitives
+4) First class collections
+5) One dot per line
+6) Don't abbreviate
+7) Keep all entities small
+8) No classes with more than 2 instance variables
+9) No getter/setter/properties
+
+10) remove duplication
+
+The general TDD cycle goes as follows
+0. Make a todo list choose a task
+it force you to do to have focus on things to do
+
+1. Write a test
+it force you in imaging how the interface should work inventing a story.
+write a little test in the same way the code SHOULD work
+
+2. Make it run
+Make very small changes to code until the test goes green
+(the smallest is the better)
+There are different methods to make it run:
+    - Fake it
+    - Implement it directly
+To fake it, write something that work, even constants and gradually replace
+constants with variables.
+If a clean and easy solution is obvious then type it.
+
+3. Make it right
+In the phase when all tests are Green, it's possible to refactor the actual
+code to make it better. In this phase all test stay there to support the
+running code while making changes.
+
+The main goal is to produce Clean Code that works
+
