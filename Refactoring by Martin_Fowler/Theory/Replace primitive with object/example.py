@@ -20,8 +20,8 @@ class Order:
     _priority: Priority = field(init=False, repr=False)
 
     @property
-    def priority(self) -> str:
-        return str(self._priority)
+    def priority(self) -> Priority:
+        return self._priority
 
     @priority.setter
     def priority(self, value):
