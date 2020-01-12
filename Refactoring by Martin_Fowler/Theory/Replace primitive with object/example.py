@@ -3,29 +3,29 @@ from datetime import datetime
 
 
 @dataclass
+class Priority:
+    value: str
+
+    def __str__(self) -> str:
+        return self.value
+
+
+@dataclass
 class Order:
     ID: int
     date: datetime
     description: str
     priority: str
 
-    _priority: str = field(init=False, repr=False)
+    _priority: Priority = field(init=False, repr=False)
 
     @property
     def priority(self) -> str:
-        return self._priority
+        return str(self._priority)
 
     @priority.setter
     def priority(self, value):
-        self._priority = value
-
-
-@dataclass
-class Priority:
-    value: str
-
-    def __str__(self) -> str:
-        return self.value
+        self._priority = Priority(value)
 
 
 if __name__ == '__main__':
@@ -34,7 +34,7 @@ if __name__ == '__main__':
             ID=1,
             date=datetime.now(),
             description="Foo bar",
-            priority='high'
+            priority='low'
         ),
         Order(
             ID=2,
@@ -45,6 +45,7 @@ if __name__ == '__main__':
     ]
 
     priority = Priority('high')
+    orders[0].priority = 'high'
 
     filtered_orders = list(filter(lambda x: x.priority == 'high', orders))
     assert len(filtered_orders) == 1
