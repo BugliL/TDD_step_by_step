@@ -20,6 +20,14 @@ class Order:
         self._priority = value
 
 
+@dataclass
+class Priority:
+    value: str
+
+    def __str__(self) -> str:
+        return self.value
+
+
 if __name__ == '__main__':
     orders = [
         Order(
@@ -35,6 +43,8 @@ if __name__ == '__main__':
             priority='low'
         )
     ]
+
+    priority = Priority('high')
 
     filtered_orders = list(filter(lambda x: x.priority == 'high', orders))
     assert len(filtered_orders) == 1
