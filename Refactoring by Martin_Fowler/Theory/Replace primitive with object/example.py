@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 
 
@@ -8,6 +8,16 @@ class Order:
     date: datetime
     description: str
     priority: str
+
+    _priority: str = field(init=False, repr=False)
+
+    @property
+    def priority(self) -> str:
+        return self._priority
+
+    @priority.setter
+    def priority(self, value):
+        self._priority = value
 
 
 if __name__ == '__main__':
