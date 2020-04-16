@@ -5,12 +5,6 @@ from uuid import UUID
 class ClassifiedAd:
 
     def __init__(self, id: UUID):
-        # in the book version here there's a check
-        # if (id == default)
-        #   throw new ArgumentException( "Identity must be specified", nameof(id));
-        # this is not pythonic and I am not checking that the parameter is passed
-
-        # add private things
         self.__id: UUID = id
 
         self.__ownerId: UUID = None
@@ -18,8 +12,18 @@ class ClassifiedAd:
         self.__text: str = None
         self.__price: Decimal = None
 
+    # Added behavior to update attributes
+    def set_title(self, title: str):
+        self.__title = title
+
+    def update_text(self, text: str):
+        self.__text = text
+
+    def update_price(self, price: Decimal):
+        self.__price = price
+
     @property
-    def id(self):
+    def id(self) -> UUID:
         return self.__id
 
 
