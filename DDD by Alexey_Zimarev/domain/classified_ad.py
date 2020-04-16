@@ -3,12 +3,15 @@ import uuid
 
 
 class ClassifiedAd:
-    id: uuid.UUID
-    ownerId: uuid.UUID
-    title: str
-    text: str
-    price: decimal.Decimal
+
+    def __init__(self, id: uuid.UUID):
+        self.id: uuid.UUID = id
+
+        self.ownerId: uuid.UUID = None
+        self.title: str = None
+        self.text: str = None
+        self.price: decimal.Decimal = None
 
 
 if __name__ == '__main__':
-    pass
+    x = ClassifiedAd(id=uuid.uuid4())
