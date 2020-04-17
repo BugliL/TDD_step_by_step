@@ -34,3 +34,7 @@ if __name__ == '__main__':
 
     x = ClassifiedAd(id=uuid.uuid4(), ownerId=uuid.uuid4())
     print(x.id)
+
+    # Raise error!
+    # x = ClassifiedAd(id=None, ownerId=uuid.uuid4())
+    # print(x.id)
