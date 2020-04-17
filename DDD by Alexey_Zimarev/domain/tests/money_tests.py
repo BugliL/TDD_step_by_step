@@ -24,6 +24,16 @@ class MoneyTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             Money.create(amount=None)
 
+    def test_given_2_plus_3_money_should_return_5(self):
+        x = Money.create(2)
+        y = Money.create(3)
+        self.assertEqual(Money.create(5), x + y)
+
+    def test_given_2_less_1_money_should_return_1(self):
+        x = Money.create(2)
+        y = Money.create(1)
+        self.assertEqual(Money.create(1), x - y)
+
 
 if __name__ == '__main__':
     pass

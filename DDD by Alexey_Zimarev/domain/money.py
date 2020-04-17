@@ -21,6 +21,18 @@ class Money:
     def create(cls, amount: DecimalCompliant):
         return cls(amount=(Decimal(amount) if amount is not None else None))
 
+    def __add__(self, other):
+        if type(other) != type(self):
+            raise TypeError("{} is not {}, can't perform operation".format(type(other), type(self)))
+
+        return Money.create(amount=(other.amount + self.amount))
+
+    def __sub__(self, other):
+        if type(other) != type(self):
+            raise TypeError("{} is not {}, can't perform operation".format(type(other), type(self)))
+
+        return Money.create(amount=(self.amount - other.amount))
+
 
 if __name__ == '__main__':
     x = Money.create(amount=12)
