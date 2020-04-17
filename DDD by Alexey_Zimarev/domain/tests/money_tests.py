@@ -29,10 +29,26 @@ class MoneyTests(unittest.TestCase):
         y = Money.create(3)
         self.assertEqual(Money.create(5), x + y)
 
+    def test_given_2_plus_3_different_money_currency_should_raise_error(self):
+        with self.assertRaises(TypeError):
+            x = Money.create(amount=2, currency="EUR")
+            y = Money.create(amount=2, currency="USD")
+            z = x + y
+
+    def test_given_2_less_3_different_money_currency_should_raise_error(self):
+        with self.assertRaises(TypeError):
+            x = Money.create(amount=3, currency="EUR")
+            y = Money.create(amount=2, currency="USD")
+            z = x - y
+
     def test_given_2_less_1_money_should_return_1(self):
         x = Money.create(2)
         y = Money.create(1)
         self.assertEqual(Money.create(1), x - y)
+
+    def test_given_more_than_2_decimals_should_raise_error(self):
+        with self.assertRaises(ValueError):
+            Money.create(0.001)
 
 
 if __name__ == '__main__':
