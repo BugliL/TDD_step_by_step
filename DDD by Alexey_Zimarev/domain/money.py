@@ -3,40 +3,37 @@ from decimal import Decimal
 from typing import Union
 
 
-# The class was splitted in 2 things
-#  - dataclass MoneyClass
-#  - factory method Money
-# This was the best method I found to let MoneyClass be IMMUTABLE and
-# to initialize the amount to a default Decimal type
-
 @dataclass(frozen=True)
-class MoneyClass:
+class Money:
     amount: Decimal = field(default=Decimal(0))
 
 
 DecimalCompliant = Union[str, int, float, Decimal]
 
 
-def Money(amount: DecimalCompliant = Decimal(0)) -> MoneyClass:
+def CreateMoney(amount: DecimalCompliant) -> Money:
     if amount is None:
         raise ValueError('Amount must be not None')
 
-    return MoneyClass(amount=Decimal(amount))
+    if Decimal(amount) < 0:
+        raise ValueError('Amount must be positive')
+
+    return Money(amount=(Decimal(amount) if amount is not None else None))
 
 
 if __name__ == '__main__':
-    x = Money(amount=12)
-    print(x.amount)
+    x = CreateMoney(amount=12)
+    print(x.amount)  # prints 12
 
-    x = Money(amount='12')
-    print(x.amount)
+    x = CreateMoney(amount='12')
+    print(x.amount)  # prints 12
 
-    x = Money(amount=Decimal(12))
-    print(x.amount)
+    x = CreateMoney(amount=Decimal(12))
+    print(x.amount)  # prints 12
 
-    y = Money()
+    y = CreateMoney(amount=0)
     print(y.amount + 9)
-    print(y)
+    print(y)  # prints 9
 
     # Raise an error
     # y = Money(amount=None)
