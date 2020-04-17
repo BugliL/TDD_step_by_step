@@ -18,8 +18,8 @@ class Money:
             raise ValueError('Amount must be positive')
 
     @classmethod
-    def create(cls, amount: DecimalCompliant) -> Money:
-        return Money(amount=(Decimal(amount) if amount is not None else None))
+    def create(cls, amount: DecimalCompliant):
+        return cls(amount=(Decimal(amount) if amount is not None else None))
 
 
 if __name__ == '__main__':
