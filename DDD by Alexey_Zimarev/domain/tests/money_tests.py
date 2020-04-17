@@ -1,14 +1,14 @@
 import unittest
 
-from domain.money import CreateMoney
+from domain.money import Money
 
 
 class MoneyTests(unittest.TestCase):
 
     def test_given_money_with_same_amount_should_be_equal(self):
         # Dataclass manage this behavior
-        x, y = CreateMoney(10), CreateMoney(10)
-        z = CreateMoney(5)
+        x, y = Money.create(10), Money.create(10)
+        z = Money.create(5)
 
         self.assertEqual(x, y)
         self.assertTrue(x == y)
@@ -18,11 +18,11 @@ class MoneyTests(unittest.TestCase):
 
     def test_given_creating_negative_money_should_raise_error(self):
         with self.assertRaises(ValueError):
-            CreateMoney(amount=-1)
+            Money.create(amount=-1)
 
     def test_given_creating_or_null_money_should_raise_error(self):
         with self.assertRaises(ValueError):
-            CreateMoney(amount=None)
+            Money.create(amount=None)
 
 
 if __name__ == '__main__':
