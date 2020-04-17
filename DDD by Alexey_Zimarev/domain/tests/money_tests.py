@@ -16,9 +16,13 @@ class MoneyTests(unittest.TestCase):
         self.assertNotEqual(x, z)
         self.assertFalse(x == z)
 
-    def test_given_creating_negative_or_null_money_should_raise_error(self):
-        self.assertRaises(ValueError, lambda: CreateMoney(amount=-1))
-        self.assertRaises(ValueError, lambda: CreateMoney(amount=None))
+    def test_given_creating_negative_money_should_raise_error(self):
+        with self.assertRaises(ValueError):
+            CreateMoney(amount=-1)
+
+    def test_given_creating_or_null_money_should_raise_error(self):
+        with self.assertRaises(ValueError):
+            CreateMoney(amount=None)
 
 
 if __name__ == '__main__':

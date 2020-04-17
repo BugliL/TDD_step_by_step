@@ -7,17 +7,18 @@ from typing import Union
 class Money:
     amount: Decimal = field(default=Decimal(0))
 
+    def __post_init__(self):
+        if self.amount is None:
+            raise ValueError('Amount must be not None')
+
+        if Decimal(self.amount) < 0:
+            raise ValueError('Amount must be positive')
+
 
 DecimalCompliant = Union[str, int, float, Decimal]
 
 
 def CreateMoney(amount: DecimalCompliant) -> Money:
-    if amount is None:
-        raise ValueError('Amount must be not None')
-
-    if Decimal(amount) < 0:
-        raise ValueError('Amount must be positive')
-
     return Money(amount=(Decimal(amount) if amount is not None else None))
 
 
