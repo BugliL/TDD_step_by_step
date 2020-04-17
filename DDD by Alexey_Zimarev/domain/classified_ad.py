@@ -25,7 +25,7 @@ class ClassifiedAd:
         self.__price = price
 
     @property
-    def id(self) -> UUID:
+    def id(self) -> ClassifiedAdId:
         return self.__id
 
 
