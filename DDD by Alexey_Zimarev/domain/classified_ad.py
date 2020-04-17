@@ -7,9 +7,9 @@ from domain.user_id import UserId
 
 class ClassifiedAd:
 
-    def __init__(self, id: UUID, ownerId: UUID):
+    def __init__(self, id: UUID, owner_id: UUID):
         self.__id: ClassifiedAdId = ClassifiedAdId(id)
-        self.__ownerId: UserId = UserId(ownerId)
+        self.__owner_id: UserId = UserId(owner_id)
 
         self.__title: str = None
         self.__text: str = None
@@ -32,7 +32,7 @@ class ClassifiedAd:
 if __name__ == '__main__':
     import uuid
 
-    x = ClassifiedAd(id=uuid.uuid4(), ownerId=uuid.uuid4())
+    x = ClassifiedAd(id=uuid.uuid4(), owner_id=uuid.uuid4())
     print(x.id)
 
     # Raise error!
