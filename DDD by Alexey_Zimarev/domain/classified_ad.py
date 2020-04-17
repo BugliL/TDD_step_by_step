@@ -5,6 +5,11 @@ from uuid import UUID
 class ClassifiedAd:
 
     def __init__(self, id: UUID):
+        
+        # force not None, 0 or '' param
+        if not id:
+            raise ValueError("id must be set correctly")
+
         self.__id: UUID = id
 
         self.__ownerId: UUID = None
@@ -32,3 +37,7 @@ if __name__ == '__main__':
 
     x = ClassifiedAd(id=uuid.uuid4())
     print(x.id)
+
+    # This raise an error
+    # x = ClassifiedAd(None)
+    # print(x.id)
