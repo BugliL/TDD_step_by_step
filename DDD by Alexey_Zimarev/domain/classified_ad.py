@@ -1,19 +1,15 @@
 from decimal import Decimal
 from uuid import UUID
 
+from domain.classified_ad_id import ClassifiedAdId
+from domain.user_id import UserId
+
 
 class ClassifiedAd:
 
     def __init__(self, id: UUID, ownerId: UUID):
-
-        if not id:
-            raise ValueError("id must be set correctly")
-
-        if not ownerId:
-            raise ValueError("ownerId must be set correctly")
-
-        self.__id: UUID = id
-        self.__ownerId: UUID = ownerId
+        self.__id: ClassifiedAdId = ClassifiedAdId(id)
+        self.__ownerId: UserId = UserId(ownerId)
 
         self.__title: str = None
         self.__text: str = None
