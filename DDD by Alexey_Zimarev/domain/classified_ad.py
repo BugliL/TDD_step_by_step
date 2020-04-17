@@ -4,20 +4,21 @@ from uuid import UUID
 
 class ClassifiedAd:
 
-    def __init__(self, id: UUID):
-        
-        # force not None, 0 or '' param
+    def __init__(self, id: UUID, ownerId: UUID):
+
         if not id:
             raise ValueError("id must be set correctly")
 
-        self.__id: UUID = id
+        if not ownerId:
+            raise ValueError("ownerId must be set correctly")
 
-        self.__ownerId: UUID = None
+        self.__id: UUID = id
+        self.__ownerId: UUID = ownerId
+
         self.__title: str = None
         self.__text: str = None
         self.__price: Decimal = None
 
-    # Added behavior to update attributes
     def set_title(self, title: str):
         self.__title = title
 
@@ -35,9 +36,5 @@ class ClassifiedAd:
 if __name__ == '__main__':
     import uuid
 
-    x = ClassifiedAd(id=uuid.uuid4())
+    x = ClassifiedAd(id=uuid.uuid4(), ownerId=uuid.uuid4())
     print(x.id)
-
-    # This raise an error
-    # x = ClassifiedAd(None)
-    # print(x.id)
