@@ -47,11 +47,15 @@ class Money:
 
     @classmethod
     def create_new(cls, amount: DecimalCompliant, currency: str, lookup: AbstractCurrencyLookup):
+        if not lookup:
+            raise ValueError('CurrencyLookup must be specifed correctly')
+
+        currency_details = lookup.find(currency)
 
         return cls(
             amount=(Decimal(amount) if amount is not None else None),
-            currency=currency,
-            currency_details=lookup.find(currency)
+            currency=currency_details.currency_code,
+            currency_details=currency_details
         )
 
 
