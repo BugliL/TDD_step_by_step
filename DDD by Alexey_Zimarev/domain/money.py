@@ -26,10 +26,6 @@ class Money:
         if not (self.amount.as_tuple().exponent >= -2):
             raise ValueError('Only 2 decimal places allowed')
 
-    @classmethod
-    def create(cls, amount: DecimalCompliant, currency: str = DEFAULT_CURRENCY):
-        return cls(amount=(Decimal(amount) if amount is not None else None), currency=currency)
-
     def __add__(self, other):
         self._operation_check(other)
         return Money(
@@ -54,7 +50,7 @@ class Money:
             raise TypeError("{} is not {}, can't perform operation".format(other.currency, self.currency))
 
     @classmethod
-    def create_new(cls, amount: DecimalCompliant, currency: str, lookup: Type[AbstractCurrencyLookup]):
+    def create(cls, amount: DecimalCompliant, currency: str, lookup: Type[AbstractCurrencyLookup]):
         if not lookup:
             raise ValueError('CurrencyLookup must be specifed correctly')
 

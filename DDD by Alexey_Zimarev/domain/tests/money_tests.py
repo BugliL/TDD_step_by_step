@@ -43,8 +43,8 @@ class MoneyTests(unittest.TestCase):
 
     def test_given_money_with_same_amount_should_be_equal(self):
         # Dataclass manage this behavior
-        x, y = Money.create_new(10, EUR, FakeCurrencyLookup), Money.create_new(10, EUR, FakeCurrencyLookup)
-        z = Money.create_new(5, EUR, FakeCurrencyLookup)
+        x, y = Money.create(10, EUR, FakeCurrencyLookup), Money.create(10, EUR, FakeCurrencyLookup)
+        z = Money.create(5, EUR, FakeCurrencyLookup)
 
         self.assertEqual(x, y)
         self.assertTrue(x == y)
@@ -54,37 +54,37 @@ class MoneyTests(unittest.TestCase):
 
     def test_given_creating_negative_money_should_raise_error(self):
         with self.assertRaises(ValueError):
-            Money.create_new(amount=-1, currency=EUR, lookup=FakeCurrencyLookup)
+            Money.create(amount=-1, currency=EUR, lookup=FakeCurrencyLookup)
 
     def test_given_creating_or_null_money_should_raise_error(self):
         with self.assertRaises(ValueError):
-            Money.create_new(amount=None, currency=EUR, lookup=FakeCurrencyLookup)
+            Money.create(amount=None, currency=EUR, lookup=FakeCurrencyLookup)
 
     def test_given_2_plus_3_money_should_return_5(self):
-        x = Money.create_new(amount=2, currency=EUR, lookup=FakeCurrencyLookup)
-        y = Money.create_new(amount=3, currency=EUR, lookup=FakeCurrencyLookup)
-        self.assertEqual(Money.create_new(amount=5, currency=EUR, lookup=FakeCurrencyLookup), x + y)
+        x = Money.create(amount=2, currency=EUR, lookup=FakeCurrencyLookup)
+        y = Money.create(amount=3, currency=EUR, lookup=FakeCurrencyLookup)
+        self.assertEqual(Money.create(amount=5, currency=EUR, lookup=FakeCurrencyLookup), x + y)
 
     def test_given_2_plus_3_different_money_currency_should_raise_error(self):
         with self.assertRaises(TypeError):
-            x = Money.create_new(amount=2, currency="EUR", lookup=FakeCurrencyLookup)
-            y = Money.create_new(amount=2, currency="USD", lookup=FakeCurrencyLookup)
+            x = Money.create(amount=2, currency="EUR", lookup=FakeCurrencyLookup)
+            y = Money.create(amount=2, currency="USD", lookup=FakeCurrencyLookup)
             z = x + y
 
     def test_given_2_less_3_different_money_currency_should_raise_error(self):
         with self.assertRaises(TypeError):
-            x = Money.create_new(amount=3, currency="EUR", lookup=FakeCurrencyLookup)
-            y = Money.create_new(amount=2, currency="USD", lookup=FakeCurrencyLookup)
+            x = Money.create(amount=3, currency="EUR", lookup=FakeCurrencyLookup)
+            y = Money.create(amount=2, currency="USD", lookup=FakeCurrencyLookup)
             z = x - y
 
     def test_given_2_less_1_money_should_return_1(self):
-        x = Money.create_new(amount=2, currency="USD", lookup=FakeCurrencyLookup)
-        y = Money.create_new(amount=1, currency="USD", lookup=FakeCurrencyLookup)
-        self.assertEqual(Money.create_new(amount=1, currency="USD", lookup=FakeCurrencyLookup), x - y)
+        x = Money.create(amount=2, currency="USD", lookup=FakeCurrencyLookup)
+        y = Money.create(amount=1, currency="USD", lookup=FakeCurrencyLookup)
+        self.assertEqual(Money.create(amount=1, currency="USD", lookup=FakeCurrencyLookup), x - y)
 
     def test_given_more_than_2_decimals_should_raise_error(self):
         with self.assertRaises(ValueError):
-            Money.create_new(amount=0.001, currency="EUR", lookup=FakeCurrencyLookup)
+            Money.create(amount=0.001, currency="EUR", lookup=FakeCurrencyLookup)
 
 
 if __name__ == '__main__':
