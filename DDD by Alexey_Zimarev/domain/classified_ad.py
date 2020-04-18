@@ -2,6 +2,9 @@ from decimal import Decimal
 from uuid import UUID
 
 from domain.classified_ad_id import ClassifiedAdId
+from domain.classified_ad_text import ClassifiedAdText
+from domain.classified_ad_title import ClassifiedAdTitle
+from domain.price import Price
 from domain.user_id import UserId
 
 
@@ -11,9 +14,9 @@ class ClassifiedAd:
         self.__id: ClassifiedAdId = ClassifiedAdId(id)
         self.__owner_id: UserId = UserId(owner_id)
 
-        self.__title: str = None
-        self.__text: str = None
-        self.__price: Decimal = None
+        self.__title: ClassifiedAdTitle = None
+        self.__text: ClassifiedAdText = None
+        self.__price: Price = None
 
     def set_title(self, title: str):
         self.__title = title
