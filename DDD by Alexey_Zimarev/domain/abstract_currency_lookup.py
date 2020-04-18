@@ -16,7 +16,7 @@ class CurrencyDetails:
 
 class AbstractCurrencyLookup(ABC):
 
-    @staticmethod
+    @classmethod
     @abstractmethod
     def find(cls, currency_code: str) -> CurrencyDetails:
         pass

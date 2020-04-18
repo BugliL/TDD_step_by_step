@@ -16,9 +16,9 @@ class FakeCurrencyLookup(AbstractCurrencyLookup):
         ]
 
     @classmethod
-    def find(cls, code: str):
+    def find(cls, currency_code: str):
         return next(
-            (x for x in cls.currencies() if x.currency_code == code),
+            (x for x in cls.currencies() if x.currency_code == currency_code),
             CurrencyDetails.NoneCurrency()
         )
 
@@ -41,9 +41,8 @@ class MoneyTests(unittest.TestCase):
     def test_given_money_with_same_amount_should_be_equal(self):
         # Dataclass manage this behavior
         EUR = "EUR"
-        lookup = FakeCurrencyLookup()
-        x, y = Money.create(10, EUR, lookup), Money.create(10, EUR, lookup)
-        z = Money.create(5, EUR, lookup)
+        x, y = Money.create_new(10, EUR, FakeCurrencyLookup), Money.create(10, EUR, FakeCurrencyLookup)
+        z = Money.create(5, EUR, FakeCurrencyLookup)
 
         self.assertEqual(x, y)
         self.assertTrue(x == y)
