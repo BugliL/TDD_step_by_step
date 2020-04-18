@@ -3,6 +3,8 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import Union
 
+from domain.abstract_currency_lookup import AbstractCurrencyLookup, CurrencyDetails
+
 DecimalCompliant = Union[str, int, float, Decimal]
 
 
