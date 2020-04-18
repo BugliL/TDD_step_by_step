@@ -13,7 +13,6 @@ class Money:
     DEFAULT_CURRENCY = "EUR"
 
     amount: Decimal = field(default=Decimal(0))
-    currency: str = field(default=DEFAULT_CURRENCY, init=True)
     currency_details: CurrencyDetails = field(default=CurrencyDetails.NoneCurrency(), init=True, compare=False)
 
     def __post_init__(self):
@@ -33,7 +32,6 @@ class Money:
         self._operation_check(other)
         return Money(
             amount=(other.amount + self.amount),
-            currency=self.currency,
             currency_details=self.currency_details
         )
 
@@ -41,26 +39,25 @@ class Money:
         self._operation_check(other)
         return Money(
             amount=(self.amount - other.amount),
-            currency=self.currency,
             currency_details=self.currency_details
         )
 
-    def _operation_check(self, other):
+    def _operation_check(self, other: Money):
         if type(other) != type(self):
             raise TypeError("{} is not {}, can't perform operation".format(type(other), type(self)))
 
-        if other.currency != self.currency:
-            raise TypeError("{} is not {}, can't perform operation".format(other.currency, self.currency))
+        if other.currency_details.currency_code != self.currency_details.currency_code:
+            raise TypeError("{} is not {}, can't perform operation".format(
+                other.currency_details.currency_code,
+                self.currency_details.currency_code,
+            ))
 
     @classmethod
     def create(cls, amount: DecimalCompliant, currency: str, lookup: Type[AbstractCurrencyLookup]):
         if not lookup:
             raise ValueError('CurrencyLookup must be specifed correctly')
 
-        currency_details = lookup.find(currency)
-
         return cls(
             amount=(Decimal(amount) if amount is not None else None),
-            currency=currency_details.currency_code,
-            currency_details=currency_details
+            currency_details=lookup.find(currency)
         )
