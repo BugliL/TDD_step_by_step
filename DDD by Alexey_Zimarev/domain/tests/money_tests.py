@@ -41,8 +41,8 @@ class MoneyTests(unittest.TestCase):
     def test_given_money_with_same_amount_should_be_equal(self):
         # Dataclass manage this behavior
         EUR = "EUR"
-        x, y = Money.create_new(10, EUR, FakeCurrencyLookup), Money.create(10, EUR, FakeCurrencyLookup)
-        z = Money.create(5, EUR, FakeCurrencyLookup)
+        x, y = Money.create_new(10, EUR, FakeCurrencyLookup), Money.create_new(10, EUR, FakeCurrencyLookup)
+        z = Money.create_new(5, EUR, FakeCurrencyLookup)
 
         self.assertEqual(x, y)
         self.assertTrue(x == y)

@@ -44,6 +44,10 @@ class Money:
         if other.currency != self.currency:
             raise TypeError("{} is not {}, can't perform operation".format(other.currency, self.currency))
 
+    @classmethod
+    def create_new(cls, amount:DecimalCompliant, currency:str, lookup: AbstractCurrencyLookup):
+        return cls(amount=(Decimal(amount) if amount is not None else None), currency=currency)
+
 
 if __name__ == '__main__':
     x = Money.create(amount=12)
