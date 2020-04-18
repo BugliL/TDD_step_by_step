@@ -14,6 +14,7 @@ class Money:
 
     amount: Decimal = field(default=Decimal(0))
     currency: str = field(default=DEFAULT_CURRENCY, init=True)
+    currency_details: CurrencyDetails = field(default=CurrencyDetails.NoneCurrency(), init=True)
 
     def __post_init__(self):
         if self.amount is None:
@@ -45,8 +46,13 @@ class Money:
             raise TypeError("{} is not {}, can't perform operation".format(other.currency, self.currency))
 
     @classmethod
-    def create_new(cls, amount:DecimalCompliant, currency:str, lookup: AbstractCurrencyLookup):
-        return cls(amount=(Decimal(amount) if amount is not None else None), currency=currency)
+    def create_new(cls, amount: DecimalCompliant, currency: str, lookup: AbstractCurrencyLookup):
+
+        return cls(
+            amount=(Decimal(amount) if amount is not None else None),
+            currency=currency,
+            currency_details=lookup.find(currency)
+        )
 
 
 if __name__ == '__main__':
