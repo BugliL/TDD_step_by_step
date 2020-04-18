@@ -86,6 +86,13 @@ class MoneyTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             Money.create(amount=0.001, currency="EUR", lookup=FakeCurrencyLookup)
 
+    def test_given_money_it_should_be_in_use(self):
+        with self.assertRaises(ValueError):
+            Money.create(10, "FAKE", FakeCurrencyLookup)
+
+        good_price = Money.create(10, "EUR", FakeCurrencyLookup)
+        self.assertEqual(True, good_price.currency_details.in_use)
+
 
 if __name__ == '__main__':
     pass

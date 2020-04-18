@@ -27,14 +27,3 @@ class ClassifiedAd:
     @property
     def id(self) -> ClassifiedAdId:
         return self.__id
-
-
-if __name__ == '__main__':
-    import uuid
-
-    x = ClassifiedAd(id=uuid.uuid4(), owner_id=uuid.uuid4())
-    print(x.id)
-
-    # Raise error!
-    # x = ClassifiedAd(id=None, ownerId=uuid.uuid4())
-    # print(x.id)

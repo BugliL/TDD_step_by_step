@@ -9,4 +9,3 @@ class PriceTests(unittest.TestCase):
     def test_zero_price_not_allowed(self):
         with self.assertRaises(ValueError):
             Price.create(0, "EUR", FakeCurrencyLookup)
-

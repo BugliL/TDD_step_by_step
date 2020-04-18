@@ -26,6 +26,9 @@ class Money:
         if not (self.amount.as_tuple().exponent >= -2):
             raise ValueError('Only 2 decimal places allowed')
 
+        if not self.currency_details.in_use:
+            raise ValueError('Money must be in use')
+
     def __add__(self, other):
         self._operation_check(other)
         return Money(
