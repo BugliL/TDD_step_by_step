@@ -32,7 +32,6 @@ class ClassifiedAdUpdatedPrice(Event):
 @dataclass
 class ClassifiedAdRequestedToPublish(Event):
     id: UUID
-    published_by: UUID
 
 __all__ = [
     ClassifiedAdCreated,
