@@ -9,9 +9,7 @@ class Event:
 @dataclass
 class EntityEvent:
     events: List = field(init=False, default_factory=list)
-
-    def when(self, event: Event):
-        pass
+    callbacks: dict = field(init=False, default_factory=dict)
 
     def ensure_valid_state(self):
         pass
@@ -20,3 +18,7 @@ class EntityEvent:
         self.when(event)
         self.ensure_valid_state()
         self.events.append(event)
+
+    def when(self, event: Event):
+        fn = self.callbacks.get(event.__class__)
+        fn(self, event)
