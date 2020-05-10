@@ -13,7 +13,7 @@ from .models import FieldJsonError
 # subclassare API exception per far intercettare gli errori
 class StubError(APIException):
     status_code: int = http_codes.HTTP_400_BAD_REQUEST
-    default_detail: dataclass = FieldJsonError(name='name', message='message', code='code').asdict()
+    default_detail: dataclass = FieldJsonError(name='name', message='error', code='code').asdict()
 
 
 class ExceptionView(APIView):

@@ -10,7 +10,7 @@ class ErrorHandlingApiTest(APITestCase):
 
     def test_field_error(self):
         url = reverse('drf_error_handling:index')
-        data = {'name': {'code': 'code', 'message': 'message'}}
+        data = {'name': {'code': 'code', 'error': 'error'}}
         response = self.client.get(url)
         self.assertEqual(status.HTTP_400_BAD_REQUEST, response.status_code)
         self.assertDictEqual(data, response.data)

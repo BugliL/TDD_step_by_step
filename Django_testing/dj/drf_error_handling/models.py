@@ -1,5 +1,6 @@
 import dataclasses
 import json
+from collections import defaultdict
 from dataclasses import dataclass
 from typing import List
 
@@ -14,7 +15,7 @@ class JsonError:
     """
 
     code: str
-    message: str
+    error: str
 
     def __str__(self) -> str:
         return json.dumps(self.asdict())
@@ -30,12 +31,12 @@ class FieldJsonError(JsonError):
     """
 
     name: str
+    classe: str
 
     def asdict(self) -> dict:
         return {
-            self.name: {
-                'code': self.code,
-                'message': self.message
+            self.classe: {
+                self.name: {'code': self.code, 'error': self.error}
             }
         }
 
@@ -44,31 +45,34 @@ class FieldJsonErrorList:
     """
     Classe Collection di FieldJsonError
     """
-    global_error: JsonError = FieldJsonError(name='global', code='', message='')
+    global_error = JsonError(error='', code='')
     error_list: List[JsonError] = []
     has_error: bool = False
 
     @classmethod
-    def add(cls, name: str, message: str, code: str) -> None:
-        cls.error_list.append(FieldJsonError(name=name, message=message, code=code))
+    def reset(cls):
+        cls.global_error = JsonError(code='', error='')
+        cls.error_list = []
+        cls.has_error = False
+
+    @classmethod
+    def add(cls, classe: str, name: str, error: str, code: str) -> None:
+        cls.error_list.append(FieldJsonError(classe=classe, name=name, error=error, code=code))
         cls.has_error = True
 
     @classmethod
-    def set_global_error(cls, message: str, code: str) -> None:
-        cls.global_error = JsonError(message=message, code=code)
+    def set_global_error(cls, error: str, code: str) -> None:
+        cls.global_error = JsonError(error=error, code=code)
         cls.has_error = True
 
     @classmethod
     def asdict(cls) -> dict:
-        result = {**cls.global_error.asdict()}
-        [result.update(d.asdict()) for d in cls.error_list]
-        return result
+        result = defaultdict(lambda: defaultdict(dict))
+        result['global'] = cls.global_error.asdict()
+        for d in cls.error_list:  # type: FieldJsonError
+            result[d.classe][d.name] = {'code': d.code, 'error': d.error}
 
-    @classmethod
-    def reset(cls):
-        cls.global_error = FieldJsonError(name='global', code='', message='')
-        cls.error_list = []
-        cls.has_error = False
+        return result
 
     @classmethod
     def raise_error(cls) -> None:
@@ -78,3 +82,6 @@ class FieldJsonErrorList:
 
         if cls.has_error:
             raise Error()
+
+
+ERROR_MANAGER = FieldJsonError
