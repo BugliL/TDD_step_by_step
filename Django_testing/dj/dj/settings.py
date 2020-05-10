@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Installed
+    'rest_framework',
+
     # My apps
-    'test_app',
+    # 'test_app',
+    'drf_error_handling',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +72,10 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
+}
 
 WSGI_APPLICATION = 'dj.wsgi.application'
 

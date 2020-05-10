@@ -1,6 +1,7 @@
 from django.http import HttpRequest
 from django.test import TestCase
-from Django_testing.dj.dj import views
+
+from . import views
 
 """
 Self-shunt
